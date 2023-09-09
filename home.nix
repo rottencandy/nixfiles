@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -100,6 +100,59 @@
     enable = true;
     enableBashIntegration = true;
     tmux.enableShellIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    settings = {
+      format = lib.concatStrings [
+        "$directory"
+        "$git_branch"
+        "$cmd_duration"
+        "$battery"
+        "$sudo"
+        "$container"
+        "$line_break"
+        "$character"
+      ];
+      add_newline = false;
+      # wait time(in md) for starship to check files under current dir
+      scan_timeout = 10;
+      character = {
+        success_symbol = "[_](bold green) ";
+        error_symbol = "[_](bold red) ";
+      };
+      battery.display = [
+        {
+          threshold = 30;
+          style = "bold yellow";
+        }
+        {
+          threshold = 20;
+          style = "bold red";
+        }
+      ];
+      #[[battery.display]]
+      #threshold = 20
+      #style = 'bold red'
+
+      directory = {
+        truncation_length = 4;
+        truncation_symbol = ".../";
+        #fish_style_pwd_dir_length = "1";
+      };
+
+      git_branch = {
+        #symbol = '__ '
+        #truncation_length = 7
+        #truncation_symbol = '...'
+      };
+
+      cmd_duration.format = " \\[[$duration]($style)\\] ";
+
+      sudo.disabled = false;
+    };
   };
 
   # kanshi, ripgrep does not exist on stable branch of home-manager yet :/
