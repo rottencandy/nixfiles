@@ -267,6 +267,34 @@ in
     '';
   };
 
+  # key daemon
+  systemd.services.keyd = {
+    enable = true;
+    unitConfig = {
+      Requires = "local-fs.target";
+      After = "local-fs.target";
+    };
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.keyd}/bin/keyd";
+    };
+  };
+  environment.etc."keyd/default.conf".text = ''
+    [ids]
+    *
+    
+    [main]
+    # Maps capslock to escape when pressed and control when held.
+    capslock = overload(control, esc)
+    
+    # Remaps the escape key to capslock
+    esc = capslock
+    
+    # Remaps print to second meta(super) key
+    compose = rightmeta
+    sysrq = rightmeta
+  '';
+
   # steam client
   #programs.steam = {
   #  enable = true;
