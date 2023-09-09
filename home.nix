@@ -21,7 +21,6 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-    git
     delta
     vim
     neovim
@@ -102,11 +101,7 @@
     tmux.enableShellIntegration = true;
   };
 
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
-
+  # ripgrep does not exist on stable branch of home-manager yet :/
   #programs.ripgrep = {
   #  enable = true;
   #  arguments = [
@@ -116,4 +111,84 @@
   #    "!.git"
   #  ];
   #};
+  programs.git = {
+    enable = true;
+    delta = {
+      enable = true;
+      options = {
+        "side-by-side" = true;
+	"line-numbers" = true;
+	navigate = true;
+      };
+    };
+    userName = "Mohammed Saud";
+    userEmail = "md.saud020@gmail.com";
+    aliases = {
+      st = "status";
+      co = "checkout";
+      br = "branch";
+      last = "log -1 HEAD";
+      yoink = "reset --hard";
+      # All unmerged commits after fetch
+      lc = "log ORIG_HEAD.. --stat --no-merges";
+
+      # log in local time
+      llog = "log --date=local";
+
+      # Fetch PR from upstream
+      pr = "!f() { git fetch upstream pull/\${1}/head:pr\${1}; }; f";
+
+      # Pretty log
+      lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
+
+      # Show current branch
+      pwd = "symbolic-ref --short HEAD";
+      # Show corresponding upstream branch
+      upstream = "name-rev @{upstream}";
+
+      # Set upstream before pushing if necessary
+      pu = "!f() { if [ \"$(git upstream 2> /dev/null)\" ]; then git push; else git push -u origin $(git pwd); fi }; f";
+
+      # Pull submodules
+      pulsub = "submodule update --remote";
+    };
+    # TODO: turn this to attr set
+    extraConfig = {
+      # colorize output
+      color = {
+        diff = "auto";
+        status = "auto";
+        branch = "auto";
+        interactive = "auto";
+        ui = true;
+        pager = true;
+      };
+      # cache credentials
+      credential = {
+        helper = "cache --timeout=3600";
+      };
+      merge = {
+        conflictstyle = "diff3";
+      };
+      sendemail = {
+        smtpEncryption = "tls";
+        smtpServer = "smtp.gmail.com";
+        smtpServerPort = "587";
+        smtpUser = "md.saud020@gmail.com";
+      };
+      pull.rebase = true;
+      filter.lfs = {
+        clean = "git-lfs clean -- %f";
+        smudge = "git-lfs smudge -- %f";
+        process = "git-lfs filter-process";
+        required = true;
+      };
+      init.defaultBranch = "main";
+    };
+  };
+
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
 }
