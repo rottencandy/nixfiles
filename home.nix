@@ -31,14 +31,15 @@
     xh
     fd
     nnn
+    broot
     bottom
     htop
     lsd
     wget
     curl
-    yt-dlp
     jq
     jless
+    yt-dlp
 
     wineWowPackages.waylandFull
     winetricks
@@ -101,7 +102,36 @@
     tmux.enableShellIntegration = true;
   };
 
-  # ripgrep does not exist on stable branch of home-manager yet :/
+  # kanshi, ripgrep does not exist on stable branch of home-manager yet :/
+
+  #programs.kanshi = {
+  #  enable = true;
+  #  profiles = {
+  #    default = {
+  #      outputs = {
+  #        "HDMI-A-1" = {
+  #          mode = "1920x1080@74.973";
+  #          position = "0,0";
+  #        };
+  #        "eDP-1" = {
+  #          position = "1920,0";
+  #        };
+  #      };
+  #    };
+  #    default2 = {
+  #      outputs = {
+  #        "HDMI-A-2" = {
+  #          mode = "1920x1080@74.973";
+  #          position = "0,0";
+  #        };
+  #        "eDP-1" = {
+  #          position = "1920,0";
+  #        };
+  #      };
+  #    };
+  #  };
+  #};
+
   #programs.ripgrep = {
   #  enable = true;
   #  arguments = [
@@ -111,6 +141,7 @@
   #    "!.git"
   #  ];
   #};
+
   programs.git = {
     enable = true;
     delta = {
