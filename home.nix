@@ -220,7 +220,7 @@ in
       pinknoise = "play -t sl -r48000 -c2 -n synth -1 pinknoise .1 80";
     };
 
-    initExtra = ''
+    bashrcExtra = ''
     # nnn with cd on quit
     n() {
         # Block nesting of nnn in subshells
