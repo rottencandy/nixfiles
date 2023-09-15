@@ -39,15 +39,6 @@ let
     '';
   };
 
-  # Script to run processes using discrete Nvidia GPU
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
-
 in
 {
   imports =
@@ -171,8 +162,6 @@ in
     description = "saud";
     extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [
-      firefox
-      kate
     #  thunderbird
     ];
   };
@@ -188,33 +177,9 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # tools
-    ffmpeg
-    gparted
-    pandoc
-
-    # applications
-    qbittorrent
-    wezterm
-    vlc
-    mpv
-    gimp
-    lutris
-    heroic
-    hexchat
-    neovide
-
     # utils
-    moreutils
     configure-gtk
     xdg-utils
-    asusctl
-    nvidia-offload
-    nvtop
-    protonup-qt
-    gamescope
-    redshift
-    openvpn
 
     # libs
     glib
@@ -222,7 +187,10 @@ in
     wayfire
 
     # services
+  ];
 
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   security.polkit.enable = true;

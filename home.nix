@@ -1,5 +1,46 @@
 { config, lib, pkgs, ... }:
 
+let
+  # Script to run processes using discrete Nvidia GPU
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec -a "$0" "$@"
+  '';
+
+  git-glog = pkgs.writeShellScriptBin "glog" ''
+    setterm -linewrap off
+
+    git --no-pager log --all --color=always --graph --abbrev-commit --decorate \
+        --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' | \
+        sed -E \
+        -e 's/\|(\x1b\[[0-9;]*m)+\\(\x1b\[[0-9;]*m)+ /├\1─_\2/' \
+        -e 's/(\x1b\[[0-9;]+m)\|\x1b\[m\1\/\x1b\[m /\1├─_\x1b\[m/' \
+        -e 's/\|(\x1b\[[0-9;]*m)+\\(\x1b\[[0-9;]*m)+/├\1_\2/' \
+        -e 's/(\x1b\[[0-9;]+m)\|\x1b\[m\1\/\x1b\[m/\1├_\x1b\[m/' \
+        -e 's/_(\x1b\[[0-9;]*m)+\\/_\1__/' \
+        -e 's/_(\x1b\[[0-9;]*m)+\//_\1__/' \
+        -e 's/(\||\\)\x1b\[m   (\x1b\[[0-9;]*m)/__\2/' \
+        -e 's/(\x1b\[[0-9;]*m)\\/\1_/g' \
+        -e 's/(\x1b\[[0-9;]*m)\//\1_/g' \
+        -e 's/^\*|(\x1b\[m )\*/\1_/g' \
+        -e 's/(\x1b\[[0-9;]*m)\|/\1│/g' \
+        | command less -r +'/[^/]HEAD'
+
+    setterm -linewrap on
+  '';
+
+  # Grab a password from the password store into the clipboard using fzf
+  pass-get = pkgs.writeShellScriptBin "getp" ''
+    PASS_DIR=~/.password-store
+    selection=$(cd $PASS_DIR && fd --type f | fzf)
+    if [ -z $selection ]; then return; fi
+    pass -c "''${selection//.gpg/}"
+  '';
+
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -21,29 +62,65 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
+
+    # tools
+    ffmpeg
+    gparted
+    pandoc
     delta
-    vim
-    neovim
     emacs
     helix
     tmux
     neofetch
     xh
     fd
+    bat
     nnn
     broot
     bottom
     htop
     lsd
-    wget
-    curl
     jq
     jless
     yt-dlp
+    vim
+    neovim
+    wget
+    curl
+    moreutils
+    ripgrep
+    pass
+    clang
+    mold
+
+    # shell functions
+    git-glog
+    pass-get
+
+    # applications
+    qbittorrent
+    vlc
+    mpv
+    gimp
+    lutris
+    heroic
+    hexchat
+    neovide
+    bottles
+    firefox
+    godot_4
+
+    # utils
+    asusctl
+    nvidia-offload
+    nvtop
+    protonup-qt
+    gamescope
+    redshift
+    openvpn
 
     wineWowPackages.waylandFull
     winetricks
-    bottles
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -88,14 +165,120 @@
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "vim";
+    GIT_EDITOR = "vim";
+    SVN_EDITOR = "vim";
+    KUBE_EDITOR = "vim";
     VISUAL = "vim";
-    NNN_TMPFILE = "/tmp/.nnn-lastd";
   };
 
   # Let Home Manager install and manage itself.
   #programs.home-manager.enable = true;
 
-  programs.bash.enable = true;
+  programs.bash = {
+    enable = true;
+    shellOptions = [
+      "autocd" # cd on dir name
+      "checkwinsize" # update LINES and COLUMNS on window resize
+      "cmdhist" # combine multiline commands into one
+      "histappend"
+      "globstar"
+      "extglob"
+      "nullglob"
+    ];
+
+    shellAliases = {
+      # TODO get advcpmv to nixpkgs
+      #acp = "cpg -g";
+      #amv = "mvg -g";
+      gd = "DELTA_NAVIGATE = 1 git diff";
+      gr = "cd ./$(git rev-parse --show-cdup)";
+      k = "kubectl";
+      l = "ls -CF";
+      la = "lsd -A";
+      ll = "lsd -l";
+      nb = "cd ~/nb && nvim -c \"exec \\\"normal 1 f\\";
+      nv = "nvim";
+      nvdaemon = "nvim --headless --listen localhost:6666";
+      scrt = "grim -g \"$(slurp)\" screenshot-$(date +%s).png 2> /dev/null";
+      srec = "wf-recorder -g \"$(slurp)\" -c h264_vaapi -d /dev/dri/renderD128 -f recording-$(date +%s).mp4";
+      arec = "parec --monitor-system = \"$(pacmd get-default-source)\" --file-format = \"wav\" recording-$(date +%s).wav";
+      t = "tmux";
+      tree = "lsd --tree";
+      ungr = "gron --ungron";
+      v = "vim -X";
+      yt = "yt-dlp --add-metadata -i";
+      ytb = "yt-dlp --add-metadata -i -f bestvideo+bestaudio";
+      yta = "yt --add-metadata -x -f bestaudio";
+      camfeed = "gst-launch-1.0 -v v4l2src device = /dev/video0 ! glimagesink";
+      brownnoise = "play -n synth brownnoise synth pinknoise mix synth sine amod 0.3 10";
+      whitenoise = "play -q -c 2 -n synth brownnoise band -n 1600 1500 tremolo .1 30";
+      pinknoise = "play -t sl -r48000 -c2 -n synth -1 pinknoise .1 80";
+    };
+
+    initExtra = ''
+    # nnn with cd on quit
+    n() {
+        # Block nesting of nnn in subshells
+        if [ -n $NNNLVL ] && [ "''${NNNLVL:-0}" -ge 1 ]; then
+            echo "nnn is already running"
+            return
+        fi
+
+        # To cd on quit only on ^G, remove the "export"
+        # NOTE: NNN_TMPFILE is fixed, should not be modified
+        export NNN_TMPFILE="''${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+        # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+        # stty start undef
+        # stty stop undef
+        # stty lwrap undef
+        # stty lnext undef
+
+        nnn -crA "$@"
+
+        if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+        fi
+    }
+
+    # do sudo, or sudo the last command if no argument given
+    s() {
+        if [[ $# == 0 ]]; then
+            echo sudo $(history -p '!!')
+            sudo $(history -p '!!')
+        else
+            sudo "$@"
+        fi
+    }
+
+    # https://gist.github.com/pcdv
+    g() {
+        local HLP="Bookmark your favorite directories:
+        g         : list bookmarked dirs
+        g .       : add current dir to bookmarks
+        g -e      : edit bookmarks
+        g <num>   : jump to n-th dir
+        g <regex> : jump to 1st matching dir"
+        local D=_; local CFG="$HOME/.cdirs"
+    
+        case $1 in
+            #"") [ -f "$CFG" ] && nl "$CFG" || echo "$HLP" ;;
+            "") [ -f "$CFG" ] && D=$(cat "$CFG" | fzf) || D=_ ;;
+            .) pwd >> "$CFG" ;;
+            -e) ''${EDITOR:-vi} "$CFG" ;;
+            -*) echo "$HLP" ;;
+            [1-9]*) D=$(sed -ne "''${1}p" "$CFG") ;;
+            *) D=$(grep "$1" "$CFG" | head -1) ;;
+        esac
+    
+        if [ "$D" != _ ]; then
+            [ -d "$D" ] && cd "$D" || echo "Not found"
+        fi
+    }
+    '';
+  };
+
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
@@ -120,8 +303,8 @@
       # wait time(in md) for starship to check files under current dir
       scan_timeout = 10;
       character = {
-        success_symbol = "[_](bold green) ";
-        error_symbol = "[_](bold red) ";
+        success_symbol = "[󰘧](bold green) ";
+        error_symbol = "[󰘧](bold red) ";
       };
       battery.display = [
         {
@@ -236,7 +419,6 @@
       # Pull submodules
       pulsub = "submodule update --remote";
     };
-    # TODO: turn this to attr set
     extraConfig = {
       # colorize output
       color = {
@@ -269,6 +451,18 @@
       };
       init.defaultBranch = "main";
     };
+  };
+
+  programs.wezterm = {
+    enable = true;
+    extraConfig = ''
+    local wezterm = require 'wezterm'
+
+    return {
+      font = wezterm.font 'FiraCode Nerd Font Mono',
+      hide_tab_bar_if_only_one_tab = true,
+    }
+    '';
   };
 
   services.kdeconnect = {
