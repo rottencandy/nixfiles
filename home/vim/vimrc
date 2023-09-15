@@ -1,0 +1,135 @@
+runtime common.vim
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ⡀⢀ ⠄ ⣀⣀  ⡀⣀ ⢀⣀
+" ⠱⠃ ⠇ ⠇⠇⠇ ⠏  ⠣⠤
+"
+"Behaviour {{{
+
+" Some terminals also need this for termguicolors truecolor support
+" https://stackoverflow.com/a/62703167/7683374
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+set signcolumn=number   " Number column also shows signs
+
+set completeopt=longest,menuone,popup,noselect
+
+" Highlight leading/trailing whitespace (vim9)
+"set listchars=eol:¬,space:·,lead:\ ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:\│\ \ \ ,
+
+" }}}
+
+"LSP {{{
+
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': { server_info->['typescript-language-server', '--stdio'] },
+        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json')) },
+        \ 'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+        \ })
+endif
+
+if executable('deno')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'deno-lsp',
+        \ 'cmd': { server_info->['deno', 'lsp'] },
+        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'deno.jsonc')) },
+        \ 'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+        \ })
+endif
+
+if executable('vscode-eslint-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'eslint-language-server',
+        \ 'cmd': { server_info->['vscode-eslint-language-server', '--stdio'] },
+        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json')) },
+        \ 'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+        \ })
+endif
+
+if executable('rust-analyzer')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'rust-analyzer',
+        \ 'cmd': { server_info->['rust-analyzer'] },
+        \ 'allowlist': ['rust'],
+        \ })
+  autocmd! BufWritePre *.rs call LspDocumentFormatSync
+endif
+
+if executable('gopls')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': { server_info->['gopls'] },
+        \ 'allowlist': ['go'],
+        \ })
+  autocmd! BufWritePre *.go call LspDocumentFormatSync
+endif
+
+if executable('vscode-html-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'html-languageserver',
+        \ 'cmd': { server_info->['vscode-html-language-server', '--stdio'] },
+        \ 'allowlist': ['html'],
+        \ })
+endif
+
+if executable('vscode-css-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'css-languageserver',
+        \ 'cmd': { server_info->['vscode-css-language-server', '--stdio'] },
+        \ 'allowlist': ['css', 'scss', 'sass'],
+        \ })
+endif
+
+"if executable('yaml-language-server')
+"  au User lsp_setup call lsp#register_server({
+"        \ 'name': 'yaml-language-server',
+"        \ 'cmd': { server_info->['yaml-language-server', '--stdio'] },
+"        \ 'allowlist': ['yaml'],
+"        \ 'workspace-config': {},
+"        \ })
+"endif
+
+if executable('cucumber-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'cucumber-language-server',
+        \ 'cmd': { server_info->['cucumber-language-server', '--stdio'] },
+        \ 'allowlist': ['cucumber'],
+        \ })
+endif
+
+fun! s:on_lsp_buf_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> gs <plug>(lsp-document-symbol-search)
+  nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+  nmap <buffer> gr <plug>(lsp-references)
+  nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> gt <plug>(lsp-type-definition)
+  nmap <buffer> <leader>r <plug>(lsp-rename)
+  nmap <buffer> <leader>n <plug>(lsp-previous-diagnostic)
+  nmap <buffer> <leader>N <plug>(lsp-next-diagnostic)
+  nmap <buffer> <leader>a <plug>(lsp-code-action)
+  nmap <buffer> K <plug>(lsp-hover)
+  nmap <buffer> <leader>K <plug>(lsp-peek-definition)
+  inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+  inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+  setlocal foldmethod=expr
+        \ foldexpr=lsp#ui#vim#folding#foldexpr()
+        \ foldtext=lsp#ui#vim#folding#foldtext()
+
+  let g:lsp_format_sync_timeout = 1000
+endfun
+
+augroup lsp_install
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buf_enabled()
+augroup END
+
+" }}}
+
+" vim: fdm=marker:fdl=0:et:sw=2:

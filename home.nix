@@ -145,6 +145,11 @@ in
     # ".screenrc".source = dotfiles/screenrc;
     ".tmux.conf".source = ./home/tmux.conf;
     ".config/sway/config".source = ./home/sway.config;
+    ".config/nvim/init.vim".source = ./home/init.vim;
+    ".vim" = {
+      source = ./home/vim;
+      recursive = true;
+    };
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
