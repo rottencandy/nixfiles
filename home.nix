@@ -40,6 +40,23 @@ let
     pass -c "''${selection//.gpg/}"
   '';
 
+  # Toggle all hyprland animations & visuals for performance
+  hyprland-perf = pkgs.writeShellScriptBin "hyperf" ''
+  HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==2{print $2}')
+  if [ "$HYPRGAMEMODE" = 1 ] ; then
+      hyprctl --batch "\
+          keyword animations:enabled 0;\
+          keyword decoration:drop_shadow 0;\
+          keyword decoration:blur:enabled 0;\
+          keyword general:gaps_in 0;\
+          keyword general:gaps_out 0;\
+          keyword general:border_size 1;\
+          keyword decoration:rounding 0"
+      exit
+  fi
+  hyprctl reload
+  '';
+
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -159,9 +176,13 @@ in
     ".tmux.conf".source = ./home/tmux.conf;
     ".config/sway/config".source = ./home/sway.config;
     ".config/nvim/init.vim".source = ./home/init.vim;
+    ".config/hypr/hyprland.conf".source = ./home/hyprland.conf;
     ".vim" = {
       source = ./home/vim;
       recursive = true;
+    };
+    ".todo.cfg" = {
+      source = ./home/todo.cfg;
     };
 
     # # You can also set the file content immediately.
@@ -368,7 +389,7 @@ in
     };
   };
 
-  # kanshi, ripgrep does not exist on stable branch of home-manager yet :/
+  # kanshi, ripgrep, hyprland do not exist on stable branch of home-manager yet :/
 
   #programs.kanshi = {
   #  enable = true;
@@ -407,6 +428,43 @@ in
   #    "!.git"
   #  ];
   #};
+
+  # hyprland config
+  #wayland.windowManager.hyprland = {
+  #  enable = true;
+  #  settings = {
+  #    # use integrated GPU by default
+  #    env = "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1";
+  #    "$mod" = "SUPER";
+  #    bind = [
+  #      "$mod, ENTER, exec, wezterm"
+  #      "$mod, D, exec, fuzzel"
+  #    ];
+  #  };
+  #};
+
+  programs.waybar = {
+    enable = true;
+    settings = {
+      mainBar = {
+        height = 30;
+        spacing = 4;
+        modules-left = [ "hyprland/workspaces" ];
+        #modules-center = [ "hyprland/window" ];
+        modules-right = [ "idle_inhibitor" "network" "cpu" "memory" "temperature" "battery" "clock" "tray" ];
+        keyboard-state = {
+          numlock = true;
+          capslock = true;
+        };
+        clock = {
+          # timezone = "America/New_York";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format = "{:%I:%M}";
+          format-alt = "{:%h %d}";
+        };
+      };
+    };
+  };
 
   programs.git = {
     enable = true;
