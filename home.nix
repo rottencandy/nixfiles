@@ -76,6 +76,7 @@ in
     fd
     bat
     nnn
+    #yazi
     broot
     bottom
     htop
@@ -92,15 +93,19 @@ in
     pass
     clang
     mold
+    pinentry
+    todo-txt-cli
 
     # shell functions
     git-glog
     pass-get
+    hyprland-perf
 
     # applications
     qbittorrent
     vlc
     mpv
+    feh
     gimp
     lutris
     heroic
@@ -118,9 +123,17 @@ in
     gamescope
     redshift
     openvpn
+    brightnessctl
+    wev
+    sox
+    #blueman
+
+    # languages
+    rustup
 
     wineWowPackages.waylandFull
     winetricks
+    hyprland
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -190,6 +203,8 @@ in
       "extglob"
       "nullglob"
     ];
+    # remove duplicates & ignore commands starting with space
+    historyControl = [ "erasedups" "ignorespace" ];
 
     shellAliases = {
       # TODO get advcpmv to nixpkgs
@@ -287,6 +302,16 @@ in
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
+    defaultCommand = "fd --type f";
+    defaultOptions = [
+      "--multi"
+      "--cycle"
+      "--height 16"
+      "--color=dark"
+      "--layout=reverse"
+      "--prompt=' '"
+      "--bind=ctrl-k:toggle-preview"
+    ];
     tmux.enableShellIntegration = true;
   };
 

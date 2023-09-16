@@ -155,6 +155,7 @@ in
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  hardware.bluetooth.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.saud = {
@@ -236,12 +237,12 @@ in
   };
 
   # key daemon
+  # https://github.com/rvaiya/keyd/blob/master/keyd.service
   systemd.services.keyd = {
     enable = true;
-    unitConfig = {
-      Requires = "local-fs.target";
-      After = "local-fs.target";
-    };
+    requires = [ "local-fs.target" ];
+    after = [ "local-fs.target" ];
+    wantedBy = [ "sysinit.target" ];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.keyd}/bin/keyd";
@@ -278,6 +279,14 @@ in
   #   enableSSHSupport = true;
   # };
 
+  # Required for gpg to not throw pinentry error
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+    enableSSHSupport = true;
+  };
+
   # List services that you want to enable:
 
   # Enable flatpak
@@ -291,10 +300,15 @@ in
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];  
+    allowedUDPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
