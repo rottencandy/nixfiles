@@ -112,6 +112,8 @@ in
     mold
     pinentry
     todo-txt-cli
+    dwarfs
+    fuse-overlayfs
 
     # shell functions
     git-glog
@@ -131,6 +133,7 @@ in
     bottles
     firefox
     godot_4
+    zathura
 
     # utils
     asusctl
@@ -143,7 +146,7 @@ in
     brightnessctl
     wev
     sox
-    #blueman
+    blueman
 
     # languages
     rustup
