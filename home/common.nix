@@ -140,7 +140,19 @@ in
 
     wineWowPackages.waylandFull
     winetricks
+    xdg-desktop-portal-hyprland
     hyprland
+    hyprpaper
+    wdisplays
+    wf-recorder
+    wl-clipboard
+    fuzzel
+    mako
+    swaylock
+    swayidle
+    grim
+    slurp
+    kanshi
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

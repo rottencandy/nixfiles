@@ -216,16 +216,6 @@ in
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
       dbus-sway-environment
-      wdisplays
-      wf-recorder
-      wl-clipboard
-      fuzzel
-      mako
-      swaylock
-      swayidle
-      grim
-      slurp
-      kanshi
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
