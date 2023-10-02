@@ -165,15 +165,18 @@ in
     # ".screenrc".source = dotfiles/screenrc;
     ".tmux.conf".source = ./tmux.conf;
     ".config/sway/config".source = ./sway.config;
+    ".config/waybar" = {
+      source = ./waybar;
+      recursive = true;
+    };
     ".config/nvim/init.vim".source = ./init.vim;
     ".config/hypr/hyprland.conf".source = ./hyprland.conf;
+    ".config/hypr/hyprpaper.conf".source = ./hyprpaper.conf;
     ".vim" = {
       source = ./vim;
       recursive = true;
     };
-    ".todo.cfg" = {
-      source = ./todo.cfg;
-    };
+    ".todo.cfg".source = ./todo.cfg;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
