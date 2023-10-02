@@ -57,6 +57,12 @@ let
   hyprctl reload
   '';
 
+  # nix-alien to run non-NixOS binaries in a compatible FHS environment with
+  # all needed shared dependencies
+  nix-alien-pkgs = import (
+    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
+  ) { };
+
 in
 {
   # The home.packages option allows you to install Nix packages into your
@@ -101,6 +107,7 @@ in
     todo-txt-cli
     dwarfs
     fuse-overlayfs
+    nix-alien-pkgs.nix-alien
 
     # shell functions
     git-glog
@@ -125,12 +132,14 @@ in
     # utils
     asusctl
     nvidia-offload
+    steam-run
     nvtop
     protonup-qt
     gamescope
     redshift
     openvpn
     brightnessctl
+    unrar
     wev
     sox
     blueman
@@ -138,6 +147,7 @@ in
     # languages
     rustup
 
+    # WM
     wineWowPackages.waylandFull
     winetricks
     xdg-desktop-portal-hyprland
@@ -286,6 +296,16 @@ in
             . "$NNN_TMPFILE"
             rm -f "$NNN_TMPFILE" > /dev/null
         fi
+    }
+
+    # yazi with cd on quit
+    y() {
+        tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+        yazi --cwd-file="$tmp"
+        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+            cd -- "$cwd"
+        fi
+        rm -f -- "$tmp"
     }
 
     # do sudo, or sudo the last command if no argument given

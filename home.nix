@@ -20,4 +20,13 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
+
+  # Overwrite steam.desktop shortcut so that is uses PRIME
+  # offloading for Steam and all its games
+  #home.activation.steam = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  #  $DRY_RUN_CMD sed 's/^Exec=/&nvidia-offload /' \
+  #    ${pkgs.steam}/share/applications/steam.desktop \
+  #    > ~/.local/share/applications/steam.desktop
+  #  $DRY_RUN_CMD chmod +x ~/.local/share/applications/steam.desktop
+  #'';
 }
