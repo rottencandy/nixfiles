@@ -105,9 +105,21 @@ in
     mold
     pinentry
     todo-txt-cli
+    nix-alien-pkgs.nix-alien
+    bubblewrap
+
+    # wine stuff
     dwarfs
     fuse-overlayfs
-    nix-alien-pkgs.nix-alien
+    gst_all_1.gst-libav
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-base
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-ugly
+    gst_all_1.gst-vaapi
+    #wineWowPackages.waylandFull
+    wine-staging
+    winetricks
 
     # shell functions
     git-glog
@@ -125,9 +137,11 @@ in
     hexchat
     neovide
     bottles
+    pcsx2
     firefox
     godot_4
     zathura
+    freetube
 
     # utils
     asusctl
@@ -148,8 +162,6 @@ in
     rustup
 
     # WM
-    wineWowPackages.waylandFull
-    winetricks
     xdg-desktop-portal-hyprland
     hyprland
     hyprpaper
@@ -252,7 +264,7 @@ in
       l = "ls -CF";
       la = "lsd -A";
       ll = "lsd -l";
-      nb = "cd ~/nb && nvim -c \"exec \\\"normal 1 f\\";
+      nb = "cd ~/nb && nvim -c \"exec \\\"normal 1 f\\\"\"";
       nv = "nvim";
       nvdaemon = "nvim --headless --listen localhost:6666";
       scrt = "grim -g \"$(slurp)\" screenshot-$(date +%s).png 2> /dev/null";
@@ -573,6 +585,7 @@ in
 
     return {
       font = wezterm.font 'FiraCode Nerd Font Mono',
+      color_scheme = 'Afterglow',
       hide_tab_bar_if_only_one_tab = true,
     }
     '';

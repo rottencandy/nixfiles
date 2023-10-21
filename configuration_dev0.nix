@@ -122,9 +122,9 @@ in
     open = false;
     # Enable settings menu
     nvidiaSettings = true;
-    # Use beta driver package
+    # Use stable driver package
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     # Enable prime offloading
     prime = {
       offload = {
