@@ -14,20 +14,44 @@
     };
   };
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-
-  # nix.package = pkgs.nix;
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = "experimental-features = nix-command flakes";
   };
 
+  # Auto upgrade nix package and the daemon service.
+  services.nix-daemon.enable = true;
+
   system = {
     defaults = {
       dock.autohide = true;
-      trackpad.Clicking = true;
+      trackpad = {
+        Clicking = true;
+        Dragging = true;
+      };
+      NSGlobalDomain = {
+        AppleShowAllExtensions = true;
+        AppleInterfaceStyle = "Dark";
+        InitialKeyRepeat = 14;
+        KeyRepeat = 1;
+      };
     };
+
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
+    };
+
+    # Used for backwards compatibility, please read the changelog before changing.
+    # $ darwin-rebuild changelog
+    stateVersion = 4;
+  };
+
+  fonts = {
+    fontDir.enable = true;
+    fonts = [
+      (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    ];
   };
 
   users.users.msaud = {
@@ -35,13 +59,6 @@
     home = "/Users/msaud";
     packages = with pkgs; [
       # macvim
-    ];
-  };
-
-  fonts = {
-    fontDir.enable = true;
-    fonts = [
-      (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
   };
 
@@ -57,8 +74,4 @@
     enable = true;
     enableSSHSupport = true;
   };
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
 }

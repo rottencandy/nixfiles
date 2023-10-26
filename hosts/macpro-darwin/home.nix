@@ -41,16 +41,29 @@ in
     neovim
     neovide
     #macvim
-    #firefox
     emacs
     iterm2
     qbittorrent
     feh
     gimp
     zathura
+    #cmus
     #freetube
 
+    # mac
+    karabiner-elements
+    #goku
+    #spacebar
+    #sketchybar
+    #skhd
+    m-cli
+    iina
+    #shortcat
+    #rectangle
+    #monitorcontrol
+
     # utils
+    git
     tmux
     delta
     gnupg
@@ -61,6 +74,7 @@ in
 
     macchina
     bottom
+    curl
     wget
     lsd
     jq
@@ -77,14 +91,17 @@ in
     yt-dlp
     unrar
     sox
+
+    # dev
+    rustup
     mold
+    #lima
+    #utm
+    #quickemu
 
     # shell functions
     git-glog
     pass-get
-
-    # languages
-    rustup
   ];
 
   #programs.rio = {
@@ -149,6 +166,12 @@ in
     };
 
     bashrcExtra = ''
+    # homebrew
+    export PATH="/opt/homebrew/bin:''${PATH}"
+
+    # misc binaries/scripts
+    export PATH="''${HOME}/bin:''${PATH}"
+
     # nnn with cd on quit
     n() {
         # Block nesting of nnn in subshells

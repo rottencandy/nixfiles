@@ -21,6 +21,7 @@
         ./hosts/macpro-darwin/configuration.nix
 	home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
           home-manager.users.msaud = {
             imports = [ ./hosts/macpro-darwin/home.nix ];
           };
