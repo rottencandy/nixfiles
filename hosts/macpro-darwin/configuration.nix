@@ -47,6 +47,21 @@
     stateVersion = 4;
   };
 
+  networking = {
+    dns = [
+      "1.1.1.1"
+      "1.0.0.1"
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
+    ];
+    # required for dns config to work
+    knownNetworkServices = [
+        "Wi-Fi"
+        "Ethernet Adaptor"
+        "Thunderbolt Ethernet"
+    ];
+  };
+
   fonts = {
     fontDir.enable = true;
     fonts = [
