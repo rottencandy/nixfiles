@@ -53,14 +53,11 @@ in
     # mac
     karabiner-elements
     #goku
-    #spacebar
-    #sketchybar
-    #skhd
+    sketchybar
+    skhd
     m-cli
     iina
-    #shortcat
-    #rectangle
-    #monitorcontrol
+    monitorcontrol
 
     # utils
     git
@@ -95,9 +92,12 @@ in
     # dev
     rustup
     mold
-    #lima
-    #utm
+    lima
+    utm
     #quickemu
+    qemu
+    podman
+    podman-tui
 
     # shell functions
     git-glog
