@@ -30,3 +30,5 @@
     };
   };
 }
+
+# vim: fdm=marker:fdl=0:et:sw=2

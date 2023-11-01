@@ -467,3 +467,5 @@ in
   # originally installed.
   home.stateVersion = "23.05";
 }
+
+# vim: fdm=marker:fdl=0:et:sw=2
