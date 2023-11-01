@@ -160,7 +160,7 @@ in
 
       cmd - m : yabai -m window --toggle zoom-parent
       cmd - f : yabai -m window --toggle zoom-fullscreen
-      cmd - v : yabai -m window --toggle split
+      cmd - e : yabai -m window --toggle split
       cmd + shift - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
     '';
     ".config/yabai/yabairc" = {
@@ -227,11 +227,11 @@ in
     };
 
     bashrcExtra = ''
-    # homebrew
-    export PATH="/opt/homebrew/bin:''${PATH}"
+    test -s /opt/homebrew/bin  && export PATH="/opt/homebrew/bin:''${PATH}"
+    test -s ~/bin              && export PATH="''${HOME}/bin:''${PATH}"
+    test -s ~/.node_caches/bin && export PATH="''${HOME}/.node_caches/bin:''${PATH}"
 
-    # misc binaries/scripts
-    export PATH="''${HOME}/bin:''${PATH}"
+    export N_PREFIX=~/.node_caches
 
     # nnn with cd on quit
     n() {
