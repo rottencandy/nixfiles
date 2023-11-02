@@ -11,6 +11,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # https://felixkratz.github.io/SketchyBar/config/bar
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+# color is in AARRGGBB format
 
 sketchybar --bar height=32        \
                  blur_radius=30   \
@@ -18,7 +19,7 @@ sketchybar --bar height=32        \
                  sticky=off       \
                  padding_left=10  \
                  padding_right=10 \
-                 color=0x15ffffff
+                 color=0x15000000
 
 ##### Changing Defaults #####
 # We now change some default values that are applied to all further items
@@ -85,7 +86,7 @@ sketchybar --add item space_separator left                         \
 # https://felixkratz.github.io/SketchyBar/config/events
 
 sketchybar --add item clock right                              \
-           --set clock   update_freq=10                        \
+           --set clock   update_freq=30                        \
                          icon=                                \
                          script="$PLUGIN_DIR/clock.sh"         \
                                                                \
