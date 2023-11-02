@@ -2,10 +2,14 @@
 
 {
   home.file = {
-    ".config/sketchybar/sketchybarrc".source = ./sketchybarrc;
+    ".config/sketchybar/sketchybarrc" = {
+      source = ./sketchybarrc;
+      executable = true;
+    };
     ".config/sketchybar/plugins" = {
       source = ./plugins;
       recursive = true;
+      executable = true;
     };
   };
 }
