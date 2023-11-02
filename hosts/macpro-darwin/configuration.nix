@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../../modules/sketchybar
   ];
 
   # List packages installed in system profile. To search by name, run:
@@ -113,6 +112,11 @@
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
+
+  # config managed by home-manager
+  services.sketchybar = {
+    enable = true;
+  };
 }
 
 # vim: fdm=marker:fdl=0:et:sw=2

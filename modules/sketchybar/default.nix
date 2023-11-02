@@ -1,9 +1,12 @@
 { config, pkgs, lib, ... }:
 
 {
-  services.sketchybar = {
-    enable = true;
-    config = lib.strings.fileContents ./sketchybarrc;
+  home.file = {
+    ".config/sketchybar/sketchybarrc".source = ./sketchybarrc;
+    ".config/sketchybar/plugins" = {
+      source = ./plugins;
+      recursive = true;
+    };
   };
 }
 

@@ -35,6 +35,7 @@ in
 {
   imports = [
     ../../modules/bash.nix
+    ../../modules/sketchybar
   ];
 
   home.username = "msaud";
