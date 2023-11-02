@@ -47,7 +47,8 @@ in
     feh
     gimp
     zathura
-    #cmus
+    moc
+    musikcube
     #freetube
     #uxn
     mpv
@@ -99,11 +100,13 @@ in
 
     # dev
     rustup
+    clang
     mold
     lima
     utm
     #quickemu
     qemu
+    kubectl
     podman
     podman-tui
 
@@ -173,7 +176,7 @@ in
         yabai -m config left_padding 16
         yabai -m config right_padding 16
         yabai -m config window_gap 8
-        #yabai -m config focus_follows_mouse autoraise
+        yabai -m config focus_follows_mouse autofocus
         yabai -m config mouse_follows_focus on
         yabai -m config mouse_modifier cmd
         yabai -m config external_bar all:32:0
@@ -457,8 +460,10 @@ in
 
     return {
       font = wezterm.font 'FiraCode Nerd Font Mono',
+      font_size = 14.0,
       color_scheme = 'Afterglow',
       hide_tab_bar_if_only_one_tab = true,
+      window_decorations = "RESIZE",
     }
     '';
   };

@@ -97,6 +97,9 @@
     brews = [
       "koekeishiya/formulae/yabai"
     ];
+    casks = [
+      #"podman-desktop"
+    ];
   };
 
   programs.gnupg.agent = {
