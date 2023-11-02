@@ -27,6 +27,8 @@
       dock = {
         autohide = true;
         mru-spaces = false;
+        show-recents = false;
+        showhidden = true;
         wvous-tl-corner = 1;
         wvous-tr-corner = 1;
         wvous-bl-corner = 1;
@@ -50,7 +52,8 @@
 
     keyboard = {
       enableKeyMapping = true;
-      remapCapsLockToEscape = true;
+      # do this in karabiner
+      #remapCapsLockToEscape = true;
     };
 
     # Used for backwards compatibility, please read the changelog before changing.
@@ -99,9 +102,12 @@
     ];
     brews = [
       "koekeishiya/formulae/yabai"
+      "openshift-cli"
     ];
     casks = [
-      #"podman-desktop"
+      "podman-desktop"
+      "obs"
+      "blender"
     ];
   };
 
