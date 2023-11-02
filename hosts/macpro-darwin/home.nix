@@ -60,11 +60,11 @@ in
     mpv
 
     # mac
-    #karabiner-elements
     #goku
+    #monitorcontrol
+    karabiner-elements
     m-cli
     iina
-    monitorcontrol
     aldente
     skhd
     unnaturalscrollwheels
@@ -107,6 +107,7 @@ in
     # dev
     rustup
     clang
+    deno
     mold
     lima
     utm
@@ -115,6 +116,7 @@ in
     kubectl
     podman
     podman-tui
+    tigervnc
 
     # shell functions
     git-glog
@@ -150,22 +152,23 @@ in
       cmd + shift - k : yabai -m window --warp north
       cmd + shift - l : yabai -m window --warp east
 
-      # requires scripting addition
-      cmd - 1 : yabai -m space --focus 1
-      cmd - 2 : yabai -m space --focus 2
-      cmd - 3 : yabai -m space --focus 3
-      cmd - 4 : yabai -m space --focus 4
-      cmd - 5 : yabai -m space --focus 5
+      # requires scripting addition so
+      # insead managed through system shortcuts
+      #cmd - 1 : yabai -m space --focus 1
+      #cmd - 2 : yabai -m space --focus 2
+      #cmd - 3 : yabai -m space --focus 3
+      #cmd - 4 : yabai -m space --focus 4
+      #cmd - 5 : yabai -m space --focus 5
 
       # monitor focus, requires display number
-      cmd + ctrl - l : yabai -m display --focus 1
-      cmd + ctrl - h : yabai -m display --focus 2
+      #cmd + ctrl - l : yabai -m display --focus 1
+      #cmd + ctrl - h : yabai -m display --focus 2
 
-      cmd + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1
-      cmd + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2
-      cmd + shift - 3 : yabai -m window --space 3; yabai -m space --focus 3
-      cmd + shift - 4 : yabai -m window --space 4; yabai -m space --focus 4
-      cmd + shift - 5 : yabai -m window --space 5; yabai -m space --focus 5
+      cmd + shift - 1 : yabai -m window --space 1; # yabai -m space --focus 1
+      cmd + shift - 2 : yabai -m window --space 2; # yabai -m space --focus 2
+      cmd + shift - 3 : yabai -m window --space 3; # yabai -m space --focus 3
+      cmd + shift - 4 : yabai -m window --space 4; # yabai -m space --focus 4
+      cmd + shift - 5 : yabai -m window --space 5; # yabai -m space --focus 5
 
       cmd - m : yabai -m window --toggle zoom-parent
       cmd - f : yabai -m window --toggle zoom-fullscreen
@@ -186,6 +189,11 @@ in
         yabai -m config mouse_follows_focus on
         yabai -m config mouse_modifier cmd
         yabai -m config external_bar all:32:0
+
+        # float some applications by default
+        yabai -m rule --add app="^(System Settings|mpv|IINA)$" manage=off
+        # show digital colour meter topmost and on all spaces
+        yabai -m rule --add app="^Digital Colour Meter$" sticky=on
       '';
       executable = true;
     };
@@ -350,7 +358,7 @@ in
 
     return {
       font = wezterm.font 'FiraCode Nerd Font Mono',
-      font_size = 14.0,
+      font_size = 16.0,
       color_scheme = 'Afterglow',
       hide_tab_bar_if_only_one_tab = true,
       window_decorations = "RESIZE",
