@@ -35,6 +35,7 @@ in
 {
   imports = [
     ../../modules/bash.nix
+    ../../modules/tridactyl.nix
     ../../modules/sketchybar
   ];
 
