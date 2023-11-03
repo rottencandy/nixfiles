@@ -108,6 +108,7 @@
       "podman-desktop"
       "obs"
       "blender"
+      "godot"
     ];
   };
 

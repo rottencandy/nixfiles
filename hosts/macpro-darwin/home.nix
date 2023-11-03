@@ -34,9 +34,9 @@ let
 in
 {
   imports = [
-    ../../modules/bash.nix
-    ../../modules/tridactyl.nix
+    ../../modules/bash
     ../../modules/sketchybar
+    ../../modules/tridactyl.nix
   ];
 
   home.username = "msaud";
@@ -48,14 +48,13 @@ in
     neovide
     #macvim
     emacs
-    iterm2
     qbittorrent
     feh
     gimp
     zathura
     moc
     musikcube
-    #freetube
+    freetube
     #uxn
     mpv
 
@@ -76,10 +75,12 @@ in
     gnupg
     pass
     ffmpeg
+    imagemagick
     pandoc
     todo-txt-cli
     wgcf
     ffsend
+    shellcheck
 
     macchina
     bottom
@@ -142,10 +143,10 @@ in
       cmd - return : wezterm
       cmd + shift - r : yabai -restart-service
 
-      cmd - h : yabai -m window --focus west
-      cmd - j : yabai -m window --focus south
-      cmd - k : yabai -m window --focus north
-      cmd - l : yabai -m window --focus east
+      cmd + ctrl - h : yabai -m window --focus west
+      cmd + ctrl - j : yabai -m window --focus south
+      cmd + ctrl - k : yabai -m window --focus north
+      cmd + ctrl - l : yabai -m window --focus east
 
       cmd + shift - h : yabai -m window --warp west
       cmd + shift - j : yabai -m window --warp south
@@ -161,14 +162,17 @@ in
       #cmd - 5 : yabai -m space --focus 5
 
       # monitor focus, requires display number
-      #cmd + ctrl - l : yabai -m display --focus 1
-      #cmd + ctrl - h : yabai -m display --focus 2
+      cmd + alt - l : yabai -m display --focus 1
+      cmd + alt - h : yabai -m display --focus 2
 
       cmd + shift - 1 : yabai -m window --space 1; # yabai -m space --focus 1
       cmd + shift - 2 : yabai -m window --space 2; # yabai -m space --focus 2
       cmd + shift - 3 : yabai -m window --space 3; # yabai -m space --focus 3
       cmd + shift - 4 : yabai -m window --space 4; # yabai -m space --focus 4
       cmd + shift - 5 : yabai -m window --space 5; # yabai -m space --focus 5
+
+      cmd - f1 : m volume up
+      cmd - f2 : m volume down
 
       cmd - m : yabai -m window --toggle zoom-parent
       cmd - f : yabai -m window --toggle zoom-fullscreen
