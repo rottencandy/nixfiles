@@ -96,8 +96,6 @@ in
     fd
     bat
     nnn
-    yazi
-    broot
     ripdrag
     moreutils
 
@@ -209,6 +207,26 @@ in
     SVN_EDITOR = "nvim";
     KUBE_EDITOR = "nvim";
     VISUAL = "nvim";
+    #BROWSER = "/usr/bin/firefox";
+
+    # Colors with less
+    # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
+    LESS_TERMCAP_mb = "$'\\e[1;31m'";     # begin bold
+    LESS_TERMCAP_md = "$'\\e[1;33m'";     # begin blink
+    LESS_TERMCAP_so = "$'\\e[01;44;37m'"; # begin reverse video
+    LESS_TERMCAP_us = "$'\\e[01;37m'";    # begin underline
+    LESS_TERMCAP_me = "$'\\e[0m'";        # reset bold/blink
+    LESS_TERMCAP_se = "$'\\e[0m'";        # reset reverse video
+    LESS_TERMCAP_ue = "$'\\e[0m'";        # reset underline
+
+    LESS = "--mouse --wheel-lines=3";  # mouse support for less
+    GROFF_NO_SGR = 1;                  # for konsole and gnome-terminal
+    MANPAGER = "less -s -M +Gg";       # percentage FTW
+    PAGER = "less -s -M +Gg";
+
+    # colored GCC warnings and errors
+    GCC_COLORS = "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01";
+
   };
 
   programs.fzf = {
@@ -363,11 +381,19 @@ in
     return {
       font = wezterm.font 'FiraCode Nerd Font Mono',
       font_size = 16.0,
-      color_scheme = 'Afterglow',
+      color_scheme = 'Earthsong',
       hide_tab_bar_if_only_one_tab = true,
       window_decorations = "RESIZE",
     }
     '';
+  };
+
+  programs.broot = {
+    enable = true;
+  };
+
+  programs.yazi = {
+    enable = true;
   };
 
   # The state version is required and should stay at the version you

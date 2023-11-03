@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+ARCHIVE_LOCATION=~/nb/work/standup-archive.md
+READ_LOCATION=~/nb/work/stand.md
+HTML_LOCATION=/tmp/firemd.html
+OUT=""
+
+HEADING="$(date +'%a, %b %d (%d/%m/%y)')"
+
+CONTENT="$(sed -E \
+	-e 's/https:\/\/github(\w|-|\.|\/)*(pull|issues)\/([[:digit:]]*)/[#\3](&)/g' \
+	-e 's/https:\/\/issues(\w|-|\.|\/)*browse\/((\w|-)*)/[\2](&)/g' \
+	-e 's/https:\/\/bugzil(\w|\.|\/)*\?id\=([[:digit:]]*)/[#\2](&)/g' \
+	$READ_LOCATION)"
+
+OUT+=$'\n\n'$HEADING$'\n----\n\n'
+OUT+=$CONTENT
+
+HELP='
+Usage:
+(No args) Format, append to archive, and open markdown externally.
+-s        Save to archive without opening markdown externally.
+-n        Only print out formatted text, do not append to archive or open.'
+
+case "$1" in
+	"")
+		echo -e "$OUT" >> $ARCHIVE_LOCATION
+		echo "Saved!"
+		# Slack hates markdown, so routing it through FF for now
+		#echo -e "$CONTENT" | pandoc -f markdown -t html | xclip -sel c -t text/html
+		echo "Opening Markdown..."
+		echo -e "$CONTENT" | pandoc -f markdown -t html > $HTML_LOCATION
+		firefox "$HTML_LOCATION"
+		;;
+	-s)
+		echo -e "$OUT" >> $ARCHIVE_LOCATION
+		echo "Saved!"
+		;;
+
+	-n)
+		echo -e "$CONTENT" | bat --plain --language md
+		;;
+
+	*)
+		echo "$HELP"
+		exit 1
+		;;
+esac

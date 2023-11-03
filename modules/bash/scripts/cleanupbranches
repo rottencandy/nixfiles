@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Clean up merged git branches, local & remote, requires main branch name
+if [ -z "$1" ]; then
+	echo "Provide branch to track against";
+	exit 1;
+fi
+
+# * is used to omit currently checked out branch
+BRANCHES=$(git branch --merged | grep -Ev "$1|\*")
+if [ -z "$BRANCHES" ]; then
+	echo "No branches.";
+	exit;
+fi
+
+echo Deleting branches:
+echo
+for branch in $BRANCHES; do
+	echo "$branch"
+done
+
+echo
+read -rp "Proceed? (y/n): " ANS
+echo
+if [[ "$ANS" =~ ^[Yy]$ ]]; then
+	# shellcheck disable=SC2086
+	git branch --delete $BRANCHES
+	# shellcheck disable=SC2086
+	git push --delete origin $BRANCHES
+fi

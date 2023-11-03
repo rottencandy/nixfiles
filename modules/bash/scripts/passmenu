@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+SEL=$(cd ~/.password-store && fd --type f | fuzzel --dmenu)
+
+if [ -z "$SEL" ]; then
+    exit
+fi;
+
+pass -c "${SEL//.gpg/}"

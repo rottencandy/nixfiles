@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [[ -z $1 ]]; then
+	echo "Usage:   $0 CONSOLE_URL [PASS]"
+	exit 1
+fi
+
+URL=$(echo "$1" | sed -E 's/^.*openshift-console\.apps/api/; s/\/?$/:6443/')
+# Alternate regex
+# echo $1 | sed -E 's_^.*apps(.*)/?$_api\1_'
+
+echo "Logging in to URL: $URL"
+echo "Password: $2"
+
+if [[ -z $2 ]]; then
+	oc login -u kubeadmin --insecure-skip-tls-verify=true "$URL"
+else
+	oc login -u kubeadmin -p "$2" --insecure-skip-tls-verify=true "$URL"
+fi

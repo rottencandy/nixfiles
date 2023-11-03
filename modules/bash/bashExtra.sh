@@ -1,20 +1,36 @@
-test -s /opt/homebrew/bin  && export PATH="/opt/homebrew/bin:''${PATH}"
-test -s ~/bin              && export PATH="''${HOME}/bin:''${PATH}"
-test -s ~/.node_caches/bin && export PATH="''${HOME}/.node_caches/bin:''${PATH}"
+# extra binary locations
+test -s ~/bin              && export PATH="${HOME}/bin:${PATH}"
+test -s ~/.scripts         && export PATH="${HOME}/.scripts:${PATH}"
+test -s /opt/homebrew/bin  && export PATH="/opt/homebrew/bin:${PATH}"
+test -s ~/.node_caches/bin && export PATH="${HOME}/.node_caches/bin:${PATH}"
 
 export N_PREFIX=~/.node_caches
+
+# NNN
+# ---
+# TODO: manage this in home-manager config
+export NNN_CONTEXT_COLORS='2674'
+#export NNN_PLUG='e:-_vim $nnn*;n:-_vim notes*;f:fzcd;u:-getplugs;r:-launch'
+#export NNN_BMS='v:~/Videos;d:~/Documents;D:~/Downloads'
+#export NNN_OPENER="open"
+[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
+
+# Broot
+# install this with broot --install
+[ -s ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
+
 
 # nnn with cd on quit
 n() {
     # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "''${NNNLVL:-0}" -ge 1 ]; then
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
         echo "nnn is already running"
         return
     fi
 
     # To cd on quit only on ^G, remove the "export"
     # NOTE: NNN_TMPFILE is fixed, should not be modified
-    export NNN_TMPFILE="''${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
     # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
     # stty start undef
@@ -64,9 +80,9 @@ g() {
         #"") [ -f "$CFG" ] && nl "$CFG" || echo "$HLP" ;;
         "") [ -f "$CFG" ] && D=$(cat "$CFG" | fzf) || D=_ ;;
         .) pwd >> "$CFG" ;;
-        -e) ''${EDITOR:-vi} "$CFG" ;;
+        -e) ${EDITOR:-vi} "$CFG" ;;
         -*) echo "$HLP" ;;
-        [1-9]*) D=$(sed -ne "''${1}p" "$CFG") ;;
+        [1-9]*) D=$(sed -ne "${1}p" "$CFG") ;;
         *) D=$(grep "$1" "$CFG" | head -1) ;;
     esac
 
