@@ -59,9 +59,9 @@ let
 
   # nix-alien to run non-NixOS binaries in a compatible FHS environment with
   # all needed shared dependencies
-  nix-alien-pkgs = import (
-    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
-  ) { };
+  #nix-alien-pkgs = import (
+  #  builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
+  #) { };
 
 in
 {
@@ -105,7 +105,7 @@ in
     mold
     pinentry
     todo-txt-cli
-    nix-alien-pkgs.nix-alien
+    #nix-alien-pkgs.nix-alien
     bubblewrap
 
     # wine stuff
@@ -133,7 +133,7 @@ in
     feh
     gimp
     lutris
-    heroic
+    #heroic
     hexchat
     neovide
     bottles
