@@ -67,6 +67,25 @@
       executable = true;
     };
   };
+
+  # env vars
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    GIT_EDITOR = "nvim";
+    SVN_EDITOR = "nvim";
+    KUBE_EDITOR = "nvim";
+    VISUAL = "nvim";
+    #BROWSER = "/usr/bin/firefox";
+
+    LESS = "--mouse --wheel-lines=3";  # mouse support for less
+    GROFF_NO_SGR = 1;                  # for konsole and gnome-terminal
+    MANPAGER = "less -s -M +Gg";       # percentage FTW
+    PAGER = "less -s -M +Gg";
+
+    # colored GCC warnings and errors
+    GCC_COLORS = "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01";
+
+  };
 }
 
 # vim: fdm=marker:fdl=0:et:sw=2

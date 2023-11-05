@@ -4,6 +4,16 @@ test -s ~/.scripts         && export PATH="${HOME}/.scripts:${PATH}"
 test -s /opt/homebrew/bin  && export PATH="/opt/homebrew/bin:${PATH}"
 test -s ~/.node_caches/bin && export PATH="${HOME}/.node_caches/bin:${PATH}"
 
+# Colors with less
+# from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
+export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
+export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
+export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
+export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
+export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
+export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
+
 export N_PREFIX=~/.node_caches
 
 # NNN
