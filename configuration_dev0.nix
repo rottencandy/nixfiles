@@ -44,7 +44,6 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -167,13 +166,17 @@ in
     ];
   };
 
-  # Home manager config
-  home-manager.users.saud = import ./home.nix;
-  # Use shared system level pkgs (improves consistency, evaluation, dependence on NIX_PATH)
-  home-manager.useGlobalPkgs = true;
+  nixpkgs = {
+    hostPlatform = "x86_64-linux";
+    config = {
+      allowUnfree = true;
+    };
+  };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nix = {
+    package = pkgs.nixFlakes;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

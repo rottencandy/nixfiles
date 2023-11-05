@@ -16,10 +16,25 @@
   };
 
   outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs }: {
+    nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
+      modules = [
+        ./configuration_dev0.nix
+        home-manager.nixosModules.home-manager {
+          home-manager = {
+            useGlobalPkgs = true;
+            users.saud = {
+              imports = [ ./home/common.nix ];
+            };
+          };
+        }
+      ];
+      specialArgs = { inherit inputs; };
+    };
+
     darwinConfigurations."msaud-mac" = nix-darwin.lib.darwinSystem {
       modules = [
         ./hosts/macpro-darwin/configuration.nix
-	home-manager.darwinModules.home-manager {
+        home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.users.msaud = {
             imports = [ ./hosts/macpro-darwin/home.nix ];
