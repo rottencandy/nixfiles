@@ -38,7 +38,8 @@
       gd = "DELTA_NAVIGATE=1 git diff";
       gr = "cd ./$(git rev-parse --show-cdup)";
       k = "kubectl";
-      l = "ls -CF";
+      ls = "lsd";
+      l = "lsd -F";
       la = "lsd -A";
       ll = "lsd -l";
       nv = "nvim";

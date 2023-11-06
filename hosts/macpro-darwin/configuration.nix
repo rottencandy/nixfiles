@@ -105,6 +105,7 @@
       "openshift-cli"
     ];
     casks = [
+      "eloston-chromium"
       "podman-desktop"
       "obs"
       "blender"

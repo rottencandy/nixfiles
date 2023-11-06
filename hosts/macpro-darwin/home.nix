@@ -49,7 +49,6 @@ in
     #macvim
     emacs
     qbittorrent
-    feh
     gimp
     zathura
     moc
@@ -72,6 +71,7 @@ in
     git
     tmux
     delta
+    gnused
     gnupg
     pass
     ffmpeg
@@ -171,6 +171,7 @@ in
 
       cmd - f1 : m volume up
       cmd - f2 : m volume down
+      cmd + ctrl - n : cd ~/code/notes && wezterm -e nvim _temp.md
 
       cmd - m : yabai -m window --toggle zoom-parent
       cmd - f : yabai -m window --toggle zoom-fullscreen

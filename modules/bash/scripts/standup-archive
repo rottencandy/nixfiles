@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-ARCHIVE_LOCATION=~/nb/work/standup-archive.md
-READ_LOCATION=~/nb/work/stand.md
+ARCHIVE_LOCATION=~/code/notes/work/standup-archive.md
+READ_LOCATION=~/code/notes/work/stand.md
 HTML_LOCATION=/tmp/firemd.html
 OUT=""
 
@@ -27,10 +27,10 @@ case "$1" in
 		echo -e "$OUT" >> $ARCHIVE_LOCATION
 		echo "Saved!"
 		# Slack hates markdown, so routing it through FF for now
-		#echo -e "$CONTENT" | pandoc -f markdown -t html | xclip -sel c -t text/html
+		#echo -e "$CONTENT" | pandoc -f markdown -t rtf | pbcopy -Prefer rtf
 		echo "Opening Markdown..."
 		echo -e "$CONTENT" | pandoc -f markdown -t html > $HTML_LOCATION
-		firefox "$HTML_LOCATION"
+		open "$HTML_LOCATION"
 		;;
 	-s)
 		echo -e "$OUT" >> $ARCHIVE_LOCATION
@@ -38,7 +38,7 @@ case "$1" in
 		;;
 
 	-n)
-		echo -e "$CONTENT" | bat --plain --language md
+		echo -e "$OUT" | bat --plain --language md
 		;;
 
 	*)
