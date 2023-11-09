@@ -31,17 +31,8 @@
       specialArgs = { inherit inputs; };
     };
 
-    darwinConfigurations."msaud-mac" = nix-darwin.lib.darwinSystem {
-      modules = [
-        ./hosts/macpro-darwin/configuration.nix
-        home-manager.darwinModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.users.msaud = {
-            imports = [ ./hosts/macpro-darwin/home.nix ];
-          };
-        }
-      ];
-      specialArgs = { inherit inputs; };
+    darwinConfigurations.msaud-mac = import ./hosts/macpro-darwin {
+      inherit self nixpkgs nix-darwin home-manager inputs;
     };
   };
 }
