@@ -226,11 +226,11 @@ in
       source = ./waybar;
       recursive = true;
     };
-    ".config/nvim/init.vim".source = ./init.vim;
+    ".config/nvim/init.vim".source = ../modules/vim/init.vim;
     ".config/hypr/hyprland.conf".source = ./hyprland.conf;
     ".config/hypr/hyprpaper.conf".source = ./hyprpaper.conf;
     ".vim" = {
-      source = ./vim;
+      source = ../modules/vim/vim;
       recursive = true;
     };
     ".todo.cfg".source = ./todo.cfg;

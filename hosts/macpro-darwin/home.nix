@@ -34,6 +34,7 @@ let
 in
 {
   imports = [
+    ../../modules/vim
     ../../modules/bash
     ../../modules/sketchybar
     ../../modules/tridactyl.nix
@@ -44,9 +45,6 @@ in
 
   home.packages = with pkgs; [
     # applications
-    neovim
-    neovide
-    #macvim
     emacs
     qbittorrent
     gimp
@@ -62,7 +60,6 @@ in
     #monitorcontrol
     karabiner-elements
     m-cli
-    iina
     aldente
     skhd
     unnaturalscrollwheels
@@ -131,11 +128,6 @@ in
 
   home.file = {
     ".tmux.conf".source = ../../home/tmux.conf;
-    ".config/nvim/init.vim".source = ../../home/init.vim;
-    ".vim" = {
-      source = ../../home/vim;
-      recursive = true;
-    };
     ".todo.cfg".source = ../../home/todo.cfg;
     ".config/skhd/skhdrc".text = ''
       cmd - return : wezterm
@@ -171,7 +163,7 @@ in
 
       cmd - f1 : m volume up
       cmd - f2 : m volume down
-      cmd + ctrl - n : cd ~/code/notes && wezterm -e nvim _temp.md
+      cmd + ctrl - n : wezterm -e bash -c "cd ~/code/notes && nvim _temp.md"
 
       cmd - m : yabai -m window --toggle zoom-parent
       cmd - f : yabai -m window --toggle zoom-fullscreen
@@ -194,7 +186,7 @@ in
         yabai -m config external_bar all:32:0
 
         # float some applications by default
-        yabai -m rule --add app="^(System Settings|mpv|IINA)$" manage=off
+        yabai -m rule --add app="^(System Settings|Preview|mpv)$" manage=off
         # show digital colour meter topmost and on all spaces
         yabai -m rule --add app="^Digital Colour Meter$" sticky=on
       '';

@@ -330,7 +330,11 @@ vnoremap * :<C-u>call <SID>withSelection(function('<SID>VSetSearch'))<CR>//<CR>
 vnoremap # :<C-u>call <SID>withSelection(function('<SID>VSetSearch'))<CR>??<CR>
 
 " Yank to clipboard
-nnoremap <leader>y :call system("wl-copy", @")<CR>
+if has('mac')
+  nnoremap <leader>y :call system("pbcopy", @")<CR>
+else
+  nnoremap <leader>y :call system("wl-copy", @")<CR>
+endif
 
 " Map redraw-screen to also clear search highlights
 nnoremap <silent> <C-L> :nohl<CR>:mat<CR><C-L>

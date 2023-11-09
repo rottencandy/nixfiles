@@ -158,6 +158,27 @@ lspconfig['denols'].setup(coq.lsp_ensure_capabilities({
   root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc', 'deno.lock')
 }))
 
+lspconfig['yamlls'].setup(coq.lsp_ensure_capabilities({
+  on_attach = on_attach,
+  settings = {
+    redhat = {
+      telemetry = {
+        enabled = false,
+      },
+    },
+
+    -- to fetch & build schemas
+    -- openapi2jsonschema -o outdir --expanded --kubernetes --stand-alone --strict "${schema}"
+    -- schema example = https://github.com/openshift/kubernetes/raw/master/api/openapi-spec/swagger.json
+    yaml = {
+      schemas = {
+        kubernetes = '/*',
+        --'../jsonschemas/ocp4/all.json' = '/deploy/*',
+      },
+    },
+  }
+}))
+
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
 local servers = { 'ccls', 'cssls', 'gopls', 'html', 'jsonls', 'rust_analyzer', 'eslint', 'gdscript', 'cucumber_language_server' }
