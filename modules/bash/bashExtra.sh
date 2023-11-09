@@ -1,8 +1,11 @@
-# extra binary locations
-test -s ~/bin              && export PATH="${HOME}/bin:${PATH}"
-test -s ~/.scripts         && export PATH="${HOME}/.scripts:${PATH}"
-test -s /opt/homebrew/bin  && export PATH="/opt/homebrew/bin:${PATH}"
-test -s ~/.node_caches/bin && export PATH="${HOME}/.node_caches/bin:${PATH}"
+# avoid duplicating paths inside tmux
+if [[ -z $TMUX ]]; then
+    # extra binary locations
+    test -s ~/bin              && export PATH="${HOME}/bin:${PATH}"
+    test -s ~/.scripts         && export PATH="${HOME}/.scripts:${PATH}"
+    test -s /opt/homebrew/bin  && export PATH="/opt/homebrew/bin:${PATH}"
+    test -s ~/.node_caches/bin && export PATH="${HOME}/.node_caches/bin:${PATH}"
+fi
 
 # Colors with less
 # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
