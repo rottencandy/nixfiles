@@ -69,6 +69,7 @@ in
     tmux
     delta
     helix
+    gnumake
     gnused
     gnupg
     pass
