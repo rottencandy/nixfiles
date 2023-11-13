@@ -36,6 +36,7 @@ in
   imports = [
     ../../modules/vim
     ../../modules/bash
+    ../../modules/yabai
     ../../modules/sketchybar
     ../../modules/tridactyl.nix
   ];
@@ -67,6 +68,7 @@ in
     git
     tmux
     delta
+    helix
     gnused
     gnupg
     pass
@@ -86,6 +88,7 @@ in
     jq
     jless
     jo
+    fx
     fastgron
     ripgrep
     xh
