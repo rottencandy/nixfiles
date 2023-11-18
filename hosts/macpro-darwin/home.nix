@@ -35,6 +35,10 @@ in
     freetube
     #uxn
     mpv
+    #quassel
+    halloy
+    nethack
+    unnethack
 
     # mac
     #goku
@@ -47,6 +51,7 @@ in
     # utils
     tmux
     delta
+    difftastic
     helix
     gnumake
     gnused

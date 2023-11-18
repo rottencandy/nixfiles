@@ -63,9 +63,12 @@
         yabai -m config external_bar all:32:0
 
         # float some applications by default
-        yabai -m rule --add app="^(System Settings|Managed Software Centre|Viscosity|Preview|mpv)$" manage=off
+        yabai -m rule --add app="^(System Settings|Managed Software Centre|choose|Viscosity|Preview|mpv)$" manage=off
         # show digital colour meter topmost and on all spaces
         yabai -m rule --add app="^Digital Colour Meter$" sticky=on
+
+        # janky borders
+        borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 2>/dev/null 1>&2 &
       '';
       executable = true;
     };

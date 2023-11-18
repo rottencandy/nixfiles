@@ -99,10 +99,13 @@
     };
     taps = [
       "koekeishiya/formulae"
+      "FelixKratz/formulae"
     ];
     brews = [
       "koekeishiya/formulae/yabai"
+      "FelixKratz/formulae/borders"
       "openshift-cli"
+      "choose-gui"
     ];
     casks = [
       "eloston-chromium"
