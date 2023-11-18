@@ -4,8 +4,17 @@
 #
 ############################################################################
 
-deploy:
-	darwin-rebuild switch --flake .
+UNAME := $(shell uname -s)
+
+ifeq ($(UNAME),Linux)
+	SWITCH_CMD := sudo nixos-rebuild switch --flake .
+endif
+ifeq ($(UNAME),Darwin)
+	SWITCH_CMD := darwin-rebuild switch --flake .
+endif
+
+switch:
+	$(SWITCH_CMD)
 
 debug:
 	darwin-rebuild switch --flake . --show-trace --verbose
