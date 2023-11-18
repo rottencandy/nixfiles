@@ -25,6 +25,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'thaerkh/vim-indentguides'
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 " Markdown support
 Plug 'plasticboy/vim-markdown'
 " GLSL support

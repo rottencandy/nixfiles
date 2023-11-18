@@ -281,6 +281,7 @@ set statusline+=%3p%%\            " percentage
 
 "netrw {{{
 
+" override netrw with fern
 nnoremap - :Fern . -reveal=%<CR>
 "let g:netrw_banner = 0          " Top banner
 "let g:netrw_liststyle = 3       " Directory list view
@@ -588,6 +589,13 @@ vnoremap <silent> <Leader>s :call <SID>withSelection(function('<SID>FuzzyRgBacke
 
 " Fern config
 " ----------
+
+" Custom symbols
+"let g:fern#renderer#default#leading = "│"
+"let g:fern#renderer#default#root_symbol = "┬ "
+"let g:fern#renderer#default#leaf_symbol = "├─ "
+"let g:fern#renderer#default#collapsed_symbol = "├─ "
+"let g:fern#renderer#default#expanded_symbol = "├┬ "
 
 " Disable all default mappings and define them manually
 let g:fern#disable_default_mappings = 1
