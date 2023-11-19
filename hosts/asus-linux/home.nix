@@ -160,7 +160,6 @@ in
     rustup
 
     # WM
-    hyprpaper
     wdisplays
     wf-recorder
     wl-clipboard
@@ -195,10 +194,6 @@ in
     # ".screenrc".source = dotfiles/screenrc;
     ".tmux.conf".source = ../../home/tmux.conf;
     ".config/sway/config".source = ../../home/sway.config;
-    ".config/waybar" = {
-      source = ../../home/waybar;
-      recursive = true;
-    };
     ".config/nvim/init.vim".source = ../../modules/vim/init.vim;
     ".vim" = {
       source = ../../modules/vim/vim;
