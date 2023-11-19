@@ -40,23 +40,6 @@ let
     pass -c "''${selection//.gpg/}"
   '';
 
-  # Toggle all hyprland animations & visuals for performance
-  hyprland-perf = pkgs.writeShellScriptBin "hyperf" ''
-  HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==2{print $2}')
-  if [ "$HYPRGAMEMODE" = 1 ] ; then
-      hyprctl --batch "\
-          keyword animations:enabled 0;\
-          keyword decoration:drop_shadow 0;\
-          keyword decoration:blur:enabled 0;\
-          keyword general:gaps_in 0;\
-          keyword general:gaps_out 0;\
-          keyword general:border_size 1;\
-          keyword decoration:rounding 0"
-      exit
-  fi
-  hyprctl reload
-  '';
-
   # nix-alien to run non-NixOS binaries in a compatible FHS environment with
   # all needed shared dependencies
   #nix-alien-pkgs = import (
@@ -65,6 +48,9 @@ let
 
 in
 {
+  imports = [
+    ../../modules/hyprland
+  ];
   home.username = "saud";
   home.homeDirectory = "/home/saud";
 
@@ -137,7 +123,6 @@ in
     # shell functions
     git-glog
     pass-get
-    hyprland-perf
 
     # applications
     qbittorrent
@@ -175,8 +160,6 @@ in
     rustup
 
     # WM
-    xdg-desktop-portal-hyprland
-    hyprland
     hyprpaper
     wdisplays
     wf-recorder
@@ -217,8 +200,6 @@ in
       recursive = true;
     };
     ".config/nvim/init.vim".source = ../../modules/vim/init.vim;
-    ".config/hypr/hyprland.conf".source = ../../home/hyprland.conf;
-    ".config/hypr/hyprpaper.conf".source = ../../home/hyprpaper.conf;
     ".vim" = {
       source = ../../modules/vim/vim;
       recursive = true;
@@ -439,7 +420,7 @@ in
     };
   };
 
-  # kanshi, ripgrep, hyprland do not exist on stable branch of home-manager yet :/
+  # kanshi, ripgrep do not exist on stable branch of home-manager yet :/
 
   #programs.kanshi = {
   #  enable = true;
@@ -478,43 +459,6 @@ in
   #    "!.git"
   #  ];
   #};
-
-  # hyprland config
-  #wayland.windowManager.hyprland = {
-  #  enable = true;
-  #  settings = {
-  #    # use integrated GPU by default
-  #    env = "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1";
-  #    "$mod" = "SUPER";
-  #    bind = [
-  #      "$mod, ENTER, exec, wezterm"
-  #      "$mod, D, exec, fuzzel"
-  #    ];
-  #  };
-  #};
-
-  programs.waybar = {
-    enable = true;
-    settings = {
-      mainBar = {
-        height = 30;
-        spacing = 4;
-        modules-left = [ "hyprland/workspaces" ];
-        #modules-center = [ "hyprland/window" ];
-        modules-right = [ "idle_inhibitor" "network" "cpu" "memory" "temperature" "battery" "clock" "tray" ];
-        keyboard-state = {
-          numlock = true;
-          capslock = true;
-        };
-        clock = {
-          # timezone = "America/New_York";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format = "{:%I:%M}";
-          format-alt = "{:%h %d}";
-        };
-      };
-    };
-  };
 
   programs.git = {
     enable = true;
