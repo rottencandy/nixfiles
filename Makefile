@@ -8,9 +8,11 @@ UNAME := $(shell uname -s)
 
 ifeq ($(UNAME),Linux)
 	SWITCH_CMD := sudo nixos-rebuild switch --flake .
+	GC_CMD := sudo nix store gc
 endif
 ifeq ($(UNAME),Darwin)
 	SWITCH_CMD := darwin-rebuild switch --flake .
+	GC_CMD := nix store gc
 endif
 
 switch:
@@ -30,4 +32,4 @@ gc:
 	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
 
 	# garbage collect all unused nix store entries
-	nix store gc
+	$(GC_CMD)
