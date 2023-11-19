@@ -1,5 +1,10 @@
 { config, lib, pkgs, ... }:
 
+let
+
+  is_arm_macos = pkgs.system == "aarch64-darwin";
+
+in
 {
   programs.bash = {
     enable = true;
@@ -52,11 +57,17 @@
       yt = "yt-dlp --add-metadata -i";
       ytb = "yt-dlp --add-metadata -i -f bestvideo+bestaudio";
       yta = "yt --add-metadata -x -f bestaudio";
-      camfeed = "gst-launch-1.0 -v v4l2src device=/dev/video0 ! glimagesink";
       brownnoise = "play -n synth brownnoise synth pinknoise mix synth sine amod 0.3 10";
       whitenoise = "play -q -c 2 -n synth brownnoise band -n 1600 1500 tremolo .1 30";
       pinknoise = "play -t sl -r48000 -c2 -n synth -1 pinknoise .1 80";
-    };
+
+    } // (if is_arm_macos then {
+    } else {
+      camfeed = "gst-launch-1.0 -v v4l2src device=/dev/video0 ! glimagesink";
+      scrt = "grim -g \"$(slurp)\" screenshot-$(date +%s).png 2> /dev/null";
+      srec = "wf-recorder -g \"$(slurp)\" -c h264_vaapi -d /dev/dri/renderD128 -f recording-$(date +%s).mp4";
+      arec = "parec --monitor-system = \"$(pacmd get-default-source)\" --file-format = \"wav\" recording-$(date +%s).wav";
+    });
 
     bashrcExtra = lib.strings.fileContents ./bashExtra.sh;
   };
