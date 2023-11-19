@@ -65,19 +65,8 @@ let
 
 in
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "saud";
   home.homeDirectory = "/home/saud";
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.05"; # Please read the comment before changing.
 
   # Overwrite steam.desktop shortcut so that is uses PRIME
   # offloading for Steam and all its games
@@ -130,6 +119,7 @@ in
     todo-txt-cli
     #nix-alien-pkgs.nix-alien
     bubblewrap
+    gnumake
 
     # wine stuff
     dwarfs
@@ -220,20 +210,20 @@ in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".tmux.conf".source = ./tmux.conf;
-    ".config/sway/config".source = ./sway.config;
+    ".tmux.conf".source = ../../home/tmux.conf;
+    ".config/sway/config".source = ../../home/sway.config;
     ".config/waybar" = {
-      source = ./waybar;
+      source = ../../home/waybar;
       recursive = true;
     };
-    ".config/nvim/init.vim".source = ../modules/vim/init.vim;
-    ".config/hypr/hyprland.conf".source = ./hyprland.conf;
-    ".config/hypr/hyprpaper.conf".source = ./hyprpaper.conf;
+    ".config/nvim/init.vim".source = ../../modules/vim/init.vim;
+    ".config/hypr/hyprland.conf".source = ../../home/hyprland.conf;
+    ".config/hypr/hyprpaper.conf".source = ../../home/hyprpaper.conf;
     ".vim" = {
-      source = ../modules/vim/vim;
+      source = ../../modules/vim/vim;
       recursive = true;
     };
-    ".todo.cfg".source = ./todo.cfg;
+    ".todo.cfg".source = ../../home/todo.cfg;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
@@ -618,4 +608,15 @@ in
     enable = true;
     indicator = true;
   };
+
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "23.05"; # Please read the comment before changing.
 }
+
+# vim: fdm=marker:fdl=0:et:sw=2

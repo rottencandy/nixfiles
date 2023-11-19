@@ -42,7 +42,8 @@ let
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -312,3 +313,5 @@ in
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
+
+# vim: fdm=marker:fdl=0:et:sw=2
