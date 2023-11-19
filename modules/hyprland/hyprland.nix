@@ -8,7 +8,7 @@
       # use integrated GPU by default
       env = [
         "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
-         #"WLR_NO_HARDWARE_CURSORS,1"
+        "WLR_NO_HARDWARE_CURSORS,1"
       ];
 
       monitor = [
@@ -131,7 +131,7 @@
       bind = [
         "$mod SHIFT, ESCAPE, exit,"
         "$mod SHIFT, SPACE, togglefloating,"
-        "$mod, RETURN, exec, wezterm"
+        "$mod, RETURN, exec, alacritty"
         "$mod SHIFT, Q, killactive,"
         "$mod, W, pseudo, # dwindle"
         "$mod, E, togglesplit, # dwindle"

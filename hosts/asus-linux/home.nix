@@ -99,6 +99,7 @@ in
     moreutils
     ripgrep
     pass
+    #gcc
     clang
     mold
     pinentry
@@ -140,6 +141,7 @@ in
     godot_4
     zathura
     freetube
+    alacritty
 
     # utils
     asusctl
