@@ -31,6 +31,7 @@ in
     ../../modules/bash
     ../../modules/tmux
     ../../modules/git.nix
+    ../../modules/fzf.nix
     ../../modules/hyprland
     ../../modules/starship.nix
     ../../modules/tridactyl.nix
@@ -182,22 +183,6 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-    defaultCommand = "fd --type f";
-    defaultOptions = [
-      "--multi"
-      "--cycle"
-      "--height 16"
-      "--color=dark"
-      "--layout=reverse"
-      "--prompt=' '"
-      "--bind=ctrl-k:toggle-preview"
-    ];
-    tmux.enableShellIntegration = true;
   };
 
   # kanshi, ripgrep do not exist on stable branch of home-manager yet :/

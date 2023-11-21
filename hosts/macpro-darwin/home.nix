@@ -17,6 +17,7 @@ in
     ../../modules/tmux
     ../../modules/yabai
     ../../modules/git.nix
+    ../../modules/fzf.nix
     ../../modules/sketchybar
     ../../modules/starship.nix
     ../../modules/tridactyl.nix
@@ -114,22 +115,6 @@ in
 
   home.file = {
     ".todo.cfg".source = ../../home/todo.cfg;
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-    defaultCommand = "fd --type f";
-    defaultOptions = [
-      "--multi"
-      "--cycle"
-      "--height 16"
-      "--color=dark"
-      "--layout=reverse"
-      "--prompt=' '"
-      "--bind=ctrl-k:toggle-preview"
-    ];
-    tmux.enableShellIntegration = true;
   };
 
   programs.wezterm = {
