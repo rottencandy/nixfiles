@@ -14,6 +14,7 @@ in
   imports = [
     ../../modules/vim
     ../../modules/bash
+    ../../modules/tmux
     ../../modules/yabai
     ../../modules/git.nix
     ../../modules/sketchybar
@@ -49,7 +50,6 @@ in
     unnaturalscrollwheels
 
     # utils
-    tmux
     delta
     difftastic
     helix
@@ -113,7 +113,6 @@ in
   #};
 
   home.file = {
-    ".tmux.conf".source = ../../home/tmux.conf;
     ".todo.cfg".source = ../../home/todo.cfg;
   };
 

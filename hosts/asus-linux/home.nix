@@ -50,6 +50,7 @@ in
 {
   imports = [
     ../../modules/bash
+    ../../modules/tmux
     ../../modules/hyprland
   ];
   home.username = "saud";
@@ -79,7 +80,6 @@ in
     emacs
     rio
     helix
-    tmux
     neofetch
     xh
     fd
@@ -195,7 +195,6 @@ in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".tmux.conf".source = ../../home/tmux.conf;
     ".config/sway/config".source = ../../home/sway.config;
     ".config/nvim/init.vim".source = ../../modules/vim/init.vim;
     ".vim" = {
