@@ -6,7 +6,7 @@
   ];
 
   home.file = {
-    ".todo.cfg".source = ../../home/todo.cfg;
+    ".todo.cfg".source = ./todo.cfg;
   };
 }
 
