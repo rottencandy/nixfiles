@@ -30,6 +30,7 @@ in
     ../../modules/vim
     ../../modules/bash
     ../../modules/tmux
+    ../../modules/todo
     ../../modules/git.nix
     ../../modules/fzf.nix
     ../../modules/hyprland
@@ -85,7 +86,6 @@ in
     clang
     mold
     pinentry
-    todo-txt-cli
     #nix-alien-pkgs.nix-alien
     bubblewrap
     gnumake
@@ -176,7 +176,6 @@ in
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
     ".config/sway/config".source = ../../home/sway.config;
-    ".todo.cfg".source = ../../home/todo.cfg;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

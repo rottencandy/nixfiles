@@ -15,6 +15,7 @@ in
     ../../modules/vim
     ../../modules/bash
     ../../modules/tmux
+    ../../modules/todo
     ../../modules/yabai
     ../../modules/git.nix
     ../../modules/fzf.nix
@@ -61,7 +62,6 @@ in
     ffmpeg
     imagemagick
     pandoc
-    todo-txt-cli
     wgcf
     ffsend
     shellcheck
@@ -112,10 +112,6 @@ in
   #    theme = "gruvboxDark";
   #  };
   #};
-
-  home.file = {
-    ".todo.cfg".source = ../../home/todo.cfg;
-  };
 
   programs.wezterm = {
     enable = true;
