@@ -26,7 +26,9 @@ in
     ../../modules/git.nix
     ../../modules/fzf.nix
     ../../modules/pass.nix
+    #../../modules/sway
     ../../modules/hyprland
+    ../../modules/wezterm.nix
     ../../modules/starship.nix
     ../../modules/tridactyl.nix
   ];
@@ -213,19 +215,6 @@ in
   #    "!.git"
   #  ];
   #};
-
-  programs.wezterm = {
-    enable = true;
-    extraConfig = ''
-    local wezterm = require 'wezterm'
-
-    return {
-      font = wezterm.font 'FiraCode Nerd Font Mono',
-      color_scheme = 'Afterglow',
-      hide_tab_bar_if_only_one_tab = true,
-    }
-    '';
-  };
 
   services.kdeconnect = {
     enable = true;

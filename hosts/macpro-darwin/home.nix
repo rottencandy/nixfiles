@@ -11,6 +11,7 @@
     ../../modules/fzf.nix
     ../../modules/pass.nix
     ../../modules/sketchybar
+    ../../modules/wezterm.nix
     ../../modules/starship.nix
     ../../modules/tridactyl.nix
   ];
@@ -99,21 +100,6 @@
   #    theme = "gruvboxDark";
   #  };
   #};
-
-  programs.wezterm = {
-    enable = true;
-    extraConfig = ''
-    local wezterm = require 'wezterm'
-
-    return {
-      font = wezterm.font 'FiraCode Nerd Font Mono',
-      font_size = 16.0,
-      color_scheme = 'Earthsong',
-      hide_tab_bar_if_only_one_tab = true,
-      window_decorations = "RESIZE",
-    }
-    '';
-  };
 
   programs.broot = {
     enable = true;
