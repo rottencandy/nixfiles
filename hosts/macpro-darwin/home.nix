@@ -31,9 +31,9 @@
     #uxn
     mpv
     #quassel
-    halloy
+    #halloy
     nethack
-    unnethack
+    #unnethack
 
     # mac
     #goku
