@@ -10,14 +10,6 @@ let
     exec -a "$0" "$@"
   '';
 
-  # Grab a password from the password store into the clipboard using fzf
-  pass-get = pkgs.writeShellScriptBin "getp" ''
-    PASS_DIR=~/.password-store
-    selection=$(cd $PASS_DIR && fd --type f | fzf)
-    if [ -z $selection ]; then return; fi
-    pass -c "''${selection//.gpg/}"
-  '';
-
   # nix-alien to run non-NixOS binaries in a compatible FHS environment with
   # all needed shared dependencies
   #nix-alien-pkgs = import (
@@ -33,6 +25,7 @@ in
     ../../modules/todo
     ../../modules/git.nix
     ../../modules/fzf.nix
+    ../../modules/pass.nix
     ../../modules/hyprland
     ../../modules/starship.nix
     ../../modules/tridactyl.nix
@@ -81,7 +74,6 @@ in
     curl
     moreutils
     ripgrep
-    pass
     #gcc
     clang
     mold
@@ -103,8 +95,6 @@ in
     wine-staging
     winetricks
 
-    # shell functions
-    pass-get
 
     # applications
     qbittorrent

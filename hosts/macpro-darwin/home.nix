@@ -1,15 +1,5 @@
 { config, lib, pkgs, ... }:
 
-let
-  # Grab a password from the password store into the clipboard using fzf
-  pass-get = pkgs.writeShellScriptBin "getp" ''
-    PASS_DIR=~/.password-store
-    selection=$(cd $PASS_DIR && fd --type f | fzf)
-    if [ -z $selection ]; then return; fi
-    pass -c "''${selection//.gpg/}"
-  '';
-
-in
 {
   imports = [
     ../../modules/vim
@@ -19,6 +9,7 @@ in
     ../../modules/yabai
     ../../modules/git.nix
     ../../modules/fzf.nix
+    ../../modules/pass.nix
     ../../modules/sketchybar
     ../../modules/starship.nix
     ../../modules/tridactyl.nix
@@ -58,7 +49,6 @@ in
     gnumake
     gnused
     gnupg
-    pass
     ffmpeg
     imagemagick
     pandoc
@@ -101,9 +91,6 @@ in
     podman
     podman-tui
     tigervnc
-
-    # shell functions
-    pass-get
   ];
 
   #programs.rio = {
