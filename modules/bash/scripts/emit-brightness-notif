@@ -6,7 +6,7 @@ PERC=$(($VAL * 100 / $MAX + 1))
 DURATION=2000
 ICON="$HOME/code/dotfiles/config/icons/sun.svg"
 
-./notify-send.sh "$PERC %" \
+notify-send.sh "$PERC %" \
 	--icon="$ICON" \
 	--urgency=low \
 	--expire-time="$DURATION" \

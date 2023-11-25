@@ -12,7 +12,7 @@ else
 	ICON="$HOME/code/dotfiles/config/icons/volume-2.svg"
 fi
 
-./notify-send.sh "$VOL" \
+notify-send.sh "$VOL" \
 	--icon="$ICON" \
 	--urgency=low \
 	--expire-time="$DURATION" \
