@@ -30,6 +30,7 @@ in
     hyprland-perf
     xdg-desktop-portal-hyprland
     hyprpaper
+    swaylock
   ];
 
   home.file = {
