@@ -9,6 +9,7 @@
     ../../modules/yabai
     ../../modules/git.nix
     ../../modules/fzf.nix
+    ../../modules/rio.nix
     ../../modules/pass.nix
     ../../modules/sketchybar
     ../../modules/wezterm.nix
@@ -93,13 +94,6 @@
     podman-tui
     tigervnc
   ];
-
-  #programs.rio = {
-  #  enable = true;
-  #  settings = {
-  #    theme = "gruvboxDark";
-  #  };
-  #};
 
   programs.broot = {
     enable = true;

@@ -41,3 +41,6 @@ gc:
 
 	# garbage collect all unused nix store entries
 	$(GC_CMD)
+
+	# sudo nix-collect-garbage -d
+	# nix-collect-garbage -d

@@ -25,6 +25,7 @@ in
     ../../modules/todo
     ../../modules/git.nix
     ../../modules/fzf.nix
+    ../../modules/rio.nix
     ../../modules/pass.nix
     #../../modules/sway
     ../../modules/hyprland
@@ -57,7 +58,6 @@ in
     pandoc
     delta
     emacs
-    rio
     helix
     neofetch
     xh
