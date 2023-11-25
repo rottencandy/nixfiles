@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+LINE=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+VOL=$(echo "$LINE" | awk '{print $2}')
+#VOL=$(echo "scale=2; $(echo $LINE | awk '{print $2}') * 100" | bc)
+#BAR=$(seq -s "─" $((VOL/5)) | sed 's/[0-9]//g')
+DURATION=2000
+
+if echo "$LINE" | rg 'MUTED' -q; then
+	ICON="$HOME/code/dotfiles/config/icons/volume-x.svg"
+else
+	ICON="$HOME/code/dotfiles/config/icons/volume-2.svg"
+fi
+
+./notify-send.sh "$VOL" \
+	--icon="$ICON" \
+	--urgency=low \
+	--expire-time="$DURATION" \
+	--replace-file=/tmp/vol-notif
+    #--hint=int:value:"$VOL" \

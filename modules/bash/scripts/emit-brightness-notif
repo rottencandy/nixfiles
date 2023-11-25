@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+MAX=$(brightnessctl max)
+VAL=$(brightnessctl get)
+PERC=$(($VAL * 100 / $MAX + 1))
+DURATION=2000
+ICON="$HOME/code/dotfiles/config/icons/sun.svg"
+
+./notify-send.sh "$PERC %" \
+	--icon="$ICON" \
+	--urgency=low \
+	--expire-time="$DURATION" \
+	--hint=int:value:"$PERC" \
+	--replace-file=/tmp/brightness-notif

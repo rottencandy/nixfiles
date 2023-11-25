@@ -112,12 +112,12 @@
       };
 
       "$mod" = "SUPER";
-      "$volume_up" = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && cd ~/code/dotfiles/scripts && ./emit-vol-notif";
-      "$volume_down" = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%- && cd ~/code/dotfiles/scripts && ./emit-vol-notif";
-      "$volume_toggle" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && cd ~/code/dotfiles/scripts && ./emit-vol-notif";
-      "$mic_toggle" = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && cd ~/code/dotfiles/scripts && ./emit-vol-notif";
-      "$brightness_up" = "brightnessctl set 5%+ && cd ~/code/dotfiles/scripts && ./emit-brightness-notif";
-      "$brightness_down" = "brightnessctl set 5%- && cd ~/code/dotfiles/scripts && ./emit-brightness-notif";
+      "$volume_up" = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.scripts/emit-vol-notif";
+      "$volume_down" = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%- && ~/.scripts/emit-vol-notif";
+      "$volume_toggle" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.scripts/emit-vol-notif";
+      "$mic_toggle" = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ~/.scripts/emit-vol-notif";
+      "$brightness_up" = "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif";
+      "$brightness_down" = "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif";
       "$lock" = "swaylock -f -c 000000 && sleep 5 && hyprctl dispatch dpms off";
       "$notif_clear" = "makoctl dismiss";
       "$notif_undo" = "makoctl restore";
@@ -144,6 +144,7 @@
         "$mod, M, exec, $pass"
         "$mod, N, exec, $nb"
 
+        # Media key h/w controls
         ", XF86AudioRaiseVolume, exec, $volume_up"
         ", XF86AudioLowerVolume, exec, $volume_down"
         ", XF86AudioMute, exec, $volume_toggle"

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Lutris Proton-GE runner.
+# Runs commands with dGPU & gamescope
+
+if [[ -z $1 ]]; then
+	echo "Usage:   lprun <wine_cmd> [args]"
+	exit 1
+fi
+
+W=~/.local/share/lutris/runners/wine/lutris-GE-Proton8-17-x86_64
+BIN="$W/bin"
+
+WINEVERPATH=$W
+WINESERVER="$BIN/wineserver"
+WINELOADER="$BIN/wine"
+LD_LIBRARY_PATH="$W/lib:$LD_LIBRARY_PATH"
+#export PATH=$W/bin:$PATH
+#export WINEDLLPATH=$W/lib/wine/fakedlls
+#export WINEPREFIX=~/.steam/steam/steamapps/compatdata/{STEAM GAME ID HERE}/pfx
+
+# shellcheck disable=SC2145
+#__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia gamescope $BIN/"$@"
+gamescope $BIN/"$@"
