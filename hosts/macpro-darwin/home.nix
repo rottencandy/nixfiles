@@ -93,6 +93,7 @@
     podman
     podman-tui
     tigervnc
+    janet
   ];
 
   programs.broot = {
