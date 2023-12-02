@@ -115,6 +115,9 @@ in
     zathura
     freetube
     alacritty
+    halloy
+    nethack
+    unnethack
 
     # utils
     asusctl
@@ -133,6 +136,7 @@ in
 
     # languages
     rustup
+    janet
 
     # WM
     wdisplays
