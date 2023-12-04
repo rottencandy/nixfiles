@@ -42,7 +42,7 @@
       cmd - f2 : m volume down
       cmd + ctrl - n : wezterm -e bash -c "cd ~/code/notes && nvim _temp.md"
 
-      cmd - m : yabai -m window --toggle zoom-parent
+      cmd - m : bash -c ~/.scripts/passmenu
       cmd - f : yabai -m window --toggle zoom-fullscreen
       cmd - e : yabai -m window --toggle split
       cmd + shift - space : yabai -m window --toggle float --grid 4:4:1:1:2:2

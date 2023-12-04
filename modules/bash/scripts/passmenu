@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-SEL=$(cd ~/.password-store && fd --type f | fuzzel --dmenu)
+if [[ $(uname) == "Darwin" ]]; then
+    FINDER="choose"
+else
+    FINDER="fuzzel --dmenu"
+fi
+
+SEL=$(cd ~/.password-store && fd --type f | $FINDER)
 
 if [ -z "$SEL" ]; then
     exit
