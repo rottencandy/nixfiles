@@ -9,7 +9,7 @@
     ../../modules/yabai
     ../../modules/git.nix
     ../../modules/fzf.nix
-    ../../modules/rio.nix
+    #../../modules/rio.nix
     ../../modules/pass.nix
     ../../modules/sketchybar
     ../../modules/wezterm.nix
@@ -94,6 +94,7 @@
     podman-tui
     tigervnc
     janet
+    go
   ];
 
   programs.broot = {

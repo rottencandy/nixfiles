@@ -59,7 +59,7 @@ in
     delta
     emacs
     helix
-    neofetch
+    macchina
     xh
     fd
     bat

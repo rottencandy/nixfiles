@@ -51,7 +51,8 @@ in
       nvdaemon = "nvim --headless --listen localhost:6666";
       t = "tmux";
       tree = "lsd --tree";
-      ungr = "gron --ungron";
+      gron = "fastgron";
+      ungr = "fastgron --ungron";
       # -X is probably not used in macos
       v = "vim -X";
       yt = "yt-dlp --add-metadata -i";
