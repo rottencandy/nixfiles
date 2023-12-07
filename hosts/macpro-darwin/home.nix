@@ -86,7 +86,7 @@
     deno
     mold
     lima
-    utm
+    #utm
     #quickemu
     qemu
     kubectl

@@ -113,6 +113,8 @@
       "obs"
       "blender"
       "godot"
+      "crystalfetch"
+      "utm"
     ];
   };
 
