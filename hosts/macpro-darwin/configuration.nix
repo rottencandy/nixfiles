@@ -114,7 +114,7 @@
       "blender"
       "godot"
       "crystalfetch"
-      "utm"
+      "UTM"
     ];
   };
 
