@@ -3,7 +3,6 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    enableNvidiaPatches = true;
     settings = {
       # use integrated GPU by default
       env = [
