@@ -24,7 +24,7 @@ check:
 	$(CHECK_CMD)
 
 debug:
-	darwin-rebuild switch --flake . --show-trace --verbose
+	$(SWITCH_CMD) --show-trace --verbose
 
 update:
 	nix flake update
