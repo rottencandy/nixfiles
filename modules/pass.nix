@@ -6,7 +6,7 @@ let
   pass-get = pkgs.writeShellScriptBin "getp" ''
     PASS_DIR=~/.password-store
     selection=$(cd $PASS_DIR && fd --type f | fzf)
-    if [ -z $selection ]; then return; fi
+    if [ -z $selection ]; then exit; fi
     pass -c "''${selection//.gpg/}"
   '';
 
