@@ -36,6 +36,9 @@
 
         follow_mouse = 1;
 
+        repeat_rate = 14;
+        repeat_delay = 400;
+
         touchpad = {
           natural_scroll = true;
         };
