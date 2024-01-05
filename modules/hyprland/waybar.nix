@@ -75,7 +75,7 @@
             critical = 15;
           };
           format = "{capacity}% {icon}";
-          format-charging = "{capacity}% ";
+          format-charging = "{capacity}% 󱎗";
           format-plugged = "{capacity}% ";
           format-alt = "{time} {icon}";
           # "format-good" = ""; // An empty format will hide the module
@@ -89,10 +89,10 @@
         network = {
             # "interface": "wlp2*", // (Optional) To force the use of this interface
             format-wifi = "";
-            format-ethernet = "(E) ";
+            format-ethernet = "(E) 󰈀";
             tooltip-format = "{essid}, {ifname} via {gwaddr}  ({signalStrength}%)";
-            format-linked = "(No IP) ";
-            format-disconnected = "睊";
+            format-linked = "(No IP) 󰩟";
+            format-disconnected = "󰖪";
             on-click = "gnome-control-center wifi";
         };
       };
