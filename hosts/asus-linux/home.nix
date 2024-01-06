@@ -116,6 +116,9 @@ in
     freetube
     alacritty
     halloy
+
+    # games
+    unciv
     nethack
     unnethack
 
