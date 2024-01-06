@@ -7,24 +7,22 @@
 UNAME := $(shell uname -s)
 
 ifeq ($(UNAME),Linux)
-	SWITCH_CMD := sudo nixos-rebuild switch --flake .
-	CHECK_CMD := sudo nixos-rebuild check --flake .
+	REBUILD_CMD := sudo nixos-rebuild
 	GC_CMD := sudo nix store gc
 endif
 ifeq ($(UNAME),Darwin)
-	SWITCH_CMD := darwin-rebuild switch --flake .
-	CHECK_CMD := darwin-rebuild check --flake .
+	REBUILD_CMD := darwin-rebuild
 	GC_CMD := nix store gc
 endif
 
 switch:
-	$(SWITCH_CMD)
+	$(REBUILD_CMD) switch --flake .
 
 check:
-	$(CHECK_CMD)
+	$(REBUILD_CMD) check --flake .
 
 debug:
-	$(SWITCH_CMD) --show-trace --verbose
+	$(REBUILD_CMD) switch --flake . --show-trace --verbose
 
 update:
 	nix flake update
