@@ -7,7 +7,7 @@ set $right l
 
 set $term wezterm
 
-set $menu tofi-drun
+set $menu tofi-drun --drun-launch=true
 
 set $lock swaylock -c 000000
 

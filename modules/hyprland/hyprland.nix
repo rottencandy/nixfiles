@@ -191,7 +191,7 @@
       ];
 
       bindr = [
-        "$mod, D, exec, tofi-drun"
+        "$mod, D, exec, tofi-drun --drun-launch=true"
       ];
 
       bindl = [
