@@ -191,7 +191,7 @@
       ];
 
       bindr = [
-        "$mod, D, exec, fuzzel"
+        "$mod, D, exec, tofi-drun"
       ];
 
       bindl = [

@@ -145,7 +145,7 @@ in
     wdisplays
     wf-recorder
     wl-clipboard
-    fuzzel
+    tofi
     mako
     grim
     slurp

@@ -7,7 +7,7 @@ set $right l
 
 set $term wezterm
 
-set $menu fuzzel
+set $menu tofi-drun
 
 set $lock swaylock -c 000000
 

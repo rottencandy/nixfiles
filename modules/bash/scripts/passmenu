@@ -3,7 +3,7 @@
 if [[ $(uname) == "Darwin" ]]; then
     FINDER="choose"
 else
-    FINDER="fuzzel --dmenu"
+    FINDER="tofi"
 fi
 
 SEL=$(cd ~/.password-store && fd --type f | $FINDER)
