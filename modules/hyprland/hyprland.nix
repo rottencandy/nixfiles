@@ -124,7 +124,7 @@
       "$notif_clear" = "makoctl dismiss";
       "$notif_undo" = "makoctl restore";
       "$pass" = "~/.scripts/passmenu";
-      "$nb" = "cd ~/nb && rio -e nvim _temp.md";
+      "$nb" = "cd ~/nb && alacritty -e nvim _temp.md";
 
       # https://wiki.hyprland.org/Configuring/Binds
       # TODO set up misc binds
