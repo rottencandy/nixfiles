@@ -93,7 +93,6 @@ in
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-ugly
     gst_all_1.gst-vaapi
-    #wineWowPackages.waylandFull
     wine-staging
     winetricks
 
@@ -109,13 +108,14 @@ in
     hexchat
     neovide
     bottles
-    pcsx2
+    #pcsx2
     firefox
     godot_4
     zathura
     freetube
     alacritty
     halloy
+    bk
 
     # games
     unciv
