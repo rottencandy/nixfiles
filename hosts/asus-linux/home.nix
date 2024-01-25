@@ -83,6 +83,7 @@ in
     #nix-alien-pkgs.nix-alien
     bubblewrap
     gnumake
+    streamlink
 
     # wine stuff
     dwarfs

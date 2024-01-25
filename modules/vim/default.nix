@@ -2,8 +2,9 @@
 
 {
   home.packages = with pkgs; [
+    vim
     neovim
-    #neovide
+    neovide
     #macvim
   ];
 
