@@ -30,8 +30,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'plasticboy/vim-markdown'
 " GLSL support
 Plug 'tikhomirov/vim-glsl'
-" Gdscript support
-Plug 'clktmr/vim-gdscript3'
 " hjson support
 Plug 'hjson/vim-hjson'
 " pug support

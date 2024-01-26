@@ -110,7 +110,6 @@ in
     neovide
     bottles
     #pcsx2
-    firefox
     godot_4
     zathura
     freetube
@@ -134,6 +133,7 @@ in
     openvpn
     brightnessctl
     unrar
+    unzip
     wev
     sox
     blueman

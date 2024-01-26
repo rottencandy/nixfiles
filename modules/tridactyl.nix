@@ -1,10 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    tridactyl-native
-  ];
-
   home.file = {
     ".config/tridactyl/tridactylrc".text = ''
     

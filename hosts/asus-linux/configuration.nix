@@ -266,6 +266,11 @@ in
     enableSSHSupport = true;
   };
 
+  programs.firefox = {
+    enable = true;
+    nativeMessagingHosts.packages = [ pkgs.tridactyl-native ];
+  };
+
   # List services that you want to enable:
 
   # Enable flatpak
