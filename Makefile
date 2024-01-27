@@ -19,7 +19,7 @@ switch:
 	$(REBUILD_CMD) switch --flake .
 
 check:
-	$(REBUILD_CMD) check --flake .
+	nix flake check
 
 debug:
 	$(REBUILD_CMD) switch --flake . --show-trace --verbose
