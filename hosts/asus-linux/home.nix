@@ -115,6 +115,7 @@ in
     zathura
     freetube
     alacritty
+    ungoogled-chromium
     bk
 
     # games
