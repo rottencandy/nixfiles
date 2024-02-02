@@ -12,6 +12,7 @@
         "$battery"
         "$sudo"
         "$container"
+        "$nix_shell"
         "$line_break"
         "$character"
       ];
@@ -32,9 +33,6 @@
           style = "bold red";
         }
       ];
-      #[[battery.display]]
-      #threshold = 20
-      #style = 'bold red'
 
       directory = {
         truncation_length = 4;
@@ -50,7 +48,9 @@
 
       cmd_duration.format = " \\[[$duration]($style)\\] ";
 
-      sudo.disabled = false;
+      nix_shell = {
+        #heuristic = true;
+      };
     };
   };
 }
