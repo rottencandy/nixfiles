@@ -18,6 +18,9 @@ endif
 switch:
 	$(REBUILD_CMD) switch --flake .
 
+test:
+	$(REBUILD_CMD) test --flake .
+
 check:
 	nix flake check
 
