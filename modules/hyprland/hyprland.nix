@@ -192,7 +192,7 @@
 
       bindr = [
         "$mod, D, exec, tofi-drun --width 800 --height 600 --num-results 9 --drun-launch=true"
-        "$mod SHIFT, D, exec, tofi-drun --width 800 --height 600 --num-results 9 | xargs hyprctl dispatch exec"
+        "$mod SHIFT, D, exec, tofi-run --width 800 --height 600 --num-results 9 | xargs hyprctl dispatch exec"
       ];
 
       bindl = [
