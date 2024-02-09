@@ -146,7 +146,7 @@ in
   users.users.saud = {
     isNormalUser = true;
     description = "saud";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -293,6 +293,10 @@ in
       { from = 1714; to = 1764; } # KDE Connect
     ];
   };
+
+  # Enable virtualization
+  virtualization.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
