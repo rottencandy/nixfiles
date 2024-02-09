@@ -294,8 +294,8 @@ in
     ];
   };
 
-  # Enable virtualization
-  virtualization.libvirtd.enable = true;
+  # Enable virtualisation
+  virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
   # This value determines the NixOS release from which the default
