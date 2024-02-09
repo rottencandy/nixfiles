@@ -117,6 +117,7 @@ in
     freetube
     alacritty
     ungoogled-chromium
+    gnome.gnome-boxes
     bk
 
     # games
@@ -153,6 +154,9 @@ in
     grim
     slurp
     kanshi
+
+    # Non-free
+    anydesk
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
