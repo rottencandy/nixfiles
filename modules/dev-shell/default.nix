@@ -7,6 +7,7 @@
 
       packages = with pkgs; [
         go
+        gopls
         buf
         just
         nodejs_20
