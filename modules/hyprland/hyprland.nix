@@ -133,7 +133,7 @@
       bind = [
         "$mod SHIFT, ESCAPE, exit,"
         "$mod SHIFT, SPACE, togglefloating,"
-        "$mod, RETURN, exec, alacritty"
+        "$mod, RETURN, exec, wezterm"
         "$mod SHIFT, Q, killactive,"
         "$mod, W, pseudo, # dwindle"
         "$mod, E, togglesplit, # dwindle"
