@@ -121,6 +121,11 @@ in
     };
   };
 
+  # Enable qmk hardware support for a normal non-root user
+  hardware.keyboard = {
+    qmk.enable = true;
+  };
+
   # Enable CUPS to print documents.
   #services.printing.enable = true;
 
