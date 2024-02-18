@@ -86,7 +86,7 @@ in
         helper = "cache --timeout=3600";
       };
       merge = {
-        conflictstyle = "diff3";
+        conflictstyle = "zdiff3";
       };
       sendemail = {
         smtpEncryption = "tls";
