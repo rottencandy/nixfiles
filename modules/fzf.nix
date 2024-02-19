@@ -14,7 +14,6 @@
       "--prompt=' '"
       "--bind=ctrl-k:toggle-preview"
     ];
-    tmux.enableShellIntegration = true;
   };
 
 }
