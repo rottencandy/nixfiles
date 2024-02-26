@@ -10,6 +10,7 @@
         gopls
         buf
         just
+        deno
         nodejs_20
         nodePackages.yarn
         nodePackages.typescript-language-server
