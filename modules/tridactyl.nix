@@ -63,6 +63,7 @@
     blacklistadd ^https://meet.google.com
     blacklistadd ^https://docs.google.com
     blacklistadd ^https://bluejeans.com
+    blacklistadd ^https://monkeytype.com
     set leavegithubalone true
     '';
   };
