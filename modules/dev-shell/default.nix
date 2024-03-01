@@ -7,14 +7,18 @@
 
       packages = with pkgs; [
         go
-        gopls
         buf
         just
+        gopls
+
+        alsa-lib
+        pkg-config
+
         deno
         nodejs_20
         nodePackages.yarn
-        nodePackages.typescript-language-server
         vscode-langservers-extracted
+        nodePackages.typescript-language-server
       ];
 
     # web development environment, primarily node and Go support
