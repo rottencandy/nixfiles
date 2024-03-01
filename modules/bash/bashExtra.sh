@@ -4,6 +4,7 @@ if [[ -z $TMUX ]]; then
     test -s ~/bin              && export PATH="${HOME}/bin:${PATH}"
     test -s ~/go/bin           && export PATH="${HOME}/go/bin:${PATH}"
     test -s ~/.scripts         && export PATH="${HOME}/.scripts:${PATH}"
+    test -s ~/.cargo/bin       && export PATH="${HOME}/.cargo/bin:${PATH}"
     test -s /opt/homebrew/bin  && export PATH="/opt/homebrew/bin:${PATH}"
     test -s ~/.node_caches/bin && export PATH="${HOME}/.node_caches/bin:${PATH}"
 fi
