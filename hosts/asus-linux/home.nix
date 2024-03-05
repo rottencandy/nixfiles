@@ -78,9 +78,6 @@ in
     curl
     moreutils
     ripgrep
-    #gcc
-    clang
-    mold
     pinentry
     #nix-alien-pkgs.nix-alien
     bubblewrap
@@ -132,6 +129,7 @@ in
     nvtop
     protonup-qt
     gamescope
+    mangohud
     redshift
     openvpn
     brightnessctl
@@ -144,6 +142,9 @@ in
     # languages
     rustup
     janet
+    clang
+    mold
+    #gcc
 
     # WM
     wdisplays
