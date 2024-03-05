@@ -263,11 +263,8 @@ in
   #   enableSSHSupport = true;
   # };
 
-  # Required for gpg to not throw pinentry error
-  services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
     enableSSHSupport = true;
   };
 
