@@ -4,7 +4,7 @@ let
 
   # Toggle all hyprland animations & visuals for performance
   hyprland-perf = pkgs.writeShellScriptBin "hyperf" ''
-  HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==2{print $2}')
+  HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
   if [ "$HYPRGAMEMODE" = 1 ] ; then
       hyprctl --batch "\
           keyword animations:enabled 0;\
