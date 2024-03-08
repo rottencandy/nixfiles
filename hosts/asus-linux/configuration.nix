@@ -223,7 +223,7 @@ in
   # key daemon
   # https://github.com/rvaiya/keyd/blob/master/keyd.service
   systemd.services.keyd = {
-    enable = true;
+    enable = false;
     requires = [ "local-fs.target" ];
     after = [ "local-fs.target" ];
     wantedBy = [ "sysinit.target" ];
