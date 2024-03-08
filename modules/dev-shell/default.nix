@@ -6,7 +6,7 @@
     (let
 
       packages = with pkgs; [
-        go
+        go_1_22
         buf
         just
         gopls

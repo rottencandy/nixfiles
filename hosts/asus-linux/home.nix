@@ -83,6 +83,7 @@ in
     bubblewrap
     gnumake
     streamlink
+    qmk
 
     # wine stuff
     dwarfs
@@ -135,6 +136,7 @@ in
     brightnessctl
     unrar
     unzip
+    usbutils
     wev
     sox
     blueman
