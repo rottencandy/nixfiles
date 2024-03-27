@@ -55,7 +55,7 @@ in
       llog = "log --date=local";
 
       # Fetch PR from upstream
-      pr = "!f() { git fetch upstream pull/\${1}/head:pr\${1}; }; f";
+      pr = "!f() { git fetch origin pull/\${1}/head:pr\${1}; }; f";
 
       # Pretty log
       lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
