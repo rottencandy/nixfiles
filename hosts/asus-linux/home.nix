@@ -59,6 +59,7 @@ in
     gparted
     pandoc
     delta
+    difftastic
     emacs
     helix
     macchina
@@ -127,7 +128,7 @@ in
     asusctl
     nvidia-offload
     steam-run
-    nvtop
+    nvtopPackages.full
     protonup-qt
     gamescope
     mangohud
