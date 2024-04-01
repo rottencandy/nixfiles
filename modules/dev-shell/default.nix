@@ -11,8 +11,10 @@
         just
         gopls
 
+        jack2
         alsa-lib
         pkg-config
+        wasm-bindgen-cli
 
         deno
         nodejs_20

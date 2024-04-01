@@ -189,6 +189,7 @@ in
   ];
 
   security.polkit.enable = true;
+  security.pam.services.swaylock = {};
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -202,22 +203,11 @@ in
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy (also needed for flatpak)
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
-  # enable sway window manager
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      dbus-sway-environment
-    ];
-    extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export MOZ_ENABLE_WAYLAND=1
-    '';
+    # xdg-desktop-portal 1.17 reworked how portal implementations are loaded
+    # we need to specify which portal backend t o use for the requested interface
+    # this option simply keeps behaviour the same as < 1.17, i.e.. use the first
+    # portal implementation found in lexicographical order
+    config.common.default = "*";
   };
 
   # key daemon
@@ -263,6 +253,7 @@ in
   #   enableSSHSupport = true;
   # };
 
+  programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -284,6 +275,9 @@ in
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+
+  # Enable upower for battery monitoring.
+  services.upower.enable = true;
 
   # Open ports in the firewall.
   networking.firewall = {
