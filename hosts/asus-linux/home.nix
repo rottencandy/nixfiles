@@ -141,6 +141,7 @@ in
     wev
     sox
     blueman
+    ueberzugpp
 
     # languages
     rustup
