@@ -36,6 +36,9 @@ history:
 optimise:
 	nix store optimise
 
+fmt:
+	nix fmt
+
 gc:
 	# remove all generations older than 7 days
 	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
