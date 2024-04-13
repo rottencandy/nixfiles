@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   wayland.windowManager.hyprland = {
@@ -69,11 +74,11 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         rounding = 10;
-        
+
         blur = {
-            enabled = true;
-            size = 3;
-            passes = 1;
+          enabled = true;
+          size = 3;
+          passes = 1;
         };
 
         drop_shadow = "yes";
@@ -193,12 +198,14 @@
         "$mod SHIFT, 0, movetoworkspace, 10"
       ];
 
-      bindr = let
-        tofiFontPath = "${pkgs.nerdfonts.outPath}/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Medium.ttf";
-      in [
-        "$mod, D, exec, tofi-drun --width 800 --height 600 --num-results 9 --drun-launch=true --font ${tofiFontPath}"
-        "$mod SHIFT, D, exec, tofi-run --width 800 --height 600 --num-results 9 --font ${tofiFontPath} | xargs hyprctl dispatch exec"
-      ];
+      bindr =
+        let
+          tofiFontPath = "${pkgs.nerdfonts.outPath}/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Medium.ttf";
+        in
+        [
+          "$mod, D, exec, tofi-drun --width 800 --height 600 --num-results 9 --drun-launch=true --font ${tofiFontPath}"
+          "$mod SHIFT, D, exec, tofi-run --width 800 --height 600 --num-results 9 --font ${tofiFontPath} | xargs hyprctl dispatch exec"
+        ];
 
       bindl = [
         # Media key h/w controls

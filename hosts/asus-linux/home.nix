@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   # Script to run processes using discrete Nvidia GPU
@@ -9,14 +14,12 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec -a "$0" "$@"
   '';
-
-  # nix-alien to run non-NixOS binaries in a compatible FHS environment with
-  # all needed shared dependencies
-  #nix-alien-pkgs = import (
-  #  builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
-  #) { };
-
 in
+# nix-alien to run non-NixOS binaries in a compatible FHS environment with
+# all needed shared dependencies
+#nix-alien-pkgs = import (
+#  builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
+#) { };
 {
   imports = [
     ../../modules/vim
@@ -97,7 +100,6 @@ in
     gst_all_1.gst-vaapi
     wine-staging
     winetricks
-
 
     # applications
     qbittorrent

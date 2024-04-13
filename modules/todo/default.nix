@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  home.packages = with pkgs; [
-    todo-txt-cli
-  ];
+  home.packages = with pkgs; [ todo-txt-cli ];
 
   home.file = {
     ".todo.cfg".source = ./todo.cfg;

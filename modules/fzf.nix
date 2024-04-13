@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.fzf = {
@@ -15,7 +20,6 @@
       "--bind=ctrl-k:toggle-preview"
     ];
   };
-
 }
 
 # vim: fdm=marker:fdl=0:et:sw=2

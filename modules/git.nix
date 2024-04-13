@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   git-glog = pkgs.writeShellScriptBin "glog" ''
@@ -22,7 +27,6 @@ let
 
     setterm -linewrap on
   '';
-
 in
 {
   home.packages = with pkgs; [
@@ -36,8 +40,8 @@ in
       enable = true;
       options = {
         "side-by-side" = true;
-	"line-numbers" = true;
-	navigate = true;
+        "line-numbers" = true;
+        navigate = true;
       };
     };
     userName = "Mohammed Saud";
@@ -87,6 +91,7 @@ in
       };
       merge = {
         conflictstyle = "zdiff3";
+        tool = "nvim -d";
       };
       sendemail = {
         smtpEncryption = "tls";

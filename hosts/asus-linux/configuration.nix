@@ -29,23 +29,23 @@ let
     name = "configure-gtk";
     destination = "/bin/configure-gtk";
     executable = true;
-    text = let
-      schema = pkgs.gsettings-desktop-schemas;
-      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-    in ''
-      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-      gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme 'Dracula'
-    '';
+    text =
+      let
+        schema = pkgs.gsettings-desktop-schemas;
+        datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+      in
+      ''
+        export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+        gnome_schema=org.gnome.desktop.interface
+        gsettings set $gnome_schema gtk-theme 'Dracula'
+      '';
   };
-
 in
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -67,14 +67,18 @@ in
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
-  # Enable the X11 windowing system.
+  # Enable the X11 windowing system
   services.xserver.enable = true;
+  # but don't run a display manager by default
   services.xserver.autorun = false;
   # Use NVIDIA driver (required for PRIME offload)
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  #services.displayManager.sddm = {
+  #  enable = true;
+  #  wayland.enable = true;
+  #};
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -151,9 +155,14 @@ in
   users.users.saud = {
     isNormalUser = true;
     description = "saud";
-    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "libvirtd"
+    ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -166,7 +175,10 @@ in
 
   nix = {
     package = pkgs.nixFlakes;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -184,12 +196,10 @@ in
     # services
   ];
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
-  ];
+  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
 
   security.polkit.enable = true;
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -225,14 +235,14 @@ in
   environment.etc."keyd/default.conf".text = ''
     [ids]
     *
-    
+
     [main]
     # Maps capslock to escape when pressed and control when held.
     capslock = overload(control, esc)
-    
+
     # Remaps the escape key to capslock
     esc = capslock
-    
+
     # Remaps print to second meta(super) key
     compose = rightmeta
     sysrq = rightmeta
@@ -282,11 +292,17 @@ in
   # Open ports in the firewall.
   networking.firewall = {
     enable = true;
-    allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-    allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
     ];
   };
 
@@ -301,7 +317,6 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
 
 # vim: fdm=marker:fdl=0:et:sw=2

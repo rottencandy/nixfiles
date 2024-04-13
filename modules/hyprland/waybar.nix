@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs.waybar = {
@@ -13,7 +18,16 @@
 
         modules-left = [ "hyprland/workspaces" ];
         #modules-center = [ "hyprland/window" ];
-        modules-right = [ "idle_inhibitor" "network" "cpu" "memory" "temperature" "battery" "clock" "tray" ];
+        modules-right = [
+          "idle_inhibitor"
+          "network"
+          "cpu"
+          "memory"
+          "temperature"
+          "battery"
+          "clock"
+          "tray"
+        ];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -45,15 +59,19 @@
           critical-threshold = 80;
           # "format-critical": "{temperatureC}°C {icon}",
           format = "{temperatureC}°C {icon}";
-          format-icons = ["" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+          ];
         };
 
         idle_inhibitor = {
-            format = "{icon}";
-            format-icons = {
-              activated = "";
-              deactivated = "";
-            };
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
         };
 
         tray = {
@@ -80,26 +98,31 @@
           format-alt = "{time} {icon}";
           # "format-good" = ""; // An empty format will hide the module
           # "format-full" = "";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
         #"battery#bat2" = {
         #    bat = "BAT2";
         #};
 
         network = {
-            # "interface": "wlp2*", // (Optional) To force the use of this interface
-            format-wifi = "";
-            format-ethernet = "(E) 󰈀";
-            tooltip-format = "{essid}, {ifname} via {gwaddr}  ({signalStrength}%)";
-            format-linked = "(No IP) 󰩟";
-            format-disconnected = "󰖪";
-            on-click = "gnome-control-center wifi";
+          # "interface": "wlp2*", // (Optional) To force the use of this interface
+          format-wifi = "";
+          format-ethernet = "(E) 󰈀";
+          tooltip-format = "{essid}, {ifname} via {gwaddr}  ({signalStrength}%)";
+          format-linked = "(No IP) 󰩟";
+          format-disconnected = "󰖪";
+          on-click = "gnome-control-center wifi";
         };
       };
     };
     style = builtins.readFile ./style.css;
   };
-
 }
 
 # vim: fdm=marker:fdl=0:et:sw=2

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
 
@@ -9,7 +14,6 @@ let
     if [ -z $selection ]; then exit; fi
     pass -c "''${selection//.gpg/}"
   '';
-
 in
 {
   home.packages = with pkgs; [

@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-  ];
+  imports = [ ];
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -70,17 +69,15 @@
     ];
     # required for dns config to work
     knownNetworkServices = [
-        "Wi-Fi"
-        "Ethernet Adaptor"
-        "Thunderbolt Ethernet"
+      "Wi-Fi"
+      "Ethernet Adaptor"
+      "Thunderbolt Ethernet"
     ];
   };
 
   fonts = {
     fontDir.enable = true;
-    fonts = [
-      (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
-    ];
+    fonts = [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
   };
 
   users.users.msaud = {
