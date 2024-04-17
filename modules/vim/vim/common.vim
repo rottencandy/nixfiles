@@ -386,6 +386,9 @@ command W w !sudo tee % > /dev/null
 " cd to directory of current file
 command Fcd silent! lcd %:p:h
 
+" Open 4-pane conflict resolution diff
+command Mertetool Ghdiffsplit | Gvdiffsplit!
+
 " :Move rename/move current buffer
 fun! s:move_file(new_file_path)
   execute 'saveas ' . a:new_file_path

@@ -91,7 +91,7 @@ in
       };
       merge = {
         conflictstyle = "zdiff3";
-        tool = "nvim -d";
+        tool = "nvimdiff";
       };
       sendemail = {
         smtpEncryption = "tls";
