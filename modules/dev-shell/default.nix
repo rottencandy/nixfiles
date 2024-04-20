@@ -19,6 +19,7 @@
           jack2
           alsa-lib
           pkg-config
+          openssl
           wasm-bindgen-cli
 
           deno

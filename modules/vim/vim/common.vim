@@ -387,7 +387,7 @@ command W w !sudo tee % > /dev/null
 command Fcd silent! lcd %:p:h
 
 " Open 4-pane conflict resolution diff
-command Mertetool Ghdiffsplit | Gvdiffsplit!
+command Mergetool Ghdiffsplit | Gvdiffsplit!
 
 " :Move rename/move current buffer
 fun! s:move_file(new_file_path)
