@@ -48,6 +48,16 @@
       };
 
       formatter."${system}" = pkgs.nixfmt-rfc-style;
+
+      devShells = import ./shells {
+        inherit
+          self
+          nixpkgs
+          system
+          inputs
+          pkgs
+          ;
+      };
     };
 }
 
