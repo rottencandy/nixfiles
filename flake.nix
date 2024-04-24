@@ -21,7 +21,12 @@
       nix-darwin,
       home-manager,
       nixpkgs,
+      ...
     }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages."${system}";
+    in
     {
       nixosConfigurations.nixos = import ./hosts/asus-linux {
         inherit
@@ -42,8 +47,7 @@
           ;
       };
 
-      # todo: make this platform-independent
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      formatter."${system}" = pkgs.nixfmt-rfc-style;
     };
 }
 
