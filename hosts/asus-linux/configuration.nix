@@ -121,9 +121,11 @@ in
         enable = true;
         enableOffloadCmd = true;
       };
+      allowExternalGpu = true;
       nvidiaBusId = "PCI:1:0:0"; # lspci | grep VGA | grep NVIDIA
       amdgpuBusId = "PCI:5:0:0"; # lspci | grep VGA | grep AMD
     };
+    powerManagement.finegrained = true;
   };
 
   # Enable qmk hardware support for a normal non-root user
