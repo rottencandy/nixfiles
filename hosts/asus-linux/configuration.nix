@@ -102,6 +102,8 @@ in
     extraPackages = with pkgs; [
       # Allow programs to optionally choose amdvlk
       amdvlk
+      # trying to fix `WLR_RENDERER=vulkan sway`
+      vulkan-validation-layers
     ];
   };
 
@@ -114,7 +116,7 @@ in
     nvidiaSettings = true;
     # Use stable driver package
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
     #package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
     #  version = "550.67";
     #  sha256_64bit = "sha256-mSAaCccc/w/QJh6w8Mva0oLrqB+cOSO1YMz1Se/32uI=";
