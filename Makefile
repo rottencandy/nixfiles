@@ -18,6 +18,12 @@ endif
 switch:
 	$(REBUILD_CMD) switch --flake .
 
+rollback:
+	$(REBUILD_CMD) switch --flake --rollback .
+
+fast:
+	$(REBUILD_CMD) switch --flake --fast .
+
 test:
 	$(REBUILD_CMD) test --flake .
 
