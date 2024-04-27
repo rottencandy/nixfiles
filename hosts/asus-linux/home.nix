@@ -31,7 +31,7 @@ in
     ../../modules/fzf.nix
     ../../modules/rio.nix
     ../../modules/pass.nix
-    #../../modules/sway
+    ../../modules/sway
     ../../modules/halloy
     ../../modules/hyprland
     ../../modules/wezterm.nix
@@ -163,7 +163,7 @@ in
     kanshi
 
     # Non-free
-    anydesk
+    #anydesk
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
