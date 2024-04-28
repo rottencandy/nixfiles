@@ -99,8 +99,8 @@
         "XF86AudioLowerVolume" = volumeDown;
         "XF86AudioMute" = volumeToggle;
         "XF86AudioMicMute" = micToggle;
-        "XF86MonBrightnessDown" = "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif";
-        "XF86MonBrightnessUp" = "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif";
+        "XF86MonBrightnessUp" = "exec brightnessctl set 5%- && ~/.scripts/emit-brightness-notif";
       };
       gaps = {
         inner = 5;
