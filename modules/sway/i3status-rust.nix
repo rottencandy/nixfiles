@@ -45,6 +45,12 @@
             interval = 30;
           }
           {
+            block = "battery";
+            device = "BAT1";
+            driver = "upower";
+            interval = 30;
+          }
+          {
             block = "time";
             format = " $timestamp.datetime(f:'%a %d/%m %l:%M') ";
             interval = 60;
