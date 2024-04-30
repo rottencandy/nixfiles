@@ -68,6 +68,15 @@ in
         bg = "~/Pictures/wall.jpg fill";
       };
     };
+    input = {
+      "*" = {
+        repeat_rate = "200";
+        repeat_delay = "400";
+      };
+      "1267:12410:ELAN1203:00_04F3:307A_Touchpad" = {
+        natural_scroll = "enabled";
+      };
+    };
     keybindings = lib.mkOptionDefault {
       "${mod}+Return" = "exec wezterm";
       "${mod}+p" = "exec ${lockScreen}";
