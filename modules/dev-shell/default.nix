@@ -12,6 +12,7 @@
       let
         packages = with pkgs; [
           go_1_22
+          rustup
           buf
           just
           gopls

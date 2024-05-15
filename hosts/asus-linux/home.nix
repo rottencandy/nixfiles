@@ -146,7 +146,6 @@ in
     ueberzugpp
 
     # languages
-    rustup
     janet
     clang
     mold
