@@ -8,12 +8,16 @@
 
 pkgs.mkShell {
   packages = with pkgs; [
-    deno
-    nodejs_20
+    go_1_22
+    rustup
+    gopls
 
-    nodePackages.yarn
-    vscode-langservers-extracted
-    nodePackages.typescript-language-server
+    just
+    buf
+
+    jack2
+    alsa-lib
+    openssl
   ];
 }
 

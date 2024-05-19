@@ -16,6 +16,14 @@
         pkgs
         ;
     };
+    backend = import ./backend.nix {
+      inherit
+        nixpkgs
+        system
+        inputs
+        pkgs
+        ;
+    };
   };
 }
 
