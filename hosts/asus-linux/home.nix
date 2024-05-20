@@ -88,6 +88,7 @@ in
     gnumake
     streamlink
     qmk
+    distrobox
 
     # wine stuff
     dwarfs

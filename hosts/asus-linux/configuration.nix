@@ -334,6 +334,17 @@ in
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
+  # Enable common container config files in /etc/containers
+  virtualisation.containers.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    # Create a `docker` alias for podman, to use it as a drop-in replacement
+    #dockerCompat = true;
+
+    # Required for containers under podman-compose to be able to talk to each other.
+    defaultNetwork.settings.dns_enabled = true;
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
