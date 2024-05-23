@@ -12,16 +12,12 @@
       let
         packages = with pkgs; [
           go_1_22
+          clang
+          llvmPackages.bintools
           rustup
           buf
           just
           gopls
-
-          jack2
-          alsa-lib
-          pkg-config
-          openssl
-          wasm-bindgen-cli
 
           deno
           nodejs_20
