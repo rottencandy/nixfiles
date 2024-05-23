@@ -88,6 +88,7 @@ in
     gnumake
     streamlink
     qmk
+    shellcheck
     distrobox
 
     # wine stuff
