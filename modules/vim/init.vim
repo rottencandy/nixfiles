@@ -26,6 +26,7 @@ Plug 'thaerkh/vim-indentguides'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'whiteinge/diffconflicts'
 " Markdown support
 Plug 'plasticboy/vim-markdown'
 " GLSL support
@@ -41,8 +42,11 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " LSP
 Plug 'neovim/nvim-lspconfig'
 " Completion
-Plug 'ms-jpq/coq_nvim', { 'branch': 'coq' }
-Plug 'ms-jpq/coq.artifacts', { 'branch': 'artifacts' }
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 "Copilot, disabled by default
 Plug 'github/copilot.vim', { 'on': [] }
 command! LoadCopilot call plug#load('copilot.vim')
@@ -95,7 +99,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 lua << EOF
 local lspconfig = require('lspconfig')
-local coq = require('coq')
+local cmp = require('cmp')
 
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<leader>e', vim.diagnostic.get, opts)
@@ -142,7 +146,33 @@ local on_attach = function(client, bufnr)
   end
 end
 
-lspconfig['tsserver'].setup(coq.lsp_ensure_capabilities({
+cmp.setup({
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    -- { name = 'vsnip' }, -- For vsnip users.
+    -- { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+lspconfig['tsserver'].setup({
+  capabilities = capabilities,
   on_attach = on_attach,
   root_dir = lspconfig.util.root_pattern('package.json'),
   single_file_support = false,
@@ -150,14 +180,16 @@ lspconfig['tsserver'].setup(coq.lsp_ensure_capabilities({
     -- https://stackoverflow.com/a/69223288/7683374
     defaultMaximumTruncationLength = 800
   }
-}))
+})
 
-lspconfig['denols'].setup(coq.lsp_ensure_capabilities({
+lspconfig['denols'].setup({
+  capabilities = capabilities,
   on_attach = on_attach,
   root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc', 'deno.lock')
-}))
+})
 
-lspconfig['yamlls'].setup(coq.lsp_ensure_capabilities({
+lspconfig['yamlls'].setup({
+  capabilities = capabilities,
   on_attach = on_attach,
   settings = {
     redhat = {
@@ -176,17 +208,18 @@ lspconfig['yamlls'].setup(coq.lsp_ensure_capabilities({
       },
     },
   }
-}))
+})
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
 local servers = { 'ccls', 'cssls', 'gopls', 'html', 'jsonls', 'rust_analyzer', 'eslint', 'gdscript', 'cucumber_language_server' }
 for _, lang in ipairs(servers) do
-  lspconfig[lang].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
+  lspconfig[lang].setup({
+    capabilities = capabilities,
+    on_attach = on_attach
+  })
 end
 EOF
-
-"let g:coq_settings = {'keymap.repeat': '.'}
 
 " }}}
 
