@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# copy media metadata to clipboard
+
+if [[ -z $1 ]]; then
+	echo "Usage:   $0 [file]"
+	exit 1
+fi
+
+mpv -vo=null -ao=null -frames=0 "$1" | wl-copy
