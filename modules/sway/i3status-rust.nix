@@ -47,7 +47,7 @@
           {
             block = "battery";
             device = "BAT1";
-            driver = "upower";
+            driver = "sysfs";
             interval = 30;
           }
           {
