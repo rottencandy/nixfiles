@@ -174,6 +174,9 @@ in
   };
   hardware.bluetooth.enable = true;
 
+  # Required for easyeffects
+  services.dconf.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.saud = {
     isNormalUser = true;
@@ -215,8 +218,6 @@ in
     glib
     wayland
     wayfire
-
-    # services
   ];
 
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];

@@ -90,6 +90,7 @@ in
     qmk
     shellcheck
     distrobox
+    easyeffects
 
     # wine stuff
     dwarfs
