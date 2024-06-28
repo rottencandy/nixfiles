@@ -174,9 +174,6 @@ in
   };
   hardware.bluetooth.enable = true;
 
-  # Required for easyeffects
-  services.dconf.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.saud = {
     isNormalUser = true;

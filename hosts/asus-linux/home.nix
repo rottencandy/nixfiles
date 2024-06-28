@@ -59,6 +59,7 @@ in
 
     # tools
     ffmpeg
+    flac
     gparted
     pandoc
     delta
@@ -90,7 +91,8 @@ in
     qmk
     shellcheck
     distrobox
-    easyeffects
+    jamesdsp
+    wireguard-tools
 
     # wine stuff
     dwarfs
@@ -122,6 +124,7 @@ in
     alacritty
     ungoogled-chromium
     gnome.gnome-boxes
+    fbterm
     bk
 
     # games
