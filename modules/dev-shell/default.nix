@@ -20,10 +20,11 @@
           gopls
 
           deno
-          nodejs_20
+          nodejs_22
           nodePackages.yarn
           vscode-langservers-extracted
           nodePackages.typescript-language-server
+          nodePackages.svelte-language-server
         ];
       in
       # web development environment, primarily node and Go support

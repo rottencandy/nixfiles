@@ -141,6 +141,9 @@ set regexpengine=0      " Explicitly disable old regex engine
 set incsearch           " Search as characters are entered
 set ignorecase          " Ignore case
 set smartcase           " Except if there is a capital letter
+if has('nvim')
+  set inccomand=split   " Show preview in split
+endif
 
 set splitbelow          " New split goes below
 set splitright          " and to right

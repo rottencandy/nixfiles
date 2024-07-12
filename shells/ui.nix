@@ -9,11 +9,12 @@
 pkgs.mkShell {
   packages = with pkgs; [
     deno
-    nodejs_20
+    nodejs_22
 
     nodePackages.yarn
     vscode-langservers-extracted
     nodePackages.typescript-language-server
+    nodePackages.svelte-language-server
   ];
 }
 

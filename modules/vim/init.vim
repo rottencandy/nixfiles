@@ -19,6 +19,7 @@ Plug 'bluz71/vim-moonfly-colors'
 Plug 'mhartington/oceanic-next'
 " File explorer
 Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/vim-fern-hijack'
 " Closing brackets/quotes/... insertion
 Plug 'Raimondi/delimitMate'
 " Indent guides
@@ -212,7 +213,7 @@ lspconfig['yamlls'].setup({
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { 'ccls', 'cssls', 'gopls', 'html', 'jsonls', 'rust_analyzer', 'eslint', 'gdscript', 'cucumber_language_server' }
+local servers = { 'ccls', 'cssls', 'gopls', 'html', 'jsonls', 'rust_analyzer', 'eslint', 'gdscript', 'cucumber_language_server', 'svelte' }
 for _, lang in ipairs(servers) do
   lspconfig[lang].setup({
     capabilities = capabilities,
