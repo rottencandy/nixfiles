@@ -14,6 +14,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Treeshitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 " Colorschemes
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'mhartington/oceanic-next'
@@ -42,6 +44,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " LSP
 Plug 'neovim/nvim-lspconfig'
+" utils used by plugins
+Plug 'nvim-lua/plenary.nvim'
+" tsserver interop
+Plug 'pmizio/typescript-tools.nvim'
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -82,6 +88,60 @@ require('nvim-treesitter.configs').setup {
       node_incremental = '<CR>',
       scope_incremental = '<TAB>',
       node_decremental = '<S-TAB>',
+    },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      -- Automatically jump forward to textobj
+      lookahead = true,
+      -- choose the select mode (default is charwise 'v')
+      -- Can also be a function which gets passed a table with the keys
+      -- * query_string: eg '@function.inner'
+      -- * method: eg 'v' or 'o'
+      -- and should return the mode ('v', 'V', or '<c-v>') or a table
+      -- mapping query_strings to modes.
+      selection_modes = {
+        ['@parameter.outer'] = 'v', -- charwise
+        ['@function.outer'] = 'V', -- linewise
+        ['@class.outer'] = '<c-v>', -- blockwise
+      },
+      -- If set to `true` (default is `false`) then any textobject is
+      -- extended to include preceding or succeeding whitespace. Succeeding
+      -- whitespace has priority in order to act similarly to eg the built-in
+      -- `ap`.
+      -- Can also be a function which gets passed a table with the keys
+      -- * query_string: eg '@function.inner'
+      -- * selection_mode: eg 'v'
+      -- and should return true or false
+      include_surrounding_whitespace = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        -- You can also use captures from other query groups like `locals.scm`
+        ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>]"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>["] = "@parameter.inner",
+      },
+    },
+  },
+  lsp_interop = {
+    enable = true,
+    border = 'none',
+    floating_preview_opts = {},
+    peek_definition_code = {
+        ["<leader>d"] = "@function.outer",
+        ["<leader>D"] = "@class.outer",
     },
   },
   --indent = {
@@ -172,14 +232,16 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig['tsserver'].setup({
+require('typescript-tools').setup({
   capabilities = capabilities,
   on_attach = on_attach,
   root_dir = lspconfig.util.root_pattern('package.json'),
   single_file_support = false,
   settings = {
+    -- do not truncate TS hover definitions
     -- https://stackoverflow.com/a/69223288/7683374
-    defaultMaximumTruncationLength = 800
+    defaultMaximumTruncationLength = 800,
+    noErrorTruncation = true,
   }
 })
 

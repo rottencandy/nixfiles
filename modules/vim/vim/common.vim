@@ -71,7 +71,7 @@ augroup END
 " {{{ Transparency
 
 "hi Normal ctermbg=NONE 
-"function! AdaptColorscheme()
+"fun! AdaptColorscheme()
 "  highlight clear CursorLine
 "  highlight Normal ctermbg=none
 "  highlight LineNr ctermbg=none
@@ -80,7 +80,7 @@ augroup END
 "  highlight SpecialKey ctermbg=none
 "  highlight VertSplit ctermbg=none
 "  highlight SignColumn ctermbg=none
-"endfunction
+"endfun
 "autocmd ColorScheme * call AdaptColorscheme()
 "
 "hi Normal guibg=NONE ctermbg=NONE
@@ -121,7 +121,7 @@ set modeline              " Read vim modeline configs
 set directory=$HOME/.vim/swapfiles//
 set backupdir=$HOME/.vim/swapfiles//
 
-set nrformats="bin,hex" " define bases for <C-a> and <C-x> math operations
+set nrformats=bin,hex   " define bases for <C-a> and <C-x> math operations
 set history=1000        " Remember more stuff
 set tabpagemax=50       " Max tab pages
 
@@ -132,17 +132,25 @@ set wrap
 
 set ffs=unix,dos,mac    " Standard file type as Unix
 set autoread            " automatically read when file is changed from outside
-set wildmenu            " Completion dropdown-thing
 set hidden              " Hide unsaved buffers instead of closing
 "set confirm             " Prompt if exiting without saving
 set mouse=a             " Use mouse for all modes
 set regexpengine=0      " Explicitly disable old regex engine
 
+set wildmenu            " Completion dropdown-thing
+" For : cmds, use longest match and show full list of matches
+set wildmode=list:longest,list:full
+" Ignore these files when using tab completion
+set wildignore+=.javac,node_modules,*.pyc
+set wildignore+=.o,.obj,.dll,.exe,.git,.orig
+" Add extension when opening paths with gf
+set suffixesadd=.rs,.js,.ts
+
 set incsearch           " Search as characters are entered
 set ignorecase          " Ignore case
 set smartcase           " Except if there is a capital letter
 if has('nvim')
-  set inccomand=split   " Show preview in split
+  set inccommand=split   " Show preview in split
 endif
 
 set splitbelow          " New split goes below
@@ -153,10 +161,16 @@ set foldlevel=99         " Do not close folds by default
 set formatoptions+=j    " Delete comment character when joining commented lines
 set shortmess+=c        " Do not pass messages to ins-completion-menu
 
-" Break line joins into multiple edits
+" Avoid performing second stage diffs on large hunks
+set diffopt+=linematch:60
+
+" Turn some operations into multiple edits
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 "inoremap <CR> <C-G>u<CR>
+"inoremap . <C-G>u.
+"inoremap ? <C-G>u?
+"inoremap , <C-G>u,
 
 " :h :mkview
 set sessionoptions-=options
@@ -233,28 +247,28 @@ augroup END
 "Status line {{{
 
 " 
-set laststatus=2                " Always show statusline
+set laststatus=3                " Always show statusline
 
 let currentmode = {
-      \ 'n'  : '  NORMAL ',
-      \ 'i'  : '  INSERT ',
-      \ 'v'  : '  VISUAL ',
-      \ 'V'  : '  V·LINE ',
-      \ '' : '  V·BLOCK ',
-      \ 'Rv' : '  V·RPLACE ',
-      \ 'R'  : '  RPLACE ',
-      \ 'no' : '  NORM·OP ',
-      \ 's'  : '  SELECT ',
-      \ 'S'  : '  S·LINE ',
-      \ '^S' : '  S·BLOCK ',
-      \ 'c'  : '  COMMAND ',
-      \ 'r'  : '  PROMPT ',
+      \ 'n'  : '  NRM ',
+      \ 'i'  : '  INS ',
+      \ 'v'  : '  VIS ',
+      \ 'V'  : '  V·LN ',
+      \ '' : '  V·BLK ',
+      \ 'Rv' : '  V·RPLCE ',
+      \ 'R'  : '  RPLCE ',
+      \ 'no' : '  NRM·OP ',
+      \ 's'  : '  SEL ',
+      \ 'S'  : '  S·LN ',
+      \ '^S' : '  S·BLK ',
+      \ 'c'  : '  CMD ',
+      \ 'r'  : '  PRMPT ',
       \ 'rm' : '  MORE ',
-      \ 'r?' : '  CONFIRM ',
-      \ 'cv' : '  VIM EX ',
+      \ 'r?' : '  CNFRM ',
+      \ 'cv' : '  VIM·EX ',
       \ 'ce' : '  EX ',
-      \ '!'  : '  SHELL ',
-      \ 't'  : '  TERMINAL ',
+      \ '!'  : '  SHL ',
+      \ 't'  : '  TERM ',
       \}
 
 " |hitest.vim|
@@ -610,7 +624,7 @@ fun! s:init_fern() abort
   nnoremap  <buffer>  q      :bd<CR>
   nmap      <buffer>  h      <Plug>(fern-action-collapse)
   nmap      <buffer>  l      <Plug>(fern-action-open-or-expand)
-  nmap      <buffer>  g.     <Plug>(fern-action-hidden:toggle)
+  nmap      <buffer>  .g     <Plug>(fern-action-hidden:toggle)
   nmap      <buffer>  <C-H>  <Plug>(fern-action-leave)
   nmap      <buffer>  <C-L>  <Plug>(fern-action-redraw)
   nmap      <buffer>  <CR>   <Plug>(fern-action-open-or-enter)
