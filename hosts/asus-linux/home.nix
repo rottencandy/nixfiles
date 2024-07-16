@@ -14,6 +14,18 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec -a "$0" "$@"
   '';
+
+  # script to interactively select and activate a dev shell
+  devshell = pkgs.writeShellScriptBin "shl" ''
+    pushd ~/nix
+    trap popd EXIT
+    SEL=$(nix flake show --json | jq '.devShells."x86_64-linux" | keys | .[]' -r | fzf)
+    if [ -z "$SEL" ]; then
+      exit
+    fi;
+    nix develop ".#$SEL"
+  '';
+
 in
 # nix-alien to run non-NixOS binaries in a compatible FHS environment with
 # all needed shared dependencies
@@ -136,6 +148,7 @@ in
     # utils
     asusctl
     nvidia-offload
+    devshell
     steam-run
     nvtopPackages.full
     protonup-qt

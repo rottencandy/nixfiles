@@ -23,6 +23,7 @@
           nodejs_22
           nodePackages.yarn
           vscode-langservers-extracted
+          nodePackages.typescript
           nodePackages.typescript-language-server
           nodePackages.svelte-language-server
         ];

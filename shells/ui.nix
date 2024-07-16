@@ -13,6 +13,7 @@ pkgs.mkShell {
 
     nodePackages.yarn
     vscode-langservers-extracted
+    nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.svelte-language-server
   ];
