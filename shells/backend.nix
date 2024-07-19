@@ -11,6 +11,7 @@ pkgs.mkShell {
     go_1_22
     rustup
     gopls
+    rust-analyzer-unwrapped
 
     just
     buf

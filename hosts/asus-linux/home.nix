@@ -17,9 +17,7 @@ let
 
   # script to interactively select and activate a dev shell
   devshell = pkgs.writeShellScriptBin "shl" ''
-    pushd ~/nix
-    trap popd EXIT
-    SEL=$(nix flake show --json | jq '.devShells."x86_64-linux" | keys | .[]' -r | fzf)
+    SEL=$(nix flake show --json ~/nix | jq '.devShells."x86_64-linux" | keys | .[]' -r | fzf)
     if [ -z "$SEL" ]; then
       exit
     fi;
