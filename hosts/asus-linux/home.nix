@@ -103,7 +103,8 @@ in
     distrobox
     jamesdsp
     wireguard-tools
-    visidata
+    #visidata
+    notify-desktop
 
     # wine stuff
     dwarfs
@@ -119,7 +120,7 @@ in
 
     # applications
     qbittorrent
-    vlc
+    #vlc
     mpv
     feh
     gimp
@@ -153,7 +154,7 @@ in
     gamescope
     mangohud
     redshift
-    openvpn
+    #openvpn
     brightnessctl
     unrar
     unzip
@@ -162,6 +163,9 @@ in
     sox
     blueman
     ueberzugpp
+
+    # nix utils
+    cachix
 
     # languages
     janet

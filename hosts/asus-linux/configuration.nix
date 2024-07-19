@@ -196,10 +196,16 @@ in
 
   nix = {
     package = pkgs.nixFlakes;
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        "saud"
+      ];
+    };
   };
 
   # List packages installed in system profile. To search, run:
@@ -215,7 +221,14 @@ in
     wayfire
   ];
 
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "Iosevka"
+      ];
+    })
+  ];
 
   security.polkit.enable = true;
   security.pam.services.swaylock = { };

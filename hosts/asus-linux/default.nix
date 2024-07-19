@@ -11,6 +11,7 @@ nixpkgs.lib.nixosSystem {
     home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
+      home-manager.backupFileExtension = "backup";
       home-manager.users.saud = {
         imports = [ ./home.nix ];
       };
