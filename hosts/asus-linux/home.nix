@@ -36,7 +36,6 @@ in
     ../../modules/bash
     ../../modules/tmux
     ../../modules/todo
-    ../../modules/dev-shell
     ../../modules/git.nix
     ../../modules/fzf.nix
     ../../modules/rio.nix
