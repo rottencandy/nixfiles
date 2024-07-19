@@ -165,6 +165,7 @@ in
 
     # nix utils
     cachix
+    nixd
 
     # languages
     janet
