@@ -1,0 +1,26 @@
+# Configuration sample file for Halloy.
+# Place this in your user's config directory:
+#
+# Linux: `$HOME`/.config/halloy
+# macOS: `$HOME`/Library/Application Support/halloy
+# Windows: `{FOLDERID_RoamingAppData}`\halloy
+
+# Configuration wiki
+#
+# Visit our wiki for all configurations options
+# https://github.com/squidowl/halloy/wiki/Configuration
+
+# Theme
+# - Add theme files to the themes directory and fill this with the filename
+#   without the .yaml extension to select the theme you want
+# - Default is "ferra" and provided by this application
+# - For theme examples, please refer to:
+#   https://github.com/squidowl/halloy/wiki/Themes
+theme = "ferra"
+
+[servers.liberachat]
+nickname = "saud"
+server = "irc.libera.chat"
+port = 6_697
+use_tls = true
+channels = [ "#vim", "#neovim" ]
