@@ -36,15 +36,16 @@ in
     ../../modules/bash
     ../../modules/tmux
     ../../modules/todo
+    ../../modules/sway
+    ../../modules/halloy
     ../../modules/git.nix
     ../../modules/fzf.nix
     ../../modules/rio.nix
     ../../modules/pass.nix
-    ../../modules/sway
-    ../../modules/halloy
     ../../modules/hyprland
     ../../modules/wezterm.nix
     ../../modules/starship.nix
+    ../../modules/vscodium.nix
     ../../modules/tridactyl.nix
   ];
   home.username = "saud";
