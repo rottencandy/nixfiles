@@ -21,7 +21,7 @@ let
     if [ -z "$SEL" ]; then
       exit
     fi;
-    nix develop ".#$SEL"
+    nix develop ~/nix#$SEL
   '';
 
 in

@@ -41,6 +41,7 @@ in
       "nv"
       "gd"
       "fg"
+      "shl"
     ];
 
     shellAliases =
