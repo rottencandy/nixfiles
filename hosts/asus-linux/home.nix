@@ -43,6 +43,7 @@ in
     ../../modules/rio.nix
     ../../modules/pass.nix
     ../../modules/hyprland
+    ../../modules/broot.nix
     ../../modules/wezterm.nix
     ../../modules/starship.nix
     ../../modules/vscodium.nix
@@ -82,7 +83,6 @@ in
     bat
     nnn
     yazi
-    broot
     bottom
     htop
     lsd
