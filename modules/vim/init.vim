@@ -40,8 +40,8 @@ Plug 'hjson/vim-hjson'
 Plug 'digitaltoad/vim-pug'
 " Editorconfig
 Plug 'editorconfig/editorconfig-vim'
-" Prettier
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+" Formatting
+Plug 'sbdchd/neoformat'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 " utils used by plugins

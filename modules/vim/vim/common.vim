@@ -216,12 +216,12 @@ augroup filetype_settings
 
   " JS/TS
   autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx
-        \ exec 'command! -buffer Fmt PrettierAsync' |
+        \ exec 'command! -buffer Fmt Neoformat prettier' |
         \ exec 'inoreabbrev <buffer> clg console.log()<LEFT>'
 
   " Web
   autocmd FileType json,yaml,css,scss
-        \ exec 'command! -buffer Fmt PrettierAsync'
+        \ exec 'command! -buffer Fmt Neoformat prettier'
 
   " markdown
   " Note: Slack hates the text/html type, routing it through firefox for now
@@ -645,6 +645,11 @@ let g:indentguides_ignorelist = [ 'text', 'help', 'fern', 'fugitive' ]
 let g:indentguides_toggleListMode = 0
 "let g:indentguides_spacechar = '❘'
 "let g:indentguides_tabchar = '⋅'
+
+" Neoformat
+" ----------
+" Try using binaries from node_modules
+let g:neoformat_try_node_exe = 1
 
 " }}}
 
