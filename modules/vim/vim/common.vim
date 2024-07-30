@@ -10,8 +10,6 @@ scriptencoding utf-8
 
 " vimkubectl
 set rtp+=~/code/vim/vimkubectl
-" fzf
-set rtp+=~/apps/fzf
 
 " % jump to matching xml tags, if/else/endif, etc.
 packadd! matchit
@@ -480,6 +478,7 @@ fun! s:buflist()
   silent ls
   redir END
 
+  " Pass buffer line number for previewing in bat
   "let result = []
   "for buf in split(ls, '\n')
   "  let bufnum = s:bufnumber(buf)
