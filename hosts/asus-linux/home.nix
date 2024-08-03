@@ -71,7 +71,7 @@ in
     # tools
     ffmpeg
     flac
-    gparted
+    cryptsetup
     pandoc
     delta
     difftastic
