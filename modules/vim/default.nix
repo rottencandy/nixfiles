@@ -14,7 +14,7 @@
   ];
 
   home.file = {
-    ".config/nvim/init.vim".source = ./init.vim;
+    ".config/nvim/init.lua".source = ./init.lua;
     ".vim" = {
       source = ./vim;
       recursive = true;

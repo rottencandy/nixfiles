@@ -1,85 +1,76 @@
-let &packpath = &runtimepath
+-------------------------------------------------------------------------
+-- ⡀⢀ ⠄ ⣀⣀  ⡀⣀ ⢀⣀
+-- ⠱⠃ ⠇ ⠇⠇⠇ ⠏  ⠣⠤
+--
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ⡀⢀ ⠄ ⣀⣀  ⡀⣀ ⢀⣀
-" ⠱⠃ ⠇ ⠇⠇⠇ ⠏  ⠣⠤
-"
+vim.o.packpath = vim.o.runtimepath
 
-"Plugins {{{
+-- Plugins {{{
 
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.config/nvim/plugged')
+-- Specify a directory for plugins
+-- * For Neovim: stdpath('data') . '/plugged'
+-- * Avoid using standard Vim directory names like 'plugin'
+vim.call('plug#begin', '~/.config/nvim/plugged')
+local Plug = vim.fn['plug#']
 
-" Treeshitter
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'nvim-treesitter/nvim-treesitter-context'
-" Colorschemes
-Plug 'bluz71/vim-moonfly-colors'
-Plug 'mhartington/oceanic-next'
-" File explorer
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/vim-fern-hijack'
-" Closing brackets/quotes/... insertion
-Plug 'Raimondi/delimitMate'
-" Indent guides
-Plug 'thaerkh/vim-indentguides'
-" Git
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'whiteinge/diffconflicts'
-" Markdown support
-Plug 'plasticboy/vim-markdown'
-" GLSL support
-Plug 'tikhomirov/vim-glsl'
-" hjson support
-Plug 'hjson/vim-hjson'
-" pug support
-Plug 'digitaltoad/vim-pug'
-" Editorconfig
-Plug 'editorconfig/editorconfig-vim'
-" Formatting
-Plug 'sbdchd/neoformat'
-" LSP
-Plug 'neovim/nvim-lspconfig'
-" utils used by plugins
-Plug 'nvim-lua/plenary.nvim'
-" tsserver interop
-Plug 'pmizio/typescript-tools.nvim'
-" Completion
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-"Copilot, disabled by default
-Plug 'github/copilot.vim', { 'on': [] }
-command! LoadCopilot call plug#load('copilot.vim')
-" Parinfer https://shaunlebron.github.io/parinfer, disabled by default
-Plug 'eraserhd/parinfer-rust', { 'on': [], 'do': 'cargo build --release' }
-command! LoadParinfer call plug#load('parinfer-rust')
-" Surrounding
-Plug 'machakann/vim-sandwich'
+-- Treeshitter
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+Plug('nvim-treesitter/nvim-treesitter-textobjects')
+Plug('nvim-treesitter/nvim-treesitter-context')
+-- Colorschemes
+Plug('bluz71/vim-moonfly-colors')
+-- File explorer
+Plug('lambdalisue/fern.vim')
+Plug('lambdalisue/vim-fern-hijack')
+-- Closing brackets/quotes/... insertion
+Plug('Raimondi/delimitMate')
+-- Indent guides
+Plug('thaerkh/vim-indentguides')
+-- Git
+Plug('tpope/vim-fugitive')
+Plug('tpope/vim-rhubarb')
+Plug('whiteinge/diffconflicts')
+-- pug support
+Plug('digitaltoad/vim-pug')
+-- Editorconfig
+Plug('editorconfig/editorconfig-vim')
+-- Formatting
+Plug('sbdchd/neoformat')
+-- LSP
+Plug('neovim/nvim-lspconfig')
+-- utils used by plugins
+Plug('nvim-lua/plenary.nvim')
+-- better tsserver interop
+Plug('pmizio/typescript-tools.nvim')
+-- Completion
+Plug('hrsh7th/cmp-nvim-lsp')
+Plug('hrsh7th/cmp-buffer')
+Plug('hrsh7th/cmp-path')
+Plug('hrsh7th/cmp-cmdline')
+Plug('hrsh7th/nvim-cmp')
+-- Parinfer https://shaunlebron.github.io/parinfer, disabled by default
+Plug('eraserhd/parinfer-rust', { ['on'] = {}, ['do'] = 'cargo build --release' })
+--command! LoadParinfer call plug#load('parinfer-rust')
+-- Surrounding
+Plug('machakann/vim-sandwich')
 
-" Initialize plugin system
-call plug#end()
+vim.fn['plug#end']()
 
-" Neovide :)
-let g:neovide_cursor_vfx_mode = 'railgun'
+-- Neovide :)
+vim.g.neovide_cursor_vfx_mode = 'railgun'
 
-" }}}
+-- }}}
 
-source ~/.vim/common.vim
+-- shared config
+vim.cmd.source('~/.vim/common.vim')
 
-"Treesitter {{{
+-- Treesitter {{{
 
-lua <<EOF
 require('nvim-treesitter.configs').setup {
   highlight = {
-    enable = true,  -- false will disable the whole extension
-    disable = { },  -- list of language that will be disabled
+    enable = true,
+    -- list of languages that will be disabled
+    disable = { },
   },
   incremental_selection = {
     enable = true,
@@ -148,17 +139,14 @@ require('nvim-treesitter.configs').setup {
   --  enable = true
   --},
 }
-EOF
 
-" Treesitter based folding
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = vim.treesitter.foldexpr()
 
-" }}}
+-- }}}
 
-"LSP {{{
+-- LSP {{{
 
-lua << EOF
 local lspconfig = require('lspconfig')
 local cmp = require('cmp')
 
@@ -282,8 +270,7 @@ for _, lang in ipairs(servers) do
     on_attach = on_attach
   })
 end
-EOF
 
-" }}}
+-- }}}
 
-" vim: fdm=marker:fdl=0:et:sw=2:
+-- vim: fdm=marker:fdl=0:et:sw=2:
