@@ -213,7 +213,7 @@ augroup filetype_settings
   autocmd BufReadPre,FileReadPre *.gpg,*.asc set viminfo= noswapfile noundofile nobackup
 
   " JS/TS
-  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,svelte
         \ exec 'command! -buffer Fmt Neoformat prettier' |
         \ exec 'inoreabbrev <buffer> clg console.log()<LEFT>'
 
@@ -396,13 +396,13 @@ nnoremap ]B :brewind<CR>
 "Commands {{{
 
 " Save file with elevated permissions
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 
 " cd to directory of current file
-command Fcd silent! lcd %:p:h
+command! Fcd silent! lcd %:p:h
 
 " Open 4-pane conflict resolution diff
-command Mergetool Ghdiffsplit | Gvdiffsplit!
+command! Mergetool Ghdiffsplit | Gvdiffsplit!
 
 " :Move rename/move current buffer
 fun! s:move_file(new_file_path)
@@ -414,7 +414,7 @@ endfun
 command! -nargs=1 -complete=file Move call <SID>move_file(<f-args>)
 
 " Close buffer without messing up splits
-command Bd bp|bd #
+command! Bd bp|bd #
 
 " Grep raw output for use with cgetexpr
 " https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
@@ -422,8 +422,8 @@ fun! Grep(...)
   return system(join([&grepprg] + [join(a:000, ' ')], ' '))
 endfun
 
-command -nargs=+ -complete=file_in_path Grep  cgetexpr Grep(<f-args>)
-command -nargs=+ -complete=file_in_path LGrep lgetexpr Grep(<f-args>)
+command! -nargs=+ -complete=file_in_path Grep  cgetexpr Grep(<f-args>)
+command! -nargs=+ -complete=file_in_path LGrep lgetexpr Grep(<f-args>)
 
 " :grep is :Grep
 cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ? 'Grep' : 'grep'
@@ -440,8 +440,8 @@ fun! DecryptFile()
   setlocal ch=1
 endfun
 
-command Decrypt call DecryptFile()
-command Encrypt call EncryptFile()
+command! Decrypt call DecryptFile()
+command! Encrypt call EncryptFile()
 
 " }}}
 
@@ -456,18 +456,18 @@ let g:vimkubectl_command = 'oc'
 " ----------
 
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.7 } }
-let g:fzf_action = { 'ctrl-t': 'tab split', 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
+"let g:fzf_action = { 'ctrl-t': 'tab split', 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 
 " Starter command for bat
 let BAT_CMD = 'bat --style=plain --color=always'
 
 " Only display the first x lines
-let BAT_CMD_SHORT = BAT_CMD . ' --line-range :500'
-let BASIC_PREVIEW = '--preview "' . BAT_CMD_SHORT . ' {}"'
+let BAT_CMD_TRUNC = BAT_CMD . ' --line-range :500'
+let BASIC_PREVIEW = '--preview "' . BAT_CMD_TRUNC . ' {}"'
 
-let EXPECT_BIND = '--expect=ctrl-t,ctrl-v,ctrl-s,ctrl-b'
+let EXPECT_BIND = '--expect=ctrl-t,ctrl-v,ctrl-s,ctrl-b,ctrl-q,ctrl-r'
 let BUFLINE_PREVIEW = '--delimiter \"
-      \ --preview "' . BAT_CMD_SHORT . ' {2}"'
+      \ --preview "' . BAT_CMD_TRUNC . ' {2}"'
 let RG_PREVIEW = '--delimiter :
       \ --preview "' . BAT_CMD . ' {1} --highlight-line {2}"
       \ --preview-window "+{2}/2"'
@@ -545,20 +545,6 @@ fun! OpenFilesAtLocation(result)
   endfor
 endfun
 
-fun! s:FuzzyContentSearch(initialQuery)
-  " VimL can't do var scopes smh... :/
-  let l:BAT_CMD = 'bat --style=plain --color=always'
-  let l:RG_PREVIEW = '--delimiter
-        \ : --preview "' . l:BAT_CMD . ' {1} --highlight-line {2}"
-        \ --preview-window "+{2}/2"'
-  let l:EXPECT = '--expect=ctrl-t,ctrl-v,ctrl-s'
-  let l:opts = {}
-  let l:opts.source = 'rg --line-number ''.*'''
-  let l:opts['sink*'] = function('OpenFilesAtLocation')
-  let l:opts.options = '--query "' . a:initialQuery . '" ' . l:RG_PREVIEW . ' ' . l:EXPECT
-  call fzf#run(fzf#wrap(l:opts))
-endfun
-
 fun! s:FuzzyRgBackend(initialQuery)
   " VimL can't do var scopes smh... :/
   let l:BAT_CMD = 'bat --style=plain --color=always'
@@ -566,29 +552,30 @@ fun! s:FuzzyRgBackend(initialQuery)
         \ : --preview "' . l:BAT_CMD . ' {1} --highlight-line {2}"
         \ --preview-window "+{2}/2"'
   let l:EXPECT = '--expect=ctrl-t,ctrl-v,ctrl-s'
-  let l:opts = {}
-  let l:opts.options = '--disabled
-        \ --ansi
-        \ --bind "ctrl-r:reload:rg -i --line-number {q} || true"
-        \ --query "' . a:initialQuery . '"
-        \ --header="Run search with CTRL+r"
-        \ ' . l:RG_PREVIEW . ' ' . l:EXPECT
-  let l:opts['sink*'] = function('OpenFilesAtLocation')
-  call fzf#run(fzf#wrap(l:opts))
+  call fzf#run(fzf#wrap({
+        \ 'sink*': function('OpenFilesAtLocation'),
+        \ 'options': join([
+          \ '--disabled',
+          \ '--ansi',
+          \ '--bind "ctrl-r:reload:rg -i --line-number {q} || true"',
+          \ '--query "' . a:initialQuery . '"',
+          \ '--header="Run search with CTRL+r"',
+          \ l:RG_PREVIEW,
+          \ l:EXPECT,
+        \ ], ' ')}))
 endfun
 
 " Open files
 nnoremap <silent> <Leader>f :call fzf#run(fzf#wrap({
       \   'source':  'fd --type f',
-      \   'options': BASIC_PREVIEW,
+      \   'options': join([EXPECT_BIND, BASIC_PREVIEW], ' '),
       \ }))<CR>
-"nnoremap <silent> <leader>f :FZF<CR>
 
 " Manage buffers
 nnoremap <silent> <Leader>b :call fzf#run(fzf#wrap({
       \   'source':  reverse(<sid>buflist()),
       \   'sink*':   function('<sid>bufmanage'),
-      \   'options': EXPECT_BIND . ' ' . BUFLINE_PREVIEW,
+      \   'options': join([EXPECT_BIND, BUFLINE_PREVIEW], ' '),
       \ }))<CR>
 
 " Directory selection
@@ -597,10 +584,6 @@ nnoremap <silent> <Leader>F :call fzf#run(fzf#wrap({
       \   'sink':   function('<sid>navigate'),
       \   'options': '+m',
       \ }))<CR>
-
-" Interactive fuzzy text search
-nnoremap <silent> <Leader>S :call <SID>FuzzyContentSearch('')<CR>
-vnoremap <silent> <Leader>S :call <SID>withSelection(function('<SID>FuzzyContentSearch'))<CR>
 
 " Use fzf as frontend for ripgrep
 nnoremap <silent> <Leader>s :call <SID>FuzzyRgBackend('')<CR>
