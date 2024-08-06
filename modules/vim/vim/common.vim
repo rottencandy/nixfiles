@@ -33,7 +33,11 @@ endif
 
 " Set and configure the color scheme
 syntax enable           " enable syntax highlighting
-colorscheme moonfly
+if has('nvim')
+  colorscheme moonfly
+else
+  colorscheme habamax
+endif
 " Highlight embedded lua in .vim
 let g:vimsyn_embed = 'l'
 " Transparent background
@@ -159,8 +163,10 @@ set foldlevel=99         " Do not close folds by default
 set formatoptions+=j    " Delete comment character when joining commented lines
 set shortmess+=c        " Do not pass messages to ins-completion-menu
 
-" Avoid performing second stage diffs on large hunks
-set diffopt+=linematch:60
+if has('nvim')
+  " Avoid performing second stage diffs on large hunks
+  set diffopt+=linematch:60
+endif
 
 " Turn some operations into multiple edits
 inoremap <C-U> <C-G>u<C-U>
@@ -388,6 +394,17 @@ nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]B :brewind<CR>
 
+" Navigate arglist
+nnoremap <C-1> :1argedit<CR>
+nnoremap <C-2> :2argedit<CR>
+nnoremap <C-3> :3argedit<CR>
+nnoremap <C-4> :4argedit<CR>
+" Add current file to arglist
+nnoremap <LocalLeader>a :argadd<CR>
+
+" Open "fast" buffer switcher
+nnoremap <silent> <LocalLeader>b :exe "normal :ls<CR>:b "
+
 " Grep for word under cursor in cwd and open matched files in quickfix window
 "nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
 
@@ -465,7 +482,7 @@ let BAT_CMD = 'bat --style=plain --color=always'
 let BAT_CMD_TRUNC = BAT_CMD . ' --line-range :500'
 let BASIC_PREVIEW = '--preview "' . BAT_CMD_TRUNC . ' {}"'
 
-let EXPECT_BIND = '--expect=ctrl-t,ctrl-v,ctrl-s,ctrl-b,ctrl-q,ctrl-r'
+let EXPECT_BIND = '--expect=ctrl-t,ctrl-v,ctrl-s,ctrl-b,ctrl-q,ctrl-a'
 let BUFLINE_PREVIEW = '--delimiter \"
       \ --preview "' . BAT_CMD_TRUNC . ' {2}"'
 let RG_PREVIEW = '--delimiter :
@@ -499,6 +516,21 @@ fun! s:bufnumber(bufline)
   return matchlist(a:bufline, '\v^ *([0-9]*)')[1]
 endfun
 
+" Add files to quickfix list and open it
+fun! s:build_qflist(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfun
+
+" Add files to arglist
+fun! s:build_arglist(lines)
+  for buf in copy(a:lines)
+    argadd buf
+  endfor
+  argdedupe
+endfun
+
 " Manage buffers
 fun! s:bufmanage(result)
   if len(a:result) < 2
@@ -508,7 +540,9 @@ fun! s:bufmanage(result)
   let cmd = get({'ctrl-s': 'sbuffer',
         \ 'ctrl-v': 'vert sbuffer',
         \ 'ctrl-t': 'tabnew | buffer',
-        \ 'ctrl-b': 'bdelete'},
+        \ 'ctrl-b': 'bdelete',
+        \ 'ctrl-q': function('s:build_qflist'),
+        \ 'ctrl-a': function('s:build_arglist')},
         \ a:result[0], 'buffer')
   let buffers = a:result[1:]
 
@@ -532,10 +566,13 @@ fun! OpenFilesAtLocation(result)
     return
   endif
 
-  let cmd = get({'ctrl-s': 'split',
+  let cmd = get({
+        \ 'ctrl-s': 'split',
         \ 'ctrl-v': 'vsplit',
-        \ 'ctrl-t': 'tabedit'},
-        \ a:result[0], 'edit')
+        \ 'ctrl-t': 'tabedit',
+        \ 'ctrl-q': function('s:build_qflist')},
+        \ a:result[0], 'edit',
+        \ )
   let buffers = a:result[1:]
 
   for each in buffers
@@ -593,11 +630,11 @@ vnoremap <silent> <Leader>s :call <SID>withSelection(function('<SID>FuzzyRgBacke
 " ----------
 
 " Custom symbols
-"let g:fern#renderer#default#leading = "│"
-"let g:fern#renderer#default#root_symbol = "┬ "
-"let g:fern#renderer#default#leaf_symbol = "├─ "
-"let g:fern#renderer#default#collapsed_symbol = "├─ "
-"let g:fern#renderer#default#expanded_symbol = "├┬ "
+let g:fern#renderer#default#leading =          "│"
+let g:fern#renderer#default#root_symbol =      "┬ "
+let g:fern#renderer#default#leaf_symbol =      "├─ "
+let g:fern#renderer#default#expanded_symbol =  "├┬ "
+let g:fern#renderer#default#collapsed_symbol = "├─ "
 
 " Disable all default mappings and define them manually
 let g:fern#disable_default_mappings = 1
@@ -625,8 +662,8 @@ augroup END
 
 let g:indentguides_ignorelist = [ 'text', 'help', 'fern', 'fugitive' ]
 let g:indentguides_toggleListMode = 0
-"let g:indentguides_spacechar = '❘'
-"let g:indentguides_tabchar = '⋅'
+let g:indentguides_spacechar = '│'
+let g:indentguides_tabchar =   '⋅'
 
 " Neoformat
 " ----------
