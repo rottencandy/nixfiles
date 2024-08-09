@@ -138,6 +138,7 @@ in
     gnome.gnome-boxes
     fbterm
     bk
+    surge
 
     # games
     unciv
