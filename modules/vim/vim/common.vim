@@ -140,8 +140,8 @@ set mouse=a             " Use mouse for all modes
 set regexpengine=0      " Explicitly disable old regex engine
 
 set wildmenu            " Completion dropdown-thing
-" For : cmds, use longest match and show full list of matches
-set wildmode=list:longest,list:full
+set wildoptions=pum     " Show completion inside a pop up menu
+set wildmode=full
 " Ignore these files when using tab completion
 set wildignore+=.javac,node_modules,*.pyc
 set wildignore+=.o,.obj,.dll,.exe,.git,.orig
