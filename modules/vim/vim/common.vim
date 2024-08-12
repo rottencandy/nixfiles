@@ -395,15 +395,19 @@ nnoremap [B :bfirst<CR>
 nnoremap ]B :brewind<CR>
 
 " Navigate arglist
-nnoremap <C-1> :1argedit<CR>
-nnoremap <C-2> :2argedit<CR>
-nnoremap <C-3> :3argedit<CR>
-nnoremap <C-4> :4argedit<CR>
+nnoremap <LocalLeader>1 :1argedit<CR>
+nnoremap <LocalLeader>2 :2argedit<CR>
+nnoremap <LocalLeader>3 :3argedit<CR>
+nnoremap <LocalLeader>4 :4argedit<CR>
 " Add current file to arglist
-nnoremap <LocalLeader>a :argadd<CR>
+nnoremap <silent> <LocalLeader>a :argadd<CR>:argdedupe<CR>
+" Show arglist
+nnoremap <LocalLeader>r :args<CR>
+" Remove current file from arglist
+nnoremap <LocalLeader>d :argdelete<CR>
 
 " Open "fast" buffer switcher
-nnoremap <silent> <LocalLeader>b :exe "normal :ls<CR>:b "
+nnoremap <LocalLeader>b :ls<CR>:b 
 
 " Grep for word under cursor in cwd and open matched files in quickfix window
 "nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
