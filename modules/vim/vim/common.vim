@@ -395,10 +395,10 @@ nnoremap [B :bfirst<CR>
 nnoremap ]B :brewind<CR>
 
 " Navigate arglist
-nnoremap <LocalLeader>1 :1argedit<CR>
-nnoremap <LocalLeader>2 :2argedit<CR>
-nnoremap <LocalLeader>3 :3argedit<CR>
-nnoremap <LocalLeader>4 :4argedit<CR>
+nnoremap <LocalLeader>1 :1argument<CR>
+nnoremap <LocalLeader>2 :2argument<CR>
+nnoremap <LocalLeader>3 :3argument<CR>
+nnoremap <LocalLeader>4 :4argument<CR>
 " Add current file to arglist
 nnoremap <silent> <LocalLeader>a :argadd<CR>:argdedupe<CR>
 " Show arglist
@@ -486,12 +486,9 @@ let BAT_CMD = 'bat --style=plain --color=always'
 let BAT_CMD_TRUNC = BAT_CMD . ' --line-range :500'
 let BASIC_PREVIEW = '--preview "' . BAT_CMD_TRUNC . ' {}"'
 
-let EXPECT_BIND = '--expect=ctrl-t,ctrl-v,ctrl-s,ctrl-b,ctrl-q,ctrl-a'
+let EXPECT_BIND = '--expect=ctrl-t,ctrl-v,ctrl-s,ctrl-b,ctrl-q'
 let BUFLINE_PREVIEW = '--delimiter \"
       \ --preview "' . BAT_CMD_TRUNC . ' {2}"'
-let RG_PREVIEW = '--delimiter :
-      \ --preview "' . BAT_CMD . ' {1} --highlight-line {2}"
-      \ --preview-window "+{2}/2"'
 
 " List open buffers
 fun! s:buflist()
@@ -527,14 +524,6 @@ fun! s:build_qflist(lines)
   cc
 endfun
 
-" Add files to arglist
-fun! s:build_arglist(lines)
-  for buf in copy(a:lines)
-    argadd buf
-  endfor
-  argdedupe
-endfun
-
 " Manage buffers
 fun! s:bufmanage(result)
   if len(a:result) < 2
@@ -545,8 +534,7 @@ fun! s:bufmanage(result)
         \ 'ctrl-v': 'vert sbuffer',
         \ 'ctrl-t': 'tabnew | buffer',
         \ 'ctrl-b': 'bdelete',
-        \ 'ctrl-q': function('s:build_qflist'),
-        \ 'ctrl-a': function('s:build_arglist')},
+        \ 'ctrl-q': function('s:build_qflist')},
         \ a:result[0], 'buffer')
   let buffers = a:result[1:]
 
@@ -592,7 +580,6 @@ fun! s:FuzzyRgBackend(initialQuery)
   let l:RG_PREVIEW = '--delimiter
         \ : --preview "' . l:BAT_CMD . ' {1} --highlight-line {2}"
         \ --preview-window "+{2}/2"'
-  let l:EXPECT = '--expect=ctrl-t,ctrl-v,ctrl-s'
   call fzf#run(fzf#wrap({
         \ 'sink*': function('OpenFilesAtLocation'),
         \ 'options': join([
@@ -601,8 +588,8 @@ fun! s:FuzzyRgBackend(initialQuery)
           \ '--bind "ctrl-r:reload:rg -i --line-number {q} || true"',
           \ '--query "' . a:initialQuery . '"',
           \ '--header="Run search with CTRL+r"',
+          \ '--expect=ctrl-t,ctrl-v,ctrl-s',
           \ l:RG_PREVIEW,
-          \ l:EXPECT,
         \ ], ' ')}))
 endfun
 
@@ -634,9 +621,11 @@ vnoremap <silent> <Leader>s :call <SID>withSelection(function('<SID>FuzzyRgBacke
 " ----------
 
 " Custom symbols
-let g:fern#renderer#default#leading =          "│"
+" these cause syntax highlighting to break
+"let g:fern#renderer#default#leaf_symbol =      "├─ "
+let g:fern#renderer#default#leaf_symbol =      " "
 let g:fern#renderer#default#root_symbol =      "┬ "
-let g:fern#renderer#default#leaf_symbol =      "├─ "
+let g:fern#renderer#default#leading =          "│"
 let g:fern#renderer#default#expanded_symbol =  "├┬ "
 let g:fern#renderer#default#collapsed_symbol = "├─ "
 

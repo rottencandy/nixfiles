@@ -135,13 +135,13 @@ require('nvim-treesitter.configs').setup {
         ["<leader>D"] = "@class.outer",
     },
   },
-  --indent = {
-  --  enable = true
-  --},
+  indent = {
+    enable = true
+  },
 }
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = vim.treesitter.foldexpr()
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 -- }}}
 
