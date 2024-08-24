@@ -158,6 +158,7 @@ in
     #openvpn
     brightnessctl
     unrar
+    zip
     unzip
     usbutils
     wev
