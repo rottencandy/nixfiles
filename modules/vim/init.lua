@@ -25,7 +25,7 @@ Plug('lambdalisue/vim-fern-hijack')
 -- Closing brackets/quotes/... insertion
 Plug('Raimondi/delimitMate')
 -- Indent guides
-Plug('thaerkh/vim-indentguides')
+Plug('lukas-reineke/indent-blankline.nvim')
 -- Git
 Plug('tpope/vim-fugitive')
 Plug('tpope/vim-rhubarb')
@@ -273,4 +273,11 @@ end
 
 -- }}}
 
+
+-- Other {{{
+
+-- indent guides
+require("ibl").setup()
+
+-- }}}
 -- vim: fdm=marker:fdl=0:et:sw=2:

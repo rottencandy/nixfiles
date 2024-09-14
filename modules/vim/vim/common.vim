@@ -623,7 +623,7 @@ vnoremap <silent> <Leader>s :call <SID>withSelection(function('<SID>FuzzyRgBacke
 " Custom symbols
 " these cause syntax highlighting to break
 "let g:fern#renderer#default#leaf_symbol =      "├─ "
-let g:fern#renderer#default#leaf_symbol =      " "
+let g:fern#renderer#default#leaf_symbol =      "   "
 let g:fern#renderer#default#root_symbol =      "┬ "
 let g:fern#renderer#default#leading =          "│"
 let g:fern#renderer#default#expanded_symbol =  "├┬ "
