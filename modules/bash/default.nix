@@ -31,16 +31,19 @@ in
     # do not save these in history
     historyIgnore = [
       "g"
+      "s"
       "n"
       "l"
+      "t"
+      "y"
       "cd"
+      "fg"
+      "gd"
       "ls"
       "ll"
       "la"
       "nn"
       "nv"
-      "gd"
-      "fg"
       "shl"
     ];
 

@@ -135,7 +135,7 @@ in
     freetube
     alacritty
     ungoogled-chromium
-    gnome.gnome-boxes
+    gnome-boxes
     fbterm
     bk
     surge
@@ -157,6 +157,7 @@ in
     redshift
     #openvpn
     brightnessctl
+    file
     unrar
     zip
     unzip
