@@ -48,6 +48,8 @@ Plug('hrsh7th/cmp-buffer')
 Plug('hrsh7th/cmp-path')
 Plug('hrsh7th/cmp-cmdline')
 Plug('hrsh7th/nvim-cmp')
+-- Snippets
+Plug('garymjr/nvim-snippets')
 -- Parinfer https://shaunlebron.github.io/parinfer, disabled by default
 Plug('eraserhd/parinfer-rust', { ['on'] = {}, ['do'] = 'cargo build --release' })
 --command! LoadParinfer call plug#load('parinfer-rust')
@@ -148,7 +150,6 @@ vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 -- LSP {{{
 
 local lspconfig = require('lspconfig')
-local cmp = require('cmp')
 
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<leader>e', vim.diagnostic.get, opts)
@@ -194,29 +195,6 @@ local on_attach = function(client, bufnr)
     ]], false)
   end
 end
-
-cmp.setup({
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    -- { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
-  }, {
-    { name = 'buffer' },
-  })
-})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -273,6 +251,89 @@ end
 
 -- }}}
 
+-- Snippets {{{
+
+local snippets = require('snippets')
+snippets.setup({
+  extended_filetypes = {
+    typescript = { 'javascript', 'tsdoc' },
+    javascript = { 'jsdoc' },
+    html = { 'css', 'javascript' },
+    lua = { 'luadoc' },
+    sh = { 'shelldoc' },
+  },
+  search_paths = { vim.env.HOME .. '/.config/snippets' },
+})
+
+vim.keymap.set('i', '<Tab>', function() 
+  if vim.snippet.active({ direction = 1 }) then
+    vim.schedule(function()
+      vim.snippet.jump(1)
+    end)
+    return
+  end
+  return '<Tab>'
+end,
+  {
+    expr = true,
+    silent = true,
+  }
+)
+
+vim.keymap.set('s', '<Tab>', function() 
+  vim.schedule(function()
+    vim.snippet.jump(1)
+  end)
+end,
+  {
+    expr = true,
+    silent = true,
+  }
+)
+
+vim.keymap.set({ 'i', 's' }, '<Tab>', function() 
+  if vim.snippet.active({ direction = -1 }) then
+    vim.schedule(function()
+      vim.snippet.jump(-1)
+    end)
+    return
+  end
+  return '<S-Tab>'
+end,
+  {
+    expr = true,
+    silent = true,
+  }
+)
+
+-- }}}
+
+-- Completion {{{
+
+local cmp = require('cmp')
+cmp.setup()
+
+cmp.setup({
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'snippets' }, -- snippets
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+-- }}}
 
 -- Other {{{
 
@@ -280,4 +341,5 @@ end
 require("ibl").setup()
 
 -- }}}
+
 -- vim: fdm=marker:fdl=0:et:sw=2:

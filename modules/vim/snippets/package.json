@@ -1,0 +1,15 @@
+{
+    "contributes": {
+        "snippets": [
+            {
+                "language": ["javascript", "typescript"],
+                "path": "./javascript.json"
+            },
+            {
+                "language": "all",
+                "path": "./allFiletypes.json"
+            }
+        ]
+    },
+    "name": "my-snippets"
+}

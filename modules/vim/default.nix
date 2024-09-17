@@ -19,6 +19,10 @@
       source = ./vim;
       recursive = true;
     };
+    ".config/snippets" = {
+      source = ./snippets;
+      recursive = true;
+    };
   };
 }
 
