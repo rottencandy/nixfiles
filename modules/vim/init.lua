@@ -254,6 +254,7 @@ end
 -- Snippets {{{
 
 local snippets = require('snippets')
+
 snippets.setup({
   extended_filetypes = {
     typescript = { 'javascript', 'tsdoc' },
@@ -338,7 +339,25 @@ cmp.setup({
 -- Other {{{
 
 -- indent guides
-require("ibl").setup()
+require("ibl").setup({
+  scope = {
+    show_start = false,
+    show_end = false,
+  },
+})
+
+-- context
+local treesitter_context = require("treesitter-context")
+
+treesitter_context.setup({
+  max_lines = 5,
+})
+
+vim.keymap.set("n", "<localleader>c", function()
+    treesitter_context.go_to_context(vim.v.count1)
+  end,
+  { silent = true },
+)
 
 -- }}}
 
