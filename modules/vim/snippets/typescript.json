@@ -1,0 +1,49 @@
+{
+    "Interface Definition": {
+        "prefix": "iface",
+        "body": ["interface ${1:name} {", "\t$0", "}"],
+        "description": "Interface Definition"
+    },
+    "Public Method Definition": {
+        "prefix": "public method",
+        "body": [
+            "/**",
+            " * ${1:name}",
+            " */",
+            "public ${1:name}() {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Public Method Definition"
+    },
+    "Private Method Definition": {
+        "prefix": "private method",
+        "body": ["private ${1:name}() {", "\t$0", "}"],
+        "description": "Private Method Definition"
+    },
+    "Define a full property": {
+        "prefix": "prop",
+        "body": [
+            "",
+            "private _${1:value} : ${2:string};",
+            "public get ${1:value}() : ${2:string} {",
+            "\treturn this._${1:value};",
+            "}",
+            "public set ${1:value}(v : ${2:string}) {",
+            "\tthis._${1:value} = v;",
+            "}",
+            ""
+        ],
+        "description": "Define a full property"
+    },
+    "Triple-slash reference": {
+        "prefix": "ref",
+        "body": ["/// <reference path=\"$1\" />", "$0"],
+        "description": "Triple-slash reference"
+    },
+    "Throw Exception": {
+        "prefix": "throw",
+        "body": ["throw \"$1\";", "$0"],
+        "description": "Throw Exception"
+    }
+}

@@ -356,7 +356,7 @@ treesitter_context.setup({
 vim.keymap.set("n", "<localleader>c", function()
     treesitter_context.go_to_context(vim.v.count1)
   end,
-  { silent = true },
+  { silent = true }
 )
 
 -- }}}
