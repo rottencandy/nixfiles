@@ -81,6 +81,7 @@ in
     fd
     bat
     nnn
+    mosh
     yazi
     bottom
     htop
@@ -104,6 +105,7 @@ in
     wireguard-tools
     #visidata
     notify-desktop
+    zmkBATx
 
     # wine stuff
     dwarfs

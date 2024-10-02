@@ -47,10 +47,10 @@ fmt:
 
 gc:
 	# remove all generations older than 7 days
-	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
+	#sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
 
 	# garbage collect all unused nix store entries
-	$(GC_CMD)
+	#$(GC_CMD)
 
-	# sudo nix-collect-garbage -d
-	# nix-collect-garbage -d
+	sudo nix-collect-garbage -d
+	nix-collect-garbage -d
