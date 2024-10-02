@@ -42,7 +42,6 @@ in
     ../../modules/fzf.nix
     ../../modules/rio.nix
     ../../modules/pass.nix
-    ../../modules/hyprland
     ../../modules/broot.nix
     ../../modules/wezterm.nix
     ../../modules/starship.nix
