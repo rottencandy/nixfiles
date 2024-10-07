@@ -292,7 +292,9 @@ set statusline+=%=                " right align
 
 set statusline+=\ %Y\ \          " file type
 set statusline+=%#Folded#         " color
-set statusline+=%{FugitiveHead()}
+if has('nvim')
+  set statusline+=%{FugitiveHead()}
+endif
 set statusline+=%#CursorLine#     " color
 set statusline+=\ %3l:%-2c        " line + column
 set statusline+=%#Cursor#         " color

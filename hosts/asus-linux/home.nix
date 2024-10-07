@@ -130,7 +130,10 @@ in
     hexchat
     neovide
     bottles
-    #pcsx2
+    pcsx2
+    dolphin-emu
+    cemu
+    ppsspp
     godot_4
     zathura
     freetube
@@ -162,6 +165,7 @@ in
     unrar
     zip
     unzip
+    p7zip
     usbutils
     wev
     sox

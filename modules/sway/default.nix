@@ -137,6 +137,21 @@ in
       "XF86MonBrightnessDown" = "exec brightnessctl set 5%- && ~/.scripts/emit-brightness-notif";
       "XF86MonBrightnessUp" = "exec brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif";
     };
+    window.commands =
+      map
+        (cls: {
+          command = "floating enable";
+          criteria = {
+            class = cls;
+          };
+        })
+        [
+          "pcsx2-qt"
+          "steam"
+          "steam_app.*"
+          "gamescope"
+          "dolphin-emu"
+        ];
     gaps = {
       inner = 5;
       smartGaps = true;
