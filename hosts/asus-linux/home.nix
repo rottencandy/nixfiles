@@ -139,10 +139,13 @@ in
     freetube
     alacritty
     ungoogled-chromium
+    google-chrome
     gnome-boxes
     fbterm
     bk
     surge
+    nuclear
+    musikcube
 
     # games
     unciv
@@ -154,6 +157,7 @@ in
     nvidia-offload
     devshell
     steam-run
+    appimage-run
     nvtopPackages.full
     protonup-qt
     gamescope
