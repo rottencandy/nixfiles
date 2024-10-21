@@ -192,32 +192,7 @@ in
     config = {
       allowUnfree = true;
     };
-    overlays = [
-      (
-        self: super:
-        let
-          # todo: remove when fixed
-          # https://github.com/NixOS/nixpkgs/issues/348903
-          my_glslang = super.glslang.overrideAttrs (
-            final: prev: {
-              version = "15.0.0";
-              src = self.fetchFromGitHub {
-                owner = "KhronosGroup";
-                repo = "glslang";
-                rev = "refs/tags/${final.version}";
-                hash = "sha256-QXNecJ6SDeWpRjzHRTdPJHob1H3q2HZmWuL2zBt2Tlw=";
-              };
-              cmakeFlags = [ ];
-            }
-          );
-        in
-        {
-          amdvlk = super.amdvlk.override {
-            glslang = my_glslang;
-          };
-        }
-      )
-    ];
+    overlays = [ ];
   };
 
   nix = {

@@ -130,8 +130,9 @@ in
     hexchat
     neovide
     bottles
-    pcsx2
     dolphin-emu
+    pcsx2
+    mame
     cemu
     ppsspp
     godot_4
@@ -166,6 +167,7 @@ in
     #openvpn
     brightnessctl
     file
+    localsend
     unrar
     zip
     unzip

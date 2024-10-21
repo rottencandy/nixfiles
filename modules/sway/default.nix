@@ -151,6 +151,17 @@ in
           "steam_app.*"
           "gamescope"
           "dolphin-emu"
+        ]
+      ++ map
+        (id: {
+          command = "floating enable";
+          criteria = {
+            app_id = id;
+          };
+        })
+        [
+          "lutris"
+          "info.cemu.Cemu"
         ];
     gaps = {
       inner = 5;
