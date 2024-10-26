@@ -177,6 +177,7 @@ in
     sox
     blueman
     ueberzugpp
+    paprefs
 
     # nix utils
     cachix
