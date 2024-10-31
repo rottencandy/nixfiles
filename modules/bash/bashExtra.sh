@@ -2,7 +2,6 @@
 if [[ -z $TMUX ]]; then
     # extra binary locations
     test -s ~/bin              && export PATH="${HOME}/bin:${PATH}"
-    test -s ~/go/bin           && export PATH="${HOME}/go/bin:${PATH}"
     test -s ~/.scripts         && export PATH="${HOME}/.scripts:${PATH}"
     test -s ~/.cargo/bin       && export PATH="${HOME}/.cargo/bin:${PATH}"
     test -s /opt/homebrew/bin  && export PATH="/opt/homebrew/bin:${PATH}"
