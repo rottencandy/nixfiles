@@ -177,6 +177,7 @@ in
     sox
     blueman
     ueberzugpp
+    pavucontrol
     paprefs
 
     # nix utils
