@@ -45,7 +45,7 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/syncthing.nix
+    #../../modules/syncthing.nix
   ];
 
   # Bootloader.
@@ -181,10 +181,11 @@ in
       "wheel"
       "video"
       "libvirtd"
+      "adbusers"
     ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
+    #packages = with pkgs; [
+    #  thunderbird
+    #];
   };
 
   nixpkgs = {
@@ -221,6 +222,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # utils
+    dbus-sway-environment
     configure-gtk
     xdg-utils
 
@@ -334,18 +336,33 @@ in
   networking.firewall = {
     enable = true;
     allowedTCPPortRanges = [
+      # KDE Connect
       {
         from = 1714;
         to = 1764;
-      } # KDE Connect
+      }
+      # Localsend
+      {
+        from = 53317;
+        to = 53317;
+      }
     ];
     allowedUDPPortRanges = [
+      # KDE Connect
       {
         from = 1714;
         to = 1764;
-      } # KDE Connect
+      }
+      # Localsend
+      {
+        from = 53317;
+        to = 53317;
+      }
     ];
   };
+
+  # android tools
+  programs.adb.enable = true;
 
   # Enable virtualisation
   virtualisation.libvirtd.enable = true;

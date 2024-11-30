@@ -177,8 +177,8 @@ in
     sox
     blueman
     ueberzugpp
-    pavucontrol
-    paprefs
+    pwvucontrol
+    coppwr
 
     # nix utils
     cachix
@@ -258,10 +258,10 @@ in
   #  ];
   #};
 
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
+  #services.kdeconnect = {
+  #  enable = true;
+  #  indicator = true;
+  #};
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
