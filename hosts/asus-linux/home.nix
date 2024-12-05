@@ -195,7 +195,7 @@ in
     wf-recorder
     wl-clipboard
     tofi
-    mako
+    dunst
     grim
     slurp
     kanshi

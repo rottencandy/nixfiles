@@ -85,8 +85,8 @@ in
       "${mod}+d" = "exec tofi-drun --width 800 --height 600 --num-results 9 --drun-launch=true --font ${tofiFontPath}";
       "${mod}+n" = "exec cd ~/nb && alacritty -e nvim _temp.md";
       "${mod}+m" = "exec ~/.scripts/passmenu";
-      "${mod}+y" = "exec makoctl dismiss";
-      "${mod}+Shift+y" = "exec makoctl restore";
+      "${mod}+y" = "exec dunstctl close";
+      "${mod}+Shift+y" = "exec dunstctl history-pop";
       "${mod}+Shift+q" = "kill";
       "${mod}+Shift+Escape" = "exec swaynag -t warning -m 'Really exit sway?' -b 'Yes, exit sway' 'swaymsg exit'";
       "${mod}+Up" = "focus up";
@@ -147,22 +147,35 @@ in
         })
         [
           "pcsx2-qt"
+          "yuzu"
           "steam"
           "steam_app.*"
           "gamescope"
           "dolphin-emu"
         ]
-      ++ map
-        (id: {
-          command = "floating enable";
-          criteria = {
-            app_id = id;
-          };
-        })
-        [
-          "lutris"
-          "info.cemu.Cemu"
-        ];
+      ++
+        map
+          (id: {
+            command = "floating enable";
+            criteria = {
+              app_id = id;
+            };
+          })
+          [
+            "lutris"
+            "info.cemu.Cemu"
+          ]
+      ++
+        map
+          (title: {
+            command = "floating enable";
+            criteria = {
+              title = title;
+            };
+          })
+          [
+            "^Picture-in-Picture$"
+          ];
     gaps = {
       inner = 5;
       smartGaps = true;
