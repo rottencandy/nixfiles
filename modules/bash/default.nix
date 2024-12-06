@@ -63,6 +63,7 @@ in
         tree = "lsd --tree";
         gron = "fastgron";
         ungr = "fastgron --ungron";
+        kc = "keepassxc-cli";
         # -X is probably not used in macos
         v = "vim -X";
         yt = "yt-dlp --add-metadata -i";

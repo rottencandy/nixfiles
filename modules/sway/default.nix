@@ -84,7 +84,7 @@ in
       "${mod}+f" = "fullscreen";
       "${mod}+d" = "exec tofi-drun --width 800 --height 600 --num-results 9 --drun-launch=true --font ${tofiFontPath}";
       "${mod}+n" = "exec cd ~/nb && alacritty -e nvim _temp.md";
-      "${mod}+m" = "exec ~/.scripts/passmenu";
+      "${mod}+m" = "keepmenu -C";
       "${mod}+y" = "exec dunstctl close";
       "${mod}+Shift+y" = "exec dunstctl history-pop";
       "${mod}+Shift+q" = "kill";

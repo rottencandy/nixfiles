@@ -38,6 +38,7 @@ in
     ../../modules/todo
     ../../modules/sway
     ../../modules/halloy
+    ../../modules/keepassxc
     ../../modules/git.nix
     ../../modules/fzf.nix
     ../../modules/rio.nix
