@@ -215,6 +215,10 @@ augroup filetype_settings
   autocmd BufNewFile,BufRead *.glslx
         \ set ft=glsl
 
+  " Kernel device tree files
+  autocmd BufNewFile,BufRead *.overlay
+        \ set ft=dts
+
   " Encrypted files, disable all backups
   autocmd BufReadPre,FileReadPre *.gpg,*.asc set viminfo= noswapfile noundofile nobackup
 

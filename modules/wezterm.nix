@@ -18,7 +18,12 @@
         hide_tab_bar_if_only_one_tab = true,
         hide_mouse_cursor_when_typing = false,
         window_decorations = "RESIZE",
-        front_end = "WebGpu",
+
+        -- temp workaround for https://github.com/wez/wezterm/issues/5990
+        enable_wayland = true,
+        front_end = 'WebGpu',
+        webgpu_power_preference = 'HighPerformance',
+
       }
     '';
   };
