@@ -2,8 +2,11 @@
 # copy media metadata to clipboard
 
 if [[ -z $1 ]]; then
-	echo "Usage:   $0 [file]"
-	exit 1
+    echo "Usage:   $0 [file]"
+    exit 1
 fi
 
-mpv -vo=null -ao=null -frames=0 "$1" | wl-copy
+# sed '/youtube.com/!s|https\?://|https:// |g' |
+mpv -vo=null -ao=null -frames=0 "$1" |
+    sed '/youtube.com/!s|\(https\?://\)\([^/]*\)|\1 \2|g' |
+    wl-copy
