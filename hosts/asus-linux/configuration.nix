@@ -182,6 +182,7 @@ in
       "video"
       "libvirtd"
       "adbusers"
+      "dialout"
     ];
     #packages = with pkgs; [
     #  thunderbird
@@ -233,12 +234,8 @@ in
   ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "Iosevka"
-      ];
-    })
+    nerd-fonts.fira-code
+    nerd-fonts.iosevka
   ];
 
   security.polkit.enable = true;
@@ -315,6 +312,7 @@ in
   programs.firefox = {
     enable = true;
     nativeMessagingHosts.packages = [ pkgs.tridactyl-native ];
+    package = pkgs.firefox-unwrapped;
   };
 
   # List services that you want to enable:

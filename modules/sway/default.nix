@@ -7,7 +7,7 @@
 
 let
   mod = "Mod4";
-  tofiFontPath = "${pkgs.nerdfonts.outPath}/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Medium.ttf";
+  tofiFontPath = "${pkgs.nerd-fonts.fira-code.outPath}/share/fonts/truetype/NerdFonts/FiraCode/FiraCodeNerdFont-Medium.ttf";
   volumeUp = "exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.scripts/emit-vol-notif";
   volumeDown = "exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%- && ~/.scripts/emit-vol-notif";
   volumeToggle = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.scripts/emit-vol-notif";
@@ -79,6 +79,7 @@ in
     };
     keybindings = lib.mkOptionDefault {
       "${mod}+Return" = "exec wezterm";
+      "${mod}+Shift+Return" = "exec alacritty";
       "${mod}+p" = "exec ${lockScreen}";
       "${mod}+Shift+r" = "reload";
       "${mod}+f" = "fullscreen";

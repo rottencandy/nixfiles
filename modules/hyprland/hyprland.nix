@@ -200,7 +200,7 @@
 
       bindr =
         let
-          tofiFontPath = "${pkgs.nerdfonts.outPath}/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Medium.ttf";
+          tofiFontPath = "${pkgs.nerd-fonts.fira-code.outPath}/share/fonts/truetype/NerdFonts/FiraCode/FiraCodeNerdFont-Medium.ttf";
         in
         [
           "$mod, D, exec, tofi-drun --width 800 --height 600 --num-results 9 --drun-launch=true --font ${tofiFontPath}"

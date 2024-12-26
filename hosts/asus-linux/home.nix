@@ -90,6 +90,7 @@ in
     jq
     jless
     yt-dlp
+    gallery-dl
     wget
     curl
     moreutils

@@ -77,7 +77,7 @@
 
   fonts = {
     fontDir.enable = true;
-    fonts = [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+    fonts = [ pkgs.nerd-fonts.iosevka ];
   };
 
   users.users.msaud = {
