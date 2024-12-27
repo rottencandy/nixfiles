@@ -1,6 +1,7 @@
 {
   nixpkgs,
   home-manager,
+  ghostty,
   inputs,
   ...
 }:
@@ -13,7 +14,7 @@ nixpkgs.lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.backupFileExtension = "backup";
       home-manager.users.saud = {
-        imports = [ ./home.nix ];
+        imports = [ (import ./home.nix { ghostty = ghostty; }) ];
       };
     }
   ];

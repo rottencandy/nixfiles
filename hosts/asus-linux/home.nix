@@ -1,6 +1,7 @@
+{ ghostty }:
+
 {
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -44,6 +45,7 @@ in
     ../../modules/rio.nix
     ../../modules/pass.nix
     ../../modules/broot.nix
+    ../../modules/ghostty.nix
     ../../modules/wezterm.nix
     ../../modules/starship.nix
     ../../modules/vscodium.nix
@@ -141,6 +143,7 @@ in
     zathura
     freetube
     alacritty
+    ghostty.packages.x86_64-linux.default
     ungoogled-chromium
     google-chrome
     gnome-boxes

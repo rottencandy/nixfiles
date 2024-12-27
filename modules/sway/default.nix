@@ -78,18 +78,20 @@ in
       };
     };
     keybindings = lib.mkOptionDefault {
-      "${mod}+Return" = "exec wezterm";
+      "${mod}+Return" = "exec ghostty";
       "${mod}+Shift+Return" = "exec alacritty";
       "${mod}+p" = "exec ${lockScreen}";
       "${mod}+Shift+r" = "reload";
       "${mod}+f" = "fullscreen";
-      "${mod}+d" = "exec tofi-drun --width 800 --height 600 --num-results 9 --drun-launch=true --font ${tofiFontPath}";
+      "${mod}+d" =
+        "exec tofi-drun --width 800 --height 600 --num-results 9 --drun-launch=true --font ${tofiFontPath}";
       "${mod}+n" = "exec cd ~/nb && alacritty -e nvim _temp.md";
       "${mod}+m" = "keepmenu -C";
       "${mod}+y" = "exec dunstctl close";
       "${mod}+Shift+y" = "exec dunstctl history-pop";
       "${mod}+Shift+q" = "kill";
-      "${mod}+Shift+Escape" = "exec swaynag -t warning -m 'Really exit sway?' -b 'Yes, exit sway' 'swaymsg exit'";
+      "${mod}+Shift+Escape" =
+        "exec swaynag -t warning -m 'Really exit sway?' -b 'Yes, exit sway' 'swaymsg exit'";
       "${mod}+Up" = "focus up";
       "${mod}+Down" = "focus down";
       "${mod}+Left" = "focus left";

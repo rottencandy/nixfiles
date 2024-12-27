@@ -13,6 +13,10 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -21,6 +25,7 @@
       nix-darwin,
       home-manager,
       nixpkgs,
+      ghostty,
       ...
     }:
     let
@@ -33,6 +38,7 @@
           self
           nixpkgs
           home-manager
+          ghostty
           inputs
           ;
       };
