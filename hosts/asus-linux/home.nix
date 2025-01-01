@@ -1,7 +1,6 @@
-{ ghostty }:
+{ ghostty, paisa }:
 
 {
-  config,
   pkgs,
   ...
 }:
@@ -63,13 +62,7 @@ in
   #  $DRY_RUN_CMD chmod +x ~/.local/share/applications/steam.desktop
   #'';
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
     # tools
     ffmpeg
     flac
@@ -102,14 +95,14 @@ in
     bubblewrap
     gnumake
     streamlink
+    ledger
     qmk
     shellcheck
     distrobox
     jamesdsp
     wireguard-tools
-    #visidata
+    visidata
     notify-desktop
-    zmkBATx
 
     # wine stuff
     dwarfs
@@ -144,6 +137,7 @@ in
     freetube
     alacritty
     ghostty.packages.x86_64-linux.default
+    paisa.packages.x86_64-linux.default
     ungoogled-chromium
     google-chrome
     gnome-boxes
@@ -208,22 +202,7 @@ in
     # Non-free
     anydesk
     #telegram-desktop
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
-
-  # kanshi, ripgrep do not exist on stable branch of home-manager yet :/
 
   #programs.kanshi = {
   #  enable = true;
@@ -261,11 +240,6 @@ in
   #    "--glob"
   #    "!.git"
   #  ];
-  #};
-
-  #services.kdeconnect = {
-  #  enable = true;
-  #  indicator = true;
   #};
 
   # This value determines the Home Manager release that your configuration is

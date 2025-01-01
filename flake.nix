@@ -15,7 +15,11 @@
     };
     ghostty = {
       url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-unstable.follows = "nixpkgs";
+    };
+    paisa = {
+      url = "github:ananthakumaran/paisa";
+      inputs.mkdocs-pkgs.follows = "nixpkgs";
     };
   };
 
@@ -26,6 +30,7 @@
       home-manager,
       nixpkgs,
       ghostty,
+      paisa,
       ...
     }:
     let
@@ -39,6 +44,7 @@
           nixpkgs
           home-manager
           ghostty
+          paisa
           inputs
           ;
       };
