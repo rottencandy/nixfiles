@@ -63,49 +63,134 @@ in
   #'';
 
   home.packages = with pkgs; [
-    # tools
-    ffmpeg
-    flac
-    cryptsetup
-    pandoc
+    # nix utils
+    nixd
+    cachix
+    steam-run
+    appimage-run
+    #nix-alien-pkgs.nix-alien
+
+    # dev
+    xh
+    jq
+    qmk
+    wget
+    curl
     delta
-    difftastic
     emacs
     helix
-    macchina
-    xh
+    jless
+    ripgrep
+    gnumake
+    pandoc
+    neovide
+    moreutils
+    difftastic
+    shellcheck
+    devshell
+
+    # langs
+    janet
+    clang
+    mold
+    #gcc
+
+    # terminal
+    ueberzugpp
+    alacritty
+    ghostty.packages.x86_64-linux.default
+    fbterm
+
+    # filesystem
     fd
     bat
     nnn
-    mosh
+    lsd
+    zip
+    tio
     yazi
+    file
+    unrar
+    unzip
+    p7zip
+    zathura
+    bk
+
+    # crypto
+    pinentry
+    cryptsetup
+
+    # containerization
+    distrobox
+    bubblewrap
+    gnome-boxes
+
+    # hardware
+    macchina
     bottom
     htop
-    lsd
-    jq
-    jless
+    asusctl
+    nvidia-offload
+    nvtopPackages.full
+    mangohud
+    redshift
+    blueman
+    usbutils
+
+    # web
     yt-dlp
     gallery-dl
-    wget
-    curl
-    moreutils
-    ripgrep
-    pinentry
-    #nix-alien-pkgs.nix-alien
-    bubblewrap
-    gnumake
     streamlink
-    ledger
-    qmk
-    shellcheck
-    distrobox
-    jamesdsp
-    wireguard-tools
-    visidata
-    notify-desktop
+    ungoogled-chromium
+    google-chrome
+    qbittorrent
+    freetube
 
-    # wine stuff
+    # networkinag
+    wireguard-tools
+    #openvpn
+    mosh
+    localsend
+    hexchat
+
+    # multimedia
+    jamesdsp
+    nuclear
+    musikcube
+    #surge
+    vcv-rack
+    pwvucontrol
+    sox
+    coppwr
+    ffmpeg
+    flac
+    #vlc
+    mpv
+    feh
+    gimp
+
+    # accounting
+    ledger
+    visidata
+    paisa.packages.x86_64-linux.default
+
+    # window manager
+    notify-desktop
+    wdisplays
+    wf-recorder
+    wl-clipboard
+    wev
+    tofi
+    dunst
+    grim
+    slurp
+    kanshi
+    brightnessctl
+
+    # wine
     dwarfs
+    bottles
+    protonup-qt
     fuse-overlayfs
     gst_all_1.gst-libav
     gst_all_1.gst-plugins-bad
@@ -115,89 +200,20 @@ in
     gst_all_1.gst-vaapi
     wine-staging
     winetricks
+    gamescope
 
-    # applications
-    qbittorrent
-    #vlc
-    mpv
-    feh
-    gimp
+    # games
     lutris
     #heroic
-    hexchat
-    neovide
-    bottles
     dolphin-emu
     pcsx2
     mame
     cemu
     ppsspp
     godot_4
-    zathura
-    freetube
-    alacritty
-    ghostty.packages.x86_64-linux.default
-    paisa.packages.x86_64-linux.default
-    ungoogled-chromium
-    google-chrome
-    gnome-boxes
-    fbterm
-    bk
-    surge
-    nuclear
-    musikcube
-
-    # games
     unciv
     nethack
     unnethack
-
-    # utils
-    asusctl
-    nvidia-offload
-    devshell
-    steam-run
-    appimage-run
-    nvtopPackages.full
-    protonup-qt
-    gamescope
-    mangohud
-    redshift
-    #openvpn
-    brightnessctl
-    file
-    localsend
-    unrar
-    zip
-    unzip
-    p7zip
-    usbutils
-    wev
-    sox
-    blueman
-    ueberzugpp
-    pwvucontrol
-    coppwr
-
-    # nix utils
-    cachix
-    nixd
-
-    # languages
-    janet
-    clang
-    mold
-    #gcc
-
-    # WM
-    wdisplays
-    wf-recorder
-    wl-clipboard
-    tofi
-    dunst
-    grim
-    slurp
-    kanshi
 
     # Non-free
     anydesk
