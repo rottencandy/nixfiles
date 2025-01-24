@@ -8,7 +8,7 @@
 
 pkgs.mkShell {
   packages = with pkgs; [
-    deno
+    #deno
     nodejs_22
 
     nodePackages.yarn

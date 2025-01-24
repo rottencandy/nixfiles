@@ -157,8 +157,9 @@ in
     jamesdsp
     nuclear
     musikcube
-    #surge
+    surge
     vcv-rack
+    cardinal
     pwvucontrol
     sox
     coppwr
@@ -213,7 +214,7 @@ in
     godot_4
     unciv
     nethack
-    unnethack
+    #unnethack
 
     # Non-free
     anydesk

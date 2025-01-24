@@ -15,7 +15,12 @@ nixpkgs.lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.backupFileExtension = "backup";
       home-manager.users.saud = {
-        imports = [ (import ./home.nix { ghostty = ghostty; paisa = paisa; }) ];
+        imports = [
+          (import ./home.nix {
+            ghostty = ghostty;
+            paisa = paisa;
+          })
+        ];
       };
     }
   ];
