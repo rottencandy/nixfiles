@@ -88,6 +88,7 @@ in
     difftastic
     shellcheck
     devshell
+    lua-language-server
 
     # langs
     janet
@@ -97,7 +98,7 @@ in
 
     # terminal
     ueberzugpp
-    alacritty
+    #alacritty
     ghostty.packages.x86_64-linux.default
     fbterm
 
@@ -159,7 +160,6 @@ in
     musikcube
     surge
     vcv-rack
-    cardinal
     pwvucontrol
     sox
     coppwr
