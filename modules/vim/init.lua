@@ -151,14 +151,8 @@ vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 local lspconfig = require('lspconfig')
 
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<leader>e', vim.diagnostic.get, opts)
-vim.keymap.set('n', '<leader>n', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<leader>N', vim.diagnostic.goto_prev, opts)
---vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
 local on_attach = function(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf=bufnr })
   --vim.api.nvim_buf_set_option(bufnr, 'completeopt', 'menuone,noinsert,noselect')
   -- Use <Tab> and <S-Tab> to navigate through popup menu
   --inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -166,6 +160,12 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local opts = { noremap=true, silent=true, buffer=bufnr }
+
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.get, opts)
+  vim.keymap.set('n', '<leader>n', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '<leader>N', vim.diagnostic.goto_prev, opts)
+  --vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
@@ -183,7 +183,7 @@ local on_attach = function(client, bufnr)
 
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.document_highlight then
-    vim.api.nvim_exec([[
+    vim.api.nvim_exec2([[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
       hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
       hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
@@ -192,7 +192,7 @@ local on_attach = function(client, bufnr)
         "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         "autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]], false)
+    ]], {})
   end
 end
 
@@ -303,14 +303,12 @@ snippets.setup({
   search_paths = { vim.env.HOME .. '/.config/snippets' },
 })
 
-vim.keymap.set('i', '<Tab>', function() 
+vim.keymap.set({ 'i', 's' }, '<Tab>', function()
   if vim.snippet.active({ direction = 1 }) then
-    vim.schedule(function()
-      vim.snippet.jump(1)
-    end)
-    return
+    return '<cmd>lua vim.snippet.jump(1)<cr>'
+  else
+    return '<Tab>'
   end
-  return '<Tab>'
 end,
   {
     expr = true,
@@ -318,25 +316,12 @@ end,
   }
 )
 
-vim.keymap.set('s', '<Tab>', function() 
-  vim.schedule(function()
-    vim.snippet.jump(1)
-  end)
-end,
-  {
-    expr = true,
-    silent = true,
-  }
-)
-
-vim.keymap.set({ 'i', 's' }, '<Tab>', function() 
+vim.keymap.set({ 'i', 's' }, '<S-Tab>', function()
   if vim.snippet.active({ direction = -1 }) then
-    vim.schedule(function()
-      vim.snippet.jump(-1)
-    end)
-    return
+    return '<cmd>lua vim.snippet.jump(-1)<cr>'
+  else
+    return '<S-Tab>'
   end
-  return '<S-Tab>'
 end,
   {
     expr = true,
