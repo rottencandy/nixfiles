@@ -33,11 +33,7 @@ endif
 
 " Set and configure the color scheme
 syntax enable           " enable syntax highlighting
-if has('nvim')
-  colorscheme moonfly
-else
-  colorscheme habamax
-endif
+colorscheme habamax
 " Highlight embedded lua in .vim
 let g:vimsyn_embed = 'l'
 " Transparent background
@@ -230,6 +226,10 @@ augroup filetype_settings
   " Web
   autocmd FileType json,yaml,css,scss
         \ exec 'command! -buffer Fmt Neoformat prettier'
+
+  " Lua
+  autocmd FileType lua
+        \ exec 'command! -buffer Fmt Neoformat stylua'
 
   " markdown
   " Note: Slack hates the text/html type, routing it through firefox for now

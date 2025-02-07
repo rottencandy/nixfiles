@@ -15,7 +15,9 @@
   ];
 
   home.file = {
-    ".config/nvim/init.lua".source = ./init.lua;
+    ".config/nvim/init.lua".text =
+      builtins.replaceStrings [ "@@FZF_PLUGIN_PATH@@" ] [ "${pkgs.fzf.outPath}/share/nvim/site" ]
+        (builtins.readFile ./init.lua);
     ".vim" = {
       source = ./vim;
       recursive = true;

@@ -89,6 +89,7 @@ in
     shellcheck
     devshell
     lua-language-server
+    stylua
 
     # langs
     janet

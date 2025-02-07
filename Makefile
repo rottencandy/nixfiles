@@ -53,4 +53,6 @@ gc:
 	#$(GC_CMD)
 
 	sudo nix-collect-garbage -d
-	nix-collect-garbage -d
+
+wipe:
+	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system

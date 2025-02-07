@@ -155,6 +155,7 @@ in
           "steam_app.*"
           "gamescope"
           "dolphin-emu"
+          "PPSSPPSDL"
         ]
       ++
         map
@@ -167,6 +168,8 @@ in
           [
             "lutris"
             "info.cemu.Cemu"
+            ".blueman-manager-wrapped"
+            "org.kde.dolphin"
           ]
       ++
         map
@@ -178,6 +181,7 @@ in
           })
           [
             "^Picture-in-Picture$"
+            "VCV Rack Free 2.5.1"
           ];
     gaps = {
       inner = 5;
