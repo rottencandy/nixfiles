@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  fzfPluginPath = "${pkgs.fzf.outPath}/share/nvim/site";
+in
 {
   home.packages = with pkgs; [
     vim
@@ -16,12 +19,15 @@
 
   home.file = {
     ".config/nvim/init.lua".text =
-      builtins.replaceStrings [ "@@FZF_PLUGIN_PATH@@" ] [ "${pkgs.fzf.outPath}/share/nvim/site" ]
+      builtins.replaceStrings [ "@@FZF_PLUGIN_PATH@@" ] [ fzfPluginPath ]
         (builtins.readFile ./init.lua);
     ".vim" = {
       source = ./vim;
       recursive = true;
     };
+    ".vim/vimrc".text = 
+      builtins.replaceStrings [ "@@FZF_PLUGIN_PATH@@" ] [ fzfPluginPath ]
+        (builtins.readFile ./vim/vimrc);
     ".config/snippets" = {
       source = ./snippets;
       recursive = true;

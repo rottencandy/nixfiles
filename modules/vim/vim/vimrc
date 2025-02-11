@@ -20,6 +20,11 @@ set completeopt=longest,menuone,popup,noselect
 
 " }}}
 
+"Plugins {{{
+
+set rtp+=@@FZF_PLUGIN_PATH@@
+" }}}
+
 "LSP {{{
 
 if executable('typescript-language-server')
