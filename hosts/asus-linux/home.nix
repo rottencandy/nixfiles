@@ -90,6 +90,7 @@ in
     devshell
     lua-language-server
     stylua
+    webkitgtk_6_0
 
     # langs
     janet

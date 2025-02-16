@@ -79,13 +79,13 @@ in
     };
     keybindings = lib.mkOptionDefault {
       "${mod}+Return" = "exec ghostty";
-      "${mod}+Shift+Return" = "exec alacritty";
+      "${mod}+Shift+Return" = "exec ghostty";
       "${mod}+p" = "exec ${lockScreen}";
       "${mod}+Shift+r" = "reload";
       "${mod}+f" = "fullscreen";
       "${mod}+d" =
         "exec tofi-drun --width 800 --height 600 --num-results 9 --drun-launch=true --font ${tofiFontPath}";
-      "${mod}+n" = "exec cd ~/nb && alacritty -e nvim _temp.md";
+      "${mod}+n" = "exec cd ~/nb && ghostty -e nvim _temp.md";
       "${mod}+m" = "exec keepmenu -C";
       "${mod}+y" = "exec dunstctl close";
       "${mod}+Shift+y" = "exec dunstctl history-pop";
@@ -170,6 +170,8 @@ in
             "info.cemu.Cemu"
             ".blueman-manager-wrapped"
             "org.kde.dolphin"
+            "org.qbittorrent.qBittorrent"
+            "org.keepassxc.KeePassXC"
           ]
       ++
         map
