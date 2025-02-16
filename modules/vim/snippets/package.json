@@ -6,6 +6,10 @@
                 "path": "./javascript.json"
             },
             {
+                "language": ["svelte"],
+                "path": "./svelte.json"
+            },
+            {
                 "language": "all",
                 "path": "./allFiletypes.json"
             }

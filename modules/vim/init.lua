@@ -29,11 +29,17 @@ vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.cmd.source("~/.vim/common.vim")
 
 require("lazy").setup({
-    lockfile = "~/nix/modules/vim/lazy-lock.json",
+	lockfile = "~/nix/modules/vim/lazy-lock.json",
 	spec = {
 		rocks = {
 			enabled = false,
 		},
+
+        -- Local
+		{ name = "deepseek", dir = "~/code/vim/deepseek.nvim", opts = {} },
+
+		-- fzf
+		{ name = "fzf", dir = "@@FZF_PLUGIN_PATH@@", lazy = false },
 
 		-- Colorschemes
 		{
@@ -43,15 +49,17 @@ require("lazy").setup({
 			end,
 		},
 
-        -- fzf
-        { name = "fzf", dir = "@@FZF_PLUGIN_PATH@@", lazy = false },
-
 		-- File explorer
 		{ "lambdalisue/fern.vim" },
 		{ "lambdalisue/vim-fern-hijack" },
 
 		-- Closing brackets/quotes/... insertion
-		{ "Raimondi/delimitMate" },
+		{ "Raimondi/delimitMate", event = "InsertEnter" },
+
+		-- Parinfer https://shaunlebron.github.io/parinfer
+		--{"eraserhd/parinfer-rust", build = "cargo build --release"}
+		-- Surrounding
+		{ "machakann/vim-sandwich", event = "InsertEnter" },
 
 		-- Indent guides
 		{
@@ -67,7 +75,7 @@ require("lazy").setup({
 
 		-- Git
 		{ "tpope/vim-fugitive" },
-		{ "tpope/vim-rhubarb" },
+		{ "tpope/vim-rhubarb", dependencies = { "tpope/vim-fugitive" } },
 		{ "whiteinge/diffconflicts" },
 
 		-- pug support
@@ -84,11 +92,6 @@ require("lazy").setup({
 			dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 			opts = {},
 		},
-
-		-- Parinfer https://shaunlebron.github.io/parinfer
-		--{"eraserhd/parinfer-rust", build = "cargo build --release"}
-		-- Surrounding
-		{ "machakann/vim-sandwich" },
 
 		-- Treesitter {{{
 

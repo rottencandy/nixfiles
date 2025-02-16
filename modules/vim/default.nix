@@ -18,13 +18,12 @@ in
   ];
 
   home.file = {
+    ".vim/common.vim" = {
+      source = ./vim/common.vim;
+    };
     ".config/nvim/init.lua".text =
       builtins.replaceStrings [ "@@FZF_PLUGIN_PATH@@" ] [ fzfPluginPath ]
         (builtins.readFile ./init.lua);
-    ".vim" = {
-      source = ./vim;
-      recursive = true;
-    };
     ".vim/vimrc".text = 
       builtins.replaceStrings [ "@@FZF_PLUGIN_PATH@@" ] [ fzfPluginPath ]
         (builtins.readFile ./vim/vimrc);

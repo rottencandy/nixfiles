@@ -6,7 +6,7 @@ scriptencoding utf-8
 " ⠱⠃ ⠇ ⠇⠇⠇ ⠏  ⠣⠤
 "
 
-"Plugins {{{
+"Local Plugins {{{
 
 " vimkubectl
 set rtp+=~/code/vim/vimkubectl
