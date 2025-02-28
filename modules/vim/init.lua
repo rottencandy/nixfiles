@@ -35,8 +35,13 @@ require("lazy").setup({
 			enabled = false,
 		},
 
-        -- Local
-		{ name = "deepseek", dir = "~/code/vim/deepseek.nvim", opts = {} },
+		-- Local
+		{
+			name = "llm",
+			dir = "~/code/vim/llm.nvim",
+			opts = {},
+			dependencies = { "nvim-lua/plenary.nvim" },
+		},
 
 		-- fzf
 		{ name = "fzf", dir = "@@FZF_PLUGIN_PATH@@", lazy = false },
