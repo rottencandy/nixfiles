@@ -91,12 +91,14 @@ in
     lua-language-server
     stylua
     webkitgtk_6_0
+    repomix
 
     # langs
     janet
     clang
     mold
     #gcc
+    luajit
 
     # terminal
     ueberzugpp
@@ -165,12 +167,14 @@ in
     pwvucontrol
     sox
     coppwr
+    imagemagick
     ffmpeg
     flac
     #vlc
     mpv
     feh
     gimp
+    losslesscut-bin
 
     # accounting
     ledger

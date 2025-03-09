@@ -53,6 +53,9 @@ gc:
 	#$(GC_CMD)
 
 	sudo nix-collect-garbage -d
+	nix-collect-garbage -d
 
 wipe:
+	# remove all generations older than 7 days
+	#sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
 	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system

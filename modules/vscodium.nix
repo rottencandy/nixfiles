@@ -9,7 +9,7 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium.fhs;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
       esbenp.prettier-vscode
     ];
