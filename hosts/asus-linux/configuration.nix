@@ -80,7 +80,7 @@ in
   #  enable = true;
   #  wayland.enable = true;
   #};
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.xserver.displayManager.startx.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
