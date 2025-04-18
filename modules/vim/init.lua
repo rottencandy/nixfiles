@@ -98,15 +98,61 @@ require("lazy").setup({
 			opts = {},
 		},
 
-		-- LLM
+		-- code companion {{{
+
 		{
 			"olimorris/codecompanion.nvim",
-			config = true,
+			config = function()
+				require("codecompanion").setup({
+					adapters = {
+						deepseek_r1 = function()
+							return require("codecompanion.adapters").extend("openai_compatible", {
+								env = {
+									url = "https://openrouter.ai/api",
+								},
+								headers = {
+									["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
+								},
+								schema = {
+									model = {
+										default = "deepseek/deepseek-r1:free",
+									},
+								},
+							})
+						end,
+						qwen_qwq = function()
+							return require("codecompanion.adapters").extend("openai_compatible", {
+								env = {
+									url = "https://openrouter.ai/api",
+								},
+								headers = {
+									["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
+								},
+								schema = {
+									model = {
+										default = "qwen/qwq-32b:free",
+									},
+								},
+							})
+						end,
+					},
+					strategies = {
+						chat = {
+							adapter = "qwen_qwq",
+						},
+						inline = {
+							adapter = "qwen_qwq",
+						},
+					},
+				})
+			end,
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 				"nvim-treesitter/nvim-treesitter",
 			},
 		},
+
+		-- }}}
 
 		-- Treesitter {{{
 
