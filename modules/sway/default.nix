@@ -156,6 +156,8 @@ in
           "gamescope"
           "dolphin-emu"
           "PPSSPPSDL"
+          "Godot"
+          "Surge XT"
         ]
       ++
         map
@@ -172,6 +174,7 @@ in
             "org.kde.dolphin"
             "org.qbittorrent.qBittorrent"
             "org.keepassxc.KeePassXC"
+            "org.gnome.Boxes"
           ]
       ++
         map

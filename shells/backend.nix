@@ -8,7 +8,7 @@
 
 pkgs.mkShell {
   packages = with pkgs; [
-    go_1_22
+    go_1_24
     rustup
     gopls
     rust-analyzer-unwrapped

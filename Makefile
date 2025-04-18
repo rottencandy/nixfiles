@@ -18,6 +18,9 @@ endif
 switch:
 	$(REBUILD_CMD) switch --flake .
 
+boot:
+	$(REBUILD_CMD) boot --flake .
+
 rollback:
 	$(REBUILD_CMD) switch --flake --rollback .
 

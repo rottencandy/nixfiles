@@ -92,6 +92,7 @@ in
     stylua
     webkitgtk_6_0
     repomix
+    aider-chat
 
     # langs
     janet
@@ -162,7 +163,7 @@ in
     jamesdsp
     nuclear
     musikcube
-    surge
+    surge-XT
     vcv-rack
     pwvucontrol
     sox
@@ -220,6 +221,7 @@ in
     godot_4
     unciv
     nethack
+    ruffle
     #unnethack
 
     # Non-free
