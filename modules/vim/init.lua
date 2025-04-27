@@ -411,6 +411,7 @@ require("lazy").setup({
 					"cucumber_language_server",
 					"svelte",
 					"nixd",
+					"basedpyright",
 				}
 				for _, lang in ipairs(servers) do
 					lspconfig[lang].setup({

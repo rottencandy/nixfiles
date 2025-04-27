@@ -158,6 +158,7 @@ in
           "PPSSPPSDL"
           "Godot"
           "Surge XT"
+          "fontforge"
         ]
       ++
         map
@@ -169,6 +170,7 @@ in
           })
           [
             "lutris"
+            "gamescope"
             "info.cemu.Cemu"
             ".blueman-manager-wrapped"
             "org.kde.dolphin"

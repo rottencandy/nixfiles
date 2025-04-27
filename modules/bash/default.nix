@@ -44,6 +44,7 @@ in
       "la"
       "nn"
       "nv"
+      "nvd"
       "shl"
     ];
 
@@ -58,6 +59,7 @@ in
         la = "lsd -A";
         ll = "lsd -l";
         nv = "nvim";
+        nvd = "neovide";
         nvdaemon = "nvim --headless --listen localhost:6666";
         t = "tmux";
         tree = "lsd --tree";

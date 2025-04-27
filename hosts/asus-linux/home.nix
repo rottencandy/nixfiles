@@ -80,6 +80,7 @@ in
     emacs
     helix
     jless
+    ugrep
     ripgrep
     gnumake
     pandoc

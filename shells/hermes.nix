@@ -1,7 +1,4 @@
 {
-  nixpkgs,
-  inputs,
-  system,
   pkgs,
   ...
 }:

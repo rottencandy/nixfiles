@@ -16,7 +16,15 @@
         pkgs
         ;
     };
-    backend = import ./backend.nix {
+    backend = import ./hermes.nix {
+      inherit
+        nixpkgs
+        system
+        inputs
+        pkgs
+        ;
+    };
+    py = import ./py.nix {
       inherit
         nixpkgs
         system
