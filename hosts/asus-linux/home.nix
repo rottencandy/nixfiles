@@ -45,9 +45,9 @@ in
     ../../modules/pass.nix
     ../../modules/broot.nix
     ../../modules/ghostty.nix
-    ../../modules/wezterm.nix
+    #../../modules/wezterm.nix
     ../../modules/starship.nix
-    ../../modules/vscodium.nix
+    #../../modules/vscodium.nix
     ../../modules/tridactyl.nix
   ];
   home.username = "saud";
@@ -209,10 +209,12 @@ in
     gst_all_1.gst-vaapi
     wine-staging
     winetricks
+    #protontricks
     gamescope
 
     # games
     lutris
+    umu-launcher
     #heroic
     dolphin-emu
     pcsx2

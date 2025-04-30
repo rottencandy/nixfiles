@@ -170,6 +170,10 @@ in
           })
           [
             "lutris"
+            # winetricks
+            "zenity"
+            # protonup
+            "net.davidotek.pupgui2"
             "gamescope"
             "info.cemu.Cemu"
             ".blueman-manager-wrapped"
@@ -188,7 +192,7 @@ in
           })
           [
             "^Picture-in-Picture$"
-            "VCV Rack Free 2.5.1"
+            "VCV Rack Free 2.6.3"
           ];
     gaps = {
       inner = 5;
