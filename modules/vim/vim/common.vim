@@ -364,6 +364,9 @@ else
   nnoremap <leader>y :call system("wl-copy", @")<CR>
 endif
 
+" Paste from clipboard
+nnoremap <leader>p "+p
+
 " Map redraw-screen to also clear search highlights
 nnoremap <silent> <C-L> :nohl<CR>:mat<CR><C-L>
 
