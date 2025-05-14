@@ -6,10 +6,28 @@
   ...
 }:
 
+let
+
+  nodejs = pkgs.nodejs_20;
+  # Adding libuuid to some node binaries are required by the
+  # "node-canvas" package
+  wrapWithMissingLibraries =
+    binaryFile:
+    pkgs.writeShellScriptBin (baseNameOf binaryFile) ''
+      LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [ pkgs.libuuid ]}";
+      export LD_LIBRARY_PATH
+      exec ${binaryFile} "$@";
+    '';
+  node = (wrapWithMissingLibraries (pkgs.lib.getExe nodejs));
+  #yarn = wrapWithMissingLibraries (pkgs.lib.getExe pkgs.yarn);
+
+  in
+
 pkgs.mkShell {
   packages = with pkgs; [
     #deno
-    nodejs_22
+    nodejs
+    node
 
     nodePackages.yarn
     vscode-langservers-extracted

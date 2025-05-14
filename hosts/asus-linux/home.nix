@@ -165,7 +165,7 @@ in
     nuclear
     musikcube
     surge-XT
-    vcv-rack
+    #vcv-rack
     pwvucontrol
     sox
     coppwr
@@ -218,6 +218,7 @@ in
     #heroic
     dolphin-emu
     pcsx2
+    #rpcs3
     mame
     cemu
     ppsspp
