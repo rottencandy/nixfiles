@@ -94,6 +94,7 @@ in
     webkitgtk_6_0
     repomix
     aider-chat
+    goose-cli
 
     # langs
     janet
@@ -181,7 +182,7 @@ in
     # accounting
     ledger
     visidata
-    paisa.packages.x86_64-linux.default
+    #paisa.packages.x86_64-linux.default
 
     # window manager
     notify-desktop

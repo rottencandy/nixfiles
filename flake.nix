@@ -19,7 +19,7 @@
     };
     paisa = {
       url = "github:ananthakumaran/paisa";
-      inputs.mkdocs-pkgs.follows = "nixpkgs";
+      inputs.hledger-pkgs.follows = "nixpkgs";
     };
   };
 
