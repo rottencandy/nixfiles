@@ -94,7 +94,6 @@ in
     webkitgtk_6_0
     repomix
     aider-chat
-    goose-cli
 
     # langs
     janet
@@ -165,7 +164,6 @@ in
     jamesdsp
     nuclear
     musikcube
-    surge-XT
     #vcv-rack
     pwvucontrol
     sox
@@ -214,6 +212,7 @@ in
     gamescope
 
     # games
+    sunshine
     lutris
     umu-launcher
     #heroic

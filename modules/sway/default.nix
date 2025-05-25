@@ -158,6 +158,7 @@ in
           "PPSSPPSDL"
           "Godot"
           "Surge XT"
+          "LosslessCut"
           "fontforge"
         ]
       ++
@@ -192,7 +193,7 @@ in
           })
           [
             "^Picture-in-Picture$"
-            "VCV Rack Free 2.6.3"
+            "VCV Rack Free 2.6.4"
           ];
     gaps = {
       inner = 5;
