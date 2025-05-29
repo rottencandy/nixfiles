@@ -239,6 +239,20 @@ in
   security.polkit.enable = true;
   security.pam.services.swaylock = { };
 
+  # sunshine server
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+  security.wrappers.sunshine = {
+        owner = "root";
+        group = "root";
+        capabilities = "cap_sys_admin+p";
+        source = "${pkgs.sunshine}/bin/sunshine";
+ };
+
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
   # (org.freedesktop.portal.Desktop) and object path
@@ -342,6 +356,10 @@ in
         to = 53317;
       }
     ];
+    allowedTCPPorts = [
+    # Sunshine
+    47984 47989 47990 48010
+    ];
     allowedUDPPortRanges = [
       # KDE Connect
       {
@@ -353,6 +371,9 @@ in
         from = 53317;
         to = 53317;
       }
+      # Sunshine
+    { from = 47998; to = 48000; }
+    { from = 8000; to = 8010; }
     ];
   };
 

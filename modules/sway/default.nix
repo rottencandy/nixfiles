@@ -160,6 +160,7 @@ in
           "Surge XT"
           "LosslessCut"
           "fontforge"
+          "Codium"
         ]
       ++
         map

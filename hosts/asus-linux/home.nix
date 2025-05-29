@@ -159,6 +159,7 @@ in
     mosh
     localsend
     hexchat
+    networkmanagerapplet
 
     # multimedia
     jamesdsp
@@ -212,7 +213,6 @@ in
     gamescope
 
     # games
-    sunshine
     lutris
     umu-launcher
     #heroic
