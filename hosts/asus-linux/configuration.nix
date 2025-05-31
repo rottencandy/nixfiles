@@ -242,16 +242,10 @@ in
   # sunshine server
   services.sunshine = {
     enable = true;
-    autoStart = true;
+    autoStart = false;
     capSysAdmin = true;
     openFirewall = true;
   };
-  security.wrappers.sunshine = {
-        owner = "root";
-        group = "root";
-        capabilities = "cap_sys_admin+p";
-        source = "${pkgs.sunshine}/bin/sunshine";
- };
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name

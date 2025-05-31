@@ -79,7 +79,7 @@ in
     };
     keybindings = lib.mkOptionDefault {
       "${mod}+Return" = "exec ghostty";
-      "${mod}+Shift+Return" = "exec ghostty";
+      "${mod}+Shift+Return" = "exec foot";
       "${mod}+p" = "exec ${lockScreen}";
       "${mod}+Shift+r" = "reload";
       "${mod}+f" = "fullscreen";
