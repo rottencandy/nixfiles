@@ -76,6 +76,7 @@ in
     qmk
     wget
     curl
+    foot
     delta
     emacs
     helix
@@ -136,6 +137,7 @@ in
     macchina
     bottom
     htop
+    btop
     asusctl
     nvidia-offload
     nvtopPackages.full

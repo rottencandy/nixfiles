@@ -25,7 +25,7 @@ rollback:
 	$(REBUILD_CMD) switch --flake --rollback .
 
 fast:
-	$(REBUILD_CMD) switch --flake --fast .
+	$(REBUILD_CMD) switch --fast --flake .
 
 test:
 	$(REBUILD_CMD) test --flake .
