@@ -161,7 +161,6 @@ in
     mosh
     localsend
     hexchat
-    networkmanagerapplet
 
     # multimedia
     jamesdsp

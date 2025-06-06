@@ -178,6 +178,7 @@ in
             "net.davidotek.pupgui2"
             "gamescope"
             "info.cemu.Cemu"
+            "org.citron_emu.citron"
             ".blueman-manager-wrapped"
             "org.kde.dolphin"
             "org.qbittorrent.qBittorrent"
