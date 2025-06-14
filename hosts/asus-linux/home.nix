@@ -145,6 +145,7 @@ in
     redshift
     blueman
     usbutils
+    smartmontools
 
     # web
     yt-dlp

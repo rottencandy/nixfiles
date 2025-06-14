@@ -8,7 +8,7 @@
 
 let
 
-  nodejs = pkgs.nodejs_20;
+  nodejs = pkgs.nodejs_22;
   # Adding libuuid to some node binaries are required by the
   # "node-canvas" package
   wrapWithMissingLibraries =
@@ -21,7 +21,7 @@ let
   node = (wrapWithMissingLibraries (pkgs.lib.getExe nodejs));
   #yarn = wrapWithMissingLibraries (pkgs.lib.getExe pkgs.yarn);
 
-  in
+in
 
 pkgs.mkShell {
   packages = with pkgs; [

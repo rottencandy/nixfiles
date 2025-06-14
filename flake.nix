@@ -15,7 +15,7 @@
     };
     ghostty = {
       url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     paisa = {
       url = "github:ananthakumaran/paisa";
@@ -59,7 +59,7 @@
           ;
       };
 
-      formatter."${system}" = pkgs.nixfmt-rfc-style;
+      formatter."${system}" = nixpkgs.legacyPackages."${system}".nixfmt-rfc-style;
 
       devShells = import ./shells {
         inherit
