@@ -231,6 +231,10 @@ augroup filetype_settings
   autocmd FileType lua
         \ exec 'command! -buffer Fmt Neoformat stylua'
 
+  " Nix
+  autocmd FileType nix
+        \ exec 'command! -buffer Fmt Neoformat nixfmt'
+
   " markdown
   " Note: Slack hates the text/html type, routing it through firefox for now
   autocmd FileType markdown

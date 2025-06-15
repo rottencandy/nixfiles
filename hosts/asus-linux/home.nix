@@ -68,6 +68,7 @@ in
     cachix
     steam-run
     appimage-run
+    nixfmt-rfc-style
     #nix-alien-pkgs.nix-alien
 
     # dev

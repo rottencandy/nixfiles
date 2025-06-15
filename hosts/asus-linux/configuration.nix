@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   # bash script to let dbus know about important env variables and
@@ -351,8 +356,11 @@ in
       }
     ];
     allowedTCPPorts = [
-    # Sunshine
-    47984 47989 47990 48010
+      # Sunshine
+      47984
+      47989
+      47990
+      48010
     ];
     allowedUDPPortRanges = [
       # KDE Connect
@@ -366,8 +374,14 @@ in
         to = 53317;
       }
       # Sunshine
-    { from = 47998; to = 48000; }
-    { from = 8000; to = 8010; }
+      {
+        from = 47998;
+        to = 48000;
+      }
+      {
+        from = 8000;
+        to = 8010;
+      }
     ];
   };
 

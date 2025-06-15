@@ -11,6 +11,7 @@
       theme = Adventure
       title = " "
       window-decoration = false
+      font-size = 10
     '';
   };
 }

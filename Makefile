@@ -46,7 +46,7 @@ optimise:
 	nix store optimise
 
 fmt:
-	nix fmt
+	nix fmt -- **/*.nix
 
 gc:
 	# remove all generations older than 7 days
