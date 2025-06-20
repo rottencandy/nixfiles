@@ -244,6 +244,9 @@ in
   security.polkit.enable = true;
   security.pam.services.swaylock = { };
 
+  # workaround for https://github.com/NixOS/nixpkgs/issues/414135
+  security.lsm = lib.mkForce [ ];
+
   # sunshine server
   services.sunshine = {
     enable = true;

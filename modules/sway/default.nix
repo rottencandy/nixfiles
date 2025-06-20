@@ -172,6 +172,7 @@ in
           })
           [
             "lutris"
+            "localsend_app"
             # winetricks
             "zenity"
             # protonup

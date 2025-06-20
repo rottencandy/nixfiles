@@ -96,6 +96,8 @@ in
     webkitgtk_6_0
     repomix
     aider-chat
+    claude-code
+    zed-editor-fhs
 
     # langs
     janet
@@ -147,6 +149,7 @@ in
     blueman
     usbutils
     smartmontools
+    nvme-cli
 
     # web
     yt-dlp
