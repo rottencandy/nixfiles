@@ -477,6 +477,9 @@ endfun
 command! Decrypt call DecryptFile()
 command! Encrypt call EncryptFile()
 
+" code companion abbrev
+cnoreabbrev cc CodeCompanion
+
 " }}}
 
 "Plugin configs {{{

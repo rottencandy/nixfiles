@@ -144,11 +144,22 @@ require("lazy").setup({
 							adapter = "qwen_qwq",
 						},
 					},
+					display = {
+						chat = {
+							show_settings = true,
+						},
+					},
 				})
 			end,
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 				"nvim-treesitter/nvim-treesitter",
+			},
+			keys = {
+				{ "<C-c>", "<cmd>CodeCompanionChat Toggle<CR>", mode = "n", desc = "Toggle chat window." },
+				{ "<C-c>", "<cmd>CodeCompanionChat Add<CR>", mode = "v", desc = "Send selection to chat window." },
+				{ "<C-s>", "<cmd>CodeCompanionActions<CR>", mode = "n", desc = "Toggle actions dialog." },
+				{ "<C-s>", "<cmd>CodeCompanionActions<CR>", mode = "v", desc = "Toggle actions dialog." },
 			},
 		},
 
@@ -397,6 +408,16 @@ require("lazy").setup({
 					},
 				})
 
+				lspconfig["nixd"].setup({
+					settings = {
+						nixd = {
+							formatting = {
+								command = { "nixfmt" },
+							},
+						},
+					},
+				})
+
 				-- Use a loop to conveniently both setup defined servers
 				-- and map buffer local keybindings when the language server attaches
 				local servers = {
@@ -410,7 +431,6 @@ require("lazy").setup({
 					"gdscript",
 					"cucumber_language_server",
 					"svelte",
-					"nixd",
 					"basedpyright",
 				}
 				for _, lang in ipairs(servers) do
