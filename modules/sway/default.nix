@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -17,7 +16,10 @@ in
 {
   imports = [ ../waybar.nix ];
 
-  home.packages = with pkgs; [ swaylock ];
+  home.packages = with pkgs; [
+    swaylock
+    wayland-pipewire-idle-inhibit
+  ];
 
   services.swayidle = {
     enable = true;
@@ -51,6 +53,7 @@ in
   wayland.windowManager.sway.enable = true;
   # temporary workaround to https://github.com/nix-community/home-manager/issues/5311
   wayland.windowManager.sway.checkConfig = false;
+  wayland.windowManager.sway.wrapperFeatures.base = true;
   wayland.windowManager.sway.config = {
     modifier = mod;
     menu = "tofi-run";
@@ -60,6 +63,7 @@ in
       };
       HDMI-A-1 = {
         pos = "0 0";
+        mode = "1920x1080@74.973Hz";
       };
       DP-1 = {
         pos = "0 0";
@@ -77,6 +81,9 @@ in
         natural_scroll = "enabled";
       };
     };
+    startup = [
+      { command = "wayland-pipewire-idle-inhibit"; }
+    ];
     keybindings = lib.mkOptionDefault {
       "${mod}+Return" = "exec ghostty";
       "${mod}+Shift+Return" = "exec foot";
