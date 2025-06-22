@@ -120,6 +120,21 @@ require("lazy").setup({
 								},
 							})
 						end,
+						kimi_dev = function()
+							return require("codecompanion.adapters").extend("openai_compatible", {
+								env = {
+									url = "https://openrouter.ai/api",
+								},
+								headers = {
+									["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
+								},
+								schema = {
+									model = {
+										default = "moonshotai/kimi-dev-72b:free",
+									},
+								},
+							})
+						end,
 						qwen_qwq = function()
 							return require("codecompanion.adapters").extend("openai_compatible", {
 								env = {
@@ -138,10 +153,10 @@ require("lazy").setup({
 					},
 					strategies = {
 						chat = {
-							adapter = "qwen_qwq",
+							adapter = "kimi_dev",
 						},
 						inline = {
-							adapter = "qwen_qwq",
+							adapter = "kimi_dev",
 						},
 					},
 					display = {
