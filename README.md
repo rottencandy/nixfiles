@@ -11,7 +11,7 @@ Cross-platform nix configuration for Linux and MacOS.
 
 - Initial build
 
-    - Using [flakes](https://nixos.wiki/wiki/Flakes) requires git, use a temporary shell if not available: `nix-shell -p git`
+    - Using [flakes](https://nixos.wiki/wiki/Flakes) requires git, use a temporary shell if not available: `nix-shell -p git gnumake vim`
 
     - Use experimental flags for first build, since flakes are not available by default
 
