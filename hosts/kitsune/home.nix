@@ -6,15 +6,6 @@
 }:
 
 let
-  # Script to run processes using discrete Nvidia GPU
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
-
   # script to interactively select and activate a dev shell
   devshell = pkgs.writeShellScriptBin "shl" ''
     SEL=$(nix flake show --json ~/nix | jq '.devShells."x86_64-linux" | keys | .[]' -r | fzf)
@@ -25,11 +16,6 @@ let
   '';
 
 in
-# nix-alien to run non-NixOS binaries in a compatible FHS environment with
-# all needed shared dependencies
-#nix-alien-pkgs = import (
-#  builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
-#) { };
 {
   imports = [
     ../../modules/vim
@@ -52,15 +38,6 @@ in
   ];
   home.username = "saud";
   home.homeDirectory = "/home/saud";
-
-  # Overwrite steam.desktop shortcut so that is uses PRIME
-  # offloading for Steam and all its games
-  #home.activation.steam = lib.hm.dag.entryAfter ["writeBoundary"] ''
-  #  $DRY_RUN_CMD sed 's/^Exec=/&nvidia-offload /' \
-  #    ${pkgs.steam}/share/applications/steam.desktop \
-  #    > ~/.local/share/applications/steam.desktop
-  #  $DRY_RUN_CMD chmod +x ~/.local/share/applications/steam.desktop
-  #'';
 
   home.packages = with pkgs; [
     # nix utils
@@ -111,6 +88,7 @@ in
     #alacritty
     ghostty.packages.x86_64-linux.default
     fbterm
+    contour
 
     # filesystem
     fd
@@ -125,6 +103,7 @@ in
     unzip
     p7zip
     zathura
+    caligula
     bk
 
     # crypto
@@ -141,11 +120,7 @@ in
     bottom
     htop
     btop
-    asusctl
-    nvidia-offload
-    nvtopPackages.full
     mangohud
-    redshift
     blueman
     usbutils
     smartmontools
@@ -223,7 +198,7 @@ in
     umu-launcher
     #heroic
     dolphin-emu
-    pcsx2
+    #pcsx2
     #rpcs3
     mame
     cemu
@@ -238,44 +213,6 @@ in
     anydesk
     #telegram-desktop
   ];
-
-  #programs.kanshi = {
-  #  enable = true;
-  #  profiles = {
-  #    default = {
-  #      outputs = {
-  #        "HDMI-A-1" = {
-  #          mode = "1920x1080@74.973";
-  #          position = "0,0";
-  #        };
-  #        "eDP-1" = {
-  #          position = "1920,0";
-  #        };
-  #      };
-  #    };
-  #    default2 = {
-  #      outputs = {
-  #        "HDMI-A-2" = {
-  #          mode = "1920x1080@74.973";
-  #          position = "0,0";
-  #        };
-  #        "eDP-1" = {
-  #          position = "1920,0";
-  #        };
-  #      };
-  #    };
-  #  };
-  #};
-
-  #programs.ripgrep = {
-  #  enable = true;
-  #  arguments = [
-  #    "--smart-case"
-  #    #"--hidden"
-  #    "--glob"
-  #    "!.git"
-  #  ];
-  #};
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

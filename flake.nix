@@ -38,7 +38,18 @@
       pkgs = nixpkgs.legacyPackages."${system}";
     in
     {
-      nixosConfigurations.nixos = import ./hosts/asus-linux {
+      nixosConfigurations.wyvern = import ./hosts/wyvern {
+        inherit
+          self
+          nixpkgs
+          home-manager
+          ghostty
+          paisa
+          inputs
+          ;
+      };
+
+      nixosConfigurations.kitsune = import ./hosts/kitsune {
         inherit
           self
           nixpkgs
