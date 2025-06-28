@@ -7,9 +7,9 @@ VOL=$(echo "$LINE" | awk '{print $2}')
 DURATION=2000
 
 if echo "$LINE" | rg 'MUTED' -q; then
-	ICON="$HOME/code/dotfiles/config/icons/volume-x.svg"
+	ICON="$HOME/nix/static/icons/volume-x.svg"
 else
-	ICON="$HOME/code/dotfiles/config/icons/volume-2.svg"
+	ICON="$HOME/nix/static/icons/volume-2.svg"
 fi
 
 notify-send.sh "$VOL" \
