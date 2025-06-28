@@ -44,7 +44,7 @@ in
         navigate = true;
       };
     };
-    userName = "Mohammed Saud";
+    userName = "saud";
     userEmail = "md.saud020@gmail.com";
     aliases = {
       st = "status";
