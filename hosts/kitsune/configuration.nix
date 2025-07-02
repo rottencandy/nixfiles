@@ -87,6 +87,12 @@ in
     variant = "";
   };
 
+  # disable power button
+  # see all options in /etc/systemd/logind.conf
+  services.logind.extraConfig = ''
+    HandlePowerKey=ignore
+  '';
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -107,13 +113,30 @@ in
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput = {
+  #services.libinput = {
+  #  enable = true;
+  #  touchpad = {
+  #    naturalScrolling = true;
+  #    tapping = true;
+  #  };
+  #};
+
+  # hardware accel
+  hardware.graphics = {
     enable = true;
-    touchpad = {
-      naturalScrolling = true;
-      tapping = true;
-    };
+    enable32Bit = true;
   };
+  # Allow amdvlk if applications prefer
+  hardware.graphics.extraPackages = with pkgs; [
+    amdvlk
+  ];
+  # For 32 bit applications
+  hardware.graphics.extraPackages32 = with pkgs; [
+    driversi686Linux.amdvlk
+  ];
+  # linux amdgpu controller
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.saud = {
@@ -166,6 +189,8 @@ in
     dbus-sway-environment
     configure-gtk
     xdg-utils
+    # linux amdgpu controller
+    lact
 
     # libs
     glib

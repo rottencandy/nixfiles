@@ -197,12 +197,12 @@ in
     lutris
     umu-launcher
     #heroic
-    dolphin-emu
+    #dolphin-emu
     #pcsx2
     #rpcs3
     mame
     cemu
-    ppsspp
+    #ppsspp
     godot_4
     unciv
     nethack

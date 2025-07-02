@@ -77,8 +77,10 @@ in
         repeat_rate = "200";
         repeat_delay = "400";
       };
-      "1267:12410:ELAN1203:00_04F3:307A_Touchpad" = {
+      "type:touchpad" = {
         natural_scroll = "enabled";
+        tap = "enabled";
+        #dwt = "enabled";
       };
     };
     startup = [
@@ -192,6 +194,8 @@ in
             "org.qbittorrent.qBittorrent"
             "org.keepassxc.KeePassXC"
             "org.gnome.Boxes"
+            "io.github.ilya_zlobintsev.LACT"
+            "lact"
           ]
       ++
         map
