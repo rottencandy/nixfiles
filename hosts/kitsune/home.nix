@@ -153,7 +153,7 @@ in
     imagemagick
     ffmpeg
     flac
-    #vlc
+    vlc
     mpv
     feh
     gimp

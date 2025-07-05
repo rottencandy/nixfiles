@@ -145,6 +145,10 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "video"
+      "libvirtd"
+      "adbusers"
+      "dialout"
     ];
     packages = with pkgs; [
       #  thunderbird
@@ -205,6 +209,26 @@ in
   security.pam.services.swaylock = { };
 
   programs.adb.enable = true;
+
+  # xdg-desktop-portal works by exposing a series of D-Bus interfaces
+  # known as portals under a well-known name
+  # (org.freedesktop.portal.Desktop) and object path
+  # (/org/freedesktop/portal/desktop).
+  # The portal interfaces include APIs for file access, opening URIs,
+  # printing and others.
+  # also required for screen sharing to work in wlroots-based WMs
+  services.dbus.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy (also needed for flatpak)
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    # xdg-desktop-portal 1.17 reworked how portal implementations are loaded
+    # we need to specify which portal backend t o use for the requested interface
+    # this option simply keeps behaviour the same as < 1.17, i.e.. use the first
+    # portal implementation found in lexicographical order
+    config.common.default = "*";
+  };
 
   # sunshine server
   services.sunshine = {
