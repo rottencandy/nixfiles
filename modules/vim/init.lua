@@ -304,8 +304,12 @@ require("lazy").setup({
 					local opts = { noremap = true, silent = true, buffer = bufnr }
 
 					vim.keymap.set("n", "<leader>e", vim.diagnostic.get, opts)
-					vim.keymap.set("n", "<leader>n", vim.diagnostic.goto_next, opts)
-					vim.keymap.set("n", "<leader>N", vim.diagnostic.goto_prev, opts)
+					vim.keymap.set("n", "<leader>n", function()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, opts)
+					vim.keymap.set("n", "<leader>N", function()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, opts)
 					--vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)

@@ -174,6 +174,7 @@ in
     nuclear
     musikcube
     #vcv-rack
+    helm
     pwvucontrol
     sox
     coppwr
