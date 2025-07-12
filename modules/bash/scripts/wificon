@@ -21,14 +21,14 @@ SSID=$(printf '%s' "$(wifi_list)" | \
 SSID_TRIMMED=$(echo "$SSID" | xargs)
 
 if [ -z "$SSID" ]; then
-	exit
+	exit 1
 fi
 
-RESULT=$(nmcli device wifi connect "$SSID_TRIMMED")
-if [ -z "$(echo "$RESULT" | grep Error)" ]; then
-	echo "Successfully connected to $SSID_TRIMMED"
-	exit
-fi
+nmcli device wifi connect "$SSID_TRIMMED" &> /dev/null
 
-echo "Attempting to provide credentials."
-nmcli device wifi connect "$SSID_TRIMMED" --ask
+if [[ "$?" -eq 0 ]]; then
+	echo "Connected."
+else
+	echo "Failed. Attempting to get credentials."
+	nmcli device wifi connect "$SSID_TRIMMED" --ask
+fi
