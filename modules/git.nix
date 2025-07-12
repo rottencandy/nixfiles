@@ -74,6 +74,12 @@ in
 
       # Pull submodules
       pulsub = "submodule update --remote";
+
+      # diff with difftastic
+      dft = "-c diff.external=difft diff";
+
+      # log with difftastic
+      dl = "-c diff.external=difft log -p --ext-diff";
     };
     extraConfig = {
       # colorize output
