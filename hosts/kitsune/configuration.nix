@@ -253,13 +253,7 @@ in
       CPU_BOOST_ON_AC = 1;
       CPU_BOOST_ON_BAT = 0;
 
-      #CPU_MIN_PERF_ON_AC = 0;
-      #CPU_MAX_PERF_ON_AC = 100;
-      #CPU_MIN_PERF_ON_BAT = 0;
-      #CPU_MAX_PERF_ON_BAT = 20;
-
-      #START_CHARGE_THRESH_BAT0 = 65; # 75 and below it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 70; # 80 and above it stops charging
+      STOP_CHARGE_THRESH_BAT0 = 1; # stop charging at 80
     };
   };
   # this conflicts with tlp
