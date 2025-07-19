@@ -98,6 +98,7 @@ in
     aider-chat
     claude-code
     zed-editor-fhs
+    psmisc
 
     # langs
     janet
@@ -147,7 +148,7 @@ in
     nvidia-offload
     nvtopPackages.full
     mangohud
-    redshift
+    #redshift
     blueman
     usbutils
     smartmontools

@@ -75,6 +75,7 @@ in
     aider-chat
     claude-code
     zed-editor-fhs
+    psmisc
 
     # langs
     janet
