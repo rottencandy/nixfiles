@@ -19,8 +19,8 @@ packadd! matchit
 
 let g:vim_markdown_folding_disabled = 1     " Disable vim-markdown folds by default
 let g:vim_markdown_frontmatter = 1          " Highlight YAML front matter
-let g:vim_markdown_conceal = 1
-let g:vim_markdown_conceal_code_blocks = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 
 " }}}
 
