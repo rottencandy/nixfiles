@@ -3,6 +3,7 @@
   home-manager,
   ghostty,
   paisa,
+  cloudypad,
   inputs,
   ...
 }:
@@ -19,6 +20,7 @@ nixpkgs.lib.nixosSystem {
           (import ./home.nix {
             ghostty = ghostty;
             paisa = paisa;
+            cloudypad = cloudypad;
           })
         ];
       };

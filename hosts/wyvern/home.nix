@@ -237,6 +237,7 @@ in
     nethack
     ruffle
     #unnethack
+    moonlight-qt
 
     # Non-free
     anydesk

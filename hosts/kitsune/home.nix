@@ -1,4 +1,4 @@
-{ ghostty, paisa }:
+{ ghostty, paisa, cloudypad }:
 
 {
   pkgs,
@@ -76,6 +76,7 @@ in
     claude-code
     zed-editor-fhs
     psmisc
+    google-cloud-sdk
 
     # langs
     janet
@@ -142,6 +143,7 @@ in
     mosh
     localsend
     hexchat
+    tigervnc
 
     # multimedia
     jamesdsp
@@ -209,6 +211,9 @@ in
     nethack
     ruffle
     #unnethack
+    moonlight-qt
+    #parsec-bin
+    #cloudypad.packages.x86_64-linux.default
 
     # Non-free
     anydesk

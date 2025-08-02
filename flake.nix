@@ -5,6 +5,9 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,6 +24,11 @@
       url = "github:ananthakumaran/paisa";
       inputs.hledger-pkgs.follows = "nixpkgs";
     };
+    cloudypad = {
+      url = "github:pierrebeucher/cloudypad";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs =
@@ -31,6 +39,7 @@
       nixpkgs,
       ghostty,
       paisa,
+      cloudypad,
       ...
     }:
     let
@@ -45,6 +54,7 @@
           home-manager
           ghostty
           paisa
+          cloudypad
           inputs
           ;
       };
@@ -56,6 +66,7 @@
           home-manager
           ghostty
           paisa
+          cloudypad
           inputs
           ;
       };
