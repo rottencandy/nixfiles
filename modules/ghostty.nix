@@ -6,6 +6,10 @@
 }:
 
 {
+  home.packages = with pkgs; [
+    ghostty
+  ];
+
   home.file = {
     ".config/ghostty/config".text = ''
       theme = Adventure

@@ -88,7 +88,6 @@ in
     # terminal
     ueberzugpp
     #alacritty
-    ghostty.packages.x86_64-linux.default
     fbterm
     contour
 
