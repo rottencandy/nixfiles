@@ -252,6 +252,8 @@ in
       CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
       CPU_BOOST_ON_AC = 1;
       CPU_BOOST_ON_BAT = 0;
+      # allow phone charging through usb
+      USB_EXCLUDE_PHONE = 1;
 
       STOP_CHARGE_THRESH_BAT0 = 1; # stop charging at 80
     };
