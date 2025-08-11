@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754065682,
-        "narHash": "sha256-e6l/9FV9lZWa1gp1q2yLP5VzPRSx0IPcGFWchnfPW0w=",
+        "lastModified": 1754551001,
+        "narHash": "sha256-bNmtmEndhzuuCtk8XdmTyRvumVH0wzZiRvRtg15tuiI=",
         "owner": "pierrebeucher",
         "repo": "cloudypad",
-        "rev": "d3f74b49bafe89fcd76eea21db420d0488969924",
+        "rev": "01adc21e9380663a929d1bc09fc67abf21c63c87",
         "type": "github"
       },
       "original": {
@@ -103,11 +103,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1754060800,
-        "narHash": "sha256-UA3ppDUMw9XmmTzjW50j8m4sKb+A/zEqAnUiGcrrst8=",
+        "lastModified": 1754685586,
+        "narHash": "sha256-aA+mn6ncszeWA64Pz4urI5aTsbigvBSL8udnSOYrcm4=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "469001b7f623f780cfdcb50cc4842f7a4e6386ab",
+        "rev": "4742177daa34f3e83d07a2c3ebfe89fcb736e7ef",
         "type": "github"
       },
       "original": {
@@ -123,11 +123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754085240,
-        "narHash": "sha256-kVHCrTWEe8B1thAhFag1bk4QPY0ZP45V9vPbrwPHoNo=",
+        "lastModified": 1754756528,
+        "narHash": "sha256-W1jYKMetZSOHP5m2Z5Wokdj/ct17swPHs+MiY2WT1HQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e102920c1becb114645c6f92fe14edc0b05cc229",
+        "rev": "3ec1cd9a0703fbd55d865b7fd2b07d08374f0355",
         "type": "github"
       },
       "original": {
@@ -159,11 +159,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1753939845,
-        "narHash": "sha256-K2ViRJfdVGE8tpJejs8Qpvvejks1+A4GQej/lBk5y7I=",
+        "lastModified": 1754725699,
+        "narHash": "sha256-iAcj9T/Y+3DBy2J0N+yF9XQQQ8IEb5swLFzs23CdP88=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "94def634a20494ee057c76998843c015909d6311",
+        "rev": "85dbfc7aaf52ecb755f87e577ddbe6dbbdbc1054",
         "type": "github"
       },
       "original": {
@@ -196,11 +196,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1753029923,
-        "narHash": "sha256-m8v9acsqW65grb/mP9+9eSMU4D/wK+Ds+E8WDRvL8ic=",
+        "lastModified": 1754205155,
+        "narHash": "sha256-GuD0X1Im8pc8arVX/c2KMBZwp/yXyaqPnRObvPe4G5c=",
         "owner": "ananthakumaran",
         "repo": "paisa",
-        "rev": "d8f792ca89e1dee78d99a6e5e365470969e04816",
+        "rev": "c8b72931c8304e3f17693b617e93a28792fc523d",
         "type": "github"
       },
       "original": {
