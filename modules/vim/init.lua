@@ -28,6 +28,34 @@ vim.g.neovide_cursor_vfx_mode = "railgun"
 -- shared config
 vim.cmd.source("~/.vim/common.vim")
 
+-- LSP Mappings
+local lspOpts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "<leader>e", vim.diagnostic.get, lspOpts)
+vim.keymap.set("n", "<leader>n", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, lspOpts)
+vim.keymap.set("n", "<leader>N", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, lspOpts)
+--vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, lspOpts)
+
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, lspOpts)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, lspOpts)
+vim.keymap.set("n", "K", vim.lsp.buf.hover, lspOpts)
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, lspOpts)
+--vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, lspOpts)
+--vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, lspOpts)
+--vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, lspOpts)
+--vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, lspOpts)
+vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, lspOpts)
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, lspOpts)
+vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, lspOpts)
+vim.keymap.set("n", "gr", vim.lsp.buf.references, lspOpts)
+vim.keymap.set("n", "<leader>=", function()
+	vim.lsp.buf.format({ async = true })
+end, lspOpts)
+
 require("lazy").setup({
 	lockfile = "~/nix/modules/vim/lazy-lock.json",
 	spec = {
@@ -299,35 +327,6 @@ require("lazy").setup({
 					-- Use <Tab> and <S-Tab> to navigate through popup menu
 					--inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 					--inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-					-- Mappings.
-					local opts = { noremap = true, silent = true, buffer = bufnr }
-
-					vim.keymap.set("n", "<leader>e", vim.diagnostic.get, opts)
-					vim.keymap.set("n", "<leader>n", function()
-						vim.diagnostic.jump({ count = 1, float = true })
-					end, opts)
-					vim.keymap.set("n", "<leader>N", function()
-						vim.diagnostic.jump({ count = -1, float = true })
-					end, opts)
-					--vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "<leader>K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-					--vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-					--vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-					--vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-					--vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
-					vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
-					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
-					vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-					vim.keymap.set("n", "<leader>=", function()
-						vim.lsp.buf.format({ async = true })
-					end, opts)
 
 					-- Set autocommands conditional on server_capabilities
 					if client.server_capabilities.document_highlight then

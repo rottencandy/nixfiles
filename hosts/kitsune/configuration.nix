@@ -28,7 +28,7 @@
 
   # disable power button
   # see all options in /etc/systemd/logind.conf
-  services.logind.extraConfig = ''
+  services.logind.settings.Login.extraConfig = ''
     HandlePowerKey=ignore
   '';
 
