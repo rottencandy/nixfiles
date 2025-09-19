@@ -319,7 +319,7 @@ require("lazy").setup({
 		{
 			"neovim/nvim-lspconfig",
 			config = function()
-				local lspconfig = require("lspconfig")
+				local lspconfig = vim.lsp.config
 
 				local on_attach = function(client, bufnr)
 					vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
