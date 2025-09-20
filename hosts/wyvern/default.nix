@@ -1,7 +1,6 @@
 {
   nixpkgs,
   home-manager,
-  ghostty,
   paisa,
   inputs,
   ...
@@ -17,7 +16,6 @@ nixpkgs.lib.nixosSystem {
       home-manager.users.saud = {
         imports = [
           (import ./home.nix {
-            ghostty = ghostty;
             paisa = paisa;
           })
         ];

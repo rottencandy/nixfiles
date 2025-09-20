@@ -16,10 +16,6 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     paisa = {
       url = "github:ananthakumaran/paisa";
       inputs.hledger-pkgs.follows = "nixpkgs";
@@ -37,7 +33,6 @@
       nix-darwin,
       home-manager,
       nixpkgs,
-      ghostty,
       paisa,
       cloudypad,
       ...
@@ -52,7 +47,6 @@
           self
           nixpkgs
           home-manager
-          ghostty
           paisa
           cloudypad
           inputs
@@ -64,7 +58,6 @@
           self
           nixpkgs
           home-manager
-          ghostty
           paisa
           cloudypad
           inputs

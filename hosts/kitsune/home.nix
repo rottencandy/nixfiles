@@ -1,4 +1,4 @@
-{ ghostty, paisa, cloudypad }:
+{ paisa, cloudypad }:
 
 {
   pkgs,

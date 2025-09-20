@@ -319,8 +319,6 @@ require("lazy").setup({
 		{
 			"neovim/nvim-lspconfig",
 			config = function()
-				local lspconfig = vim.lsp.config
-
 				local on_attach = function(client, bufnr)
 					vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 					--vim.api.nvim_buf_set_option(bufnr, 'completeopt', 'menuone,noinsert,noselect')
@@ -351,7 +349,7 @@ require("lazy").setup({
 				require("typescript-tools").setup({
 					capabilities = capabilities,
 					on_attach = on_attach,
-					root_dir = lspconfig.util.root_pattern("package.json"),
+					root_markers = { "package.json" },
 					single_file_support = false,
 					settings = {
 						-- do not truncate TS hover definitions
@@ -361,13 +359,13 @@ require("lazy").setup({
 					},
 				})
 
-				lspconfig["denols"].setup({
+				vim.lsp.config("denols", {
 					capabilities = capabilities,
 					on_attach = on_attach,
-					root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
+					root_markers = { "deno.json", "deno.jsonc", "deno.lock" },
 				})
 
-				lspconfig["yamlls"].setup({
+				vim.lsp.config("yamlls", {
 					capabilities = capabilities,
 					on_attach = on_attach,
 					settings = {
@@ -389,7 +387,7 @@ require("lazy").setup({
 					},
 				})
 
-				lspconfig["lua_ls"].setup({
+				vim.lsp.config("lua_ls", {
 					capabilities = capabilities,
 					on_attach = on_attach,
 					on_init = function(client)
@@ -426,7 +424,7 @@ require("lazy").setup({
 					},
 				})
 
-				lspconfig["nixd"].setup({
+				vim.lsp.config("nixd", {
 					settings = {
 						nixd = {
 							formatting = {
@@ -452,7 +450,7 @@ require("lazy").setup({
 					"basedpyright",
 				}
 				for _, lang in ipairs(servers) do
-					lspconfig[lang].setup({
+					vim.lsp.config(lang, {
 						capabilities = capabilities,
 						on_attach = on_attach,
 					})

@@ -1,4 +1,4 @@
-{ ghostty, paisa }:
+{ paisa }:
 
 {
   pkgs,
