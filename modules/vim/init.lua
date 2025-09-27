@@ -347,8 +347,6 @@ require("lazy").setup({
 				local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 				require("typescript-tools").setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
 					root_markers = { "package.json" },
 					single_file_support = false,
 					settings = {
@@ -360,14 +358,10 @@ require("lazy").setup({
 				})
 
 				vim.lsp.config("denols", {
-					capabilities = capabilities,
-					on_attach = on_attach,
 					root_markers = { "deno.json", "deno.jsonc", "deno.lock" },
 				})
 
 				vim.lsp.config("yamlls", {
-					capabilities = capabilities,
-					on_attach = on_attach,
 					settings = {
 						redhat = {
 							telemetry = {
@@ -388,8 +382,6 @@ require("lazy").setup({
 				})
 
 				vim.lsp.config("lua_ls", {
-					capabilities = capabilities,
-					on_attach = on_attach,
 					on_init = function(client)
 						if client.workspace_folders then
 							local path = client.workspace_folders[1].name
@@ -434,9 +426,7 @@ require("lazy").setup({
 					},
 				})
 
-				-- Use a loop to conveniently both setup defined servers
-				-- and map buffer local keybindings when the language server attaches
-				local servers = {
+				vim.lsp.enable({
 					"ccls",
 					"cssls",
 					"gopls",
@@ -448,13 +438,11 @@ require("lazy").setup({
 					"cucumber_language_server",
 					"svelte",
 					"basedpyright",
-				}
-				for _, lang in ipairs(servers) do
-					vim.lsp.config(lang, {
-						capabilities = capabilities,
-						on_attach = on_attach,
-					})
-				end
+				})
+				vim.lsp.config("*", {
+					capabilities = capabilities,
+					on_attach = on_attach,
+				})
 			end,
 		},
 
