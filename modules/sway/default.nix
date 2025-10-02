@@ -18,12 +18,12 @@ in
 
   home.packages = with pkgs; [
     swaylock
-    wayland-pipewire-idle-inhibit
   ];
 
   home.pointerCursor = {
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
+    sway.enable = true;
     size = 24;
     x11 = {
       enable = true;
@@ -31,34 +31,28 @@ in
     };
   };
 
-  services.swayidle = {
-    enable = true;
-    events = [
-      {
-        event = "before-sleep";
-        command = lockScreen;
-      }
-      {
-        event = "lock";
-        command = lockScreen;
-      }
-      {
-        event = "unlock";
-        command = "pkill --signal SIGUSR1 swaylock";
-      }
-    ];
-    timeouts = [
-      {
-        timeout = 120;
-        command = lockScreen;
-      }
-      {
-        timeout = 130;
-        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
-        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
-      }
-    ];
-  };
+  #services.hypridle = {
+  #  enable = true;
+  #  settings = {
+  #    general = {
+  #      after_sleep_cmd = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+  #      ignore_dbus_inhibit = false;
+  #      lock_cmd = lockScreen;
+  #    };
+
+  #    listener = [
+  #      {
+  #        timeout = 120;
+  #        on-timeout = lockScreen;
+  #      }
+  #      {
+  #        timeout = 130;
+  #        on-timeout = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+  #        on-resume = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+  #      }
+  #    ];
+  #  };
+  #};
 
   wayland.windowManager.sway.enable = true;
   # temporary workaround to https://github.com/nix-community/home-manager/issues/5311

@@ -23,6 +23,7 @@ in
     ../../modules/tmux
     ../../modules/todo
     ../../modules/sway
+    ../../modules/niri
     ../../modules/halloy
     ../../modules/keepassxc
     ../../modules/git.nix

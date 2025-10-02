@@ -15,7 +15,7 @@
         height = 24;
         spacing = 2;
 
-        modules-left = [ "sway/workspaces" ];
+        modules-left = [ "niri/workspaces" ];
         modules-right = [
           "idle_inhibitor"
           "memory"
