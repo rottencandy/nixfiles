@@ -37,14 +37,6 @@
     enable = true;
     enable32Bit = true;
   };
-  # Allow amdvlk if applications prefer
-  hardware.graphics.extraPackages = with pkgs; [
-    amdvlk
-  ];
-  # For 32 bit applications
-  hardware.graphics.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
   # linux amdgpu controller
   systemd.packages = with pkgs; [ lact ];
   systemd.services.lactd.wantedBy = [ "multi-user.target" ];

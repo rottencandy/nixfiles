@@ -42,8 +42,6 @@
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      # Allow programs to optionally choose amdvlk
-      amdvlk
       # trying to fix `WLR_RENDERER=vulkan sway`
       vulkan-validation-layers
     ];
