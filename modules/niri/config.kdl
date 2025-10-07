@@ -49,10 +49,11 @@ binds {
 
     Super+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Super+Shift+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
-    Super+D hotkey-overlay-title="Run an Application: tofi" { spawn "tofi-drun" "--width" "800" "--height" "600" "--num-results" "9" "--drun-launch=true" "--font" "@@TOFI_FONT_PATH@@" ; }
-    Super+P hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-f" "-c" "000000"; }
+    Super+D hotkey-overlay-title="Run an Application" { spawn "tofi-drun" "--width" "800" "--height" "600" "--num-results" "9" "--drun-launch=true" "--font" "@@TOFI_FONT_PATH@@" ; }
+    Super+P hotkey-overlay-title="Lock the Screen" { spawn "swaylock" "-f" "-c" "000000"; }
     Super+M hotkey-overlay-title="Open keepass menu" { spawn "keepmenu" "-C"; }
     Super+Y hotkey-overlay-title="Close latest notification" { spawn "dunstctl" "close"; }
+    Super+N hotkey-overlay-title="useless" { spawn-sh "cd ~/nb && ghostty -e nvim _temp.md"; }
     Super+Shift+Y hotkey-overlay-title="Show last closed notification" { spawn "dunstctl" "history-pop"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "-c" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.scripts/emit-vol-notif"; }
@@ -65,8 +66,8 @@ binds {
     //Mod+F4 allow-when-locked=true { spawn "bash" "-c" "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ~/.scripts/emit-vol-notif"; }
 
     // Example brightness key mappings for brightnessctl.
-    XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "-c brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "-c brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
