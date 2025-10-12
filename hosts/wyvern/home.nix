@@ -36,7 +36,7 @@ in
     ../../modules/bash
     ../../modules/tmux
     ../../modules/todo
-    ../../modules/sway
+    ../../modules/niri
     ../../modules/halloy
     ../../modules/keepassxc
     ../../modules/git.nix
@@ -181,7 +181,7 @@ in
     imagemagick
     ffmpeg
     flac
-    #vlc
+    vlc
     mpv
     feh
     gimp
@@ -229,7 +229,7 @@ in
     pcsx2
     #rpcs3
     mame
-    cemu
+    #cemu
     ppsspp
     godot_4
     unciv

@@ -204,7 +204,7 @@ in
     #pcsx2
     #rpcs3
     mame
-    cemu
+    #cemu
     #ppsspp
     godot_4
     unciv
