@@ -2,6 +2,7 @@
   nixpkgs,
   home-manager,
   paisa,
+  cloudypad,
   inputs,
   ...
 }:
@@ -17,6 +18,7 @@ nixpkgs.lib.nixosSystem {
         imports = [
           (import ./home.nix {
             paisa = paisa;
+            cloudypad = cloudypad;
           })
         ];
       };
