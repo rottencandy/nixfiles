@@ -357,10 +357,12 @@ require("lazy").setup({
 					},
 				})
 
+				vim.lsp.enable("denols")
 				vim.lsp.config("denols", {
 					root_markers = { "deno.json", "deno.jsonc", "deno.lock" },
 				})
 
+				vim.lsp.enable("yamlls")
 				vim.lsp.config("yamlls", {
 					settings = {
 						redhat = {
@@ -381,6 +383,7 @@ require("lazy").setup({
 					},
 				})
 
+				vim.lsp.enable("lua_ls")
 				vim.lsp.config("lua_ls", {
 					on_init = function(client)
 						if client.workspace_folders then
@@ -416,6 +419,7 @@ require("lazy").setup({
 					},
 				})
 
+				vim.lsp.enable("nixd")
 				vim.lsp.config("nixd", {
 					settings = {
 						nixd = {
