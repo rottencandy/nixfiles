@@ -34,6 +34,11 @@ output "HDMI-A-1" {
     backdrop-color "#000000"
 }
 
+cursor {
+    xcursor-theme "Hackneyed"
+    hide-when-typing
+}
+
 spawn-at-startup "waybar"
 spawn-sh-at-startup "dbus-sway-environment"
 

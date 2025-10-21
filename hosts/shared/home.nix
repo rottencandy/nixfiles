@@ -74,6 +74,7 @@ in
     repomix
     aider-chat
     claude-code
+    codex
     zed-editor-fhs
     psmisc
     google-cloud-sdk
