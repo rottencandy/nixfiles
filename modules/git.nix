@@ -35,54 +35,58 @@ in
     git-glog
   ];
 
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      "side-by-side" = true;
+      "line-numbers" = true;
+      navigate = true;
+    };
+  };
+
   programs.git = {
     enable = true;
-    delta = {
-      enable = true;
-      options = {
-        "side-by-side" = true;
-        "line-numbers" = true;
-        navigate = true;
+    settings = {
+      user = {
+        name = "saud";
+        email = "md.saud020@gmail.com";
       };
-    };
-    userName = "saud";
-    userEmail = "md.saud020@gmail.com";
-    aliases = {
-      st = "status";
-      co = "checkout";
-      br = "branch";
-      last = "log -1 HEAD";
-      yoink = "reset --hard";
-      # All unmerged commits after fetch
-      lc = "log ORIG_HEAD.. --stat --no-merges";
+      alias = {
+        st = "status";
+        co = "checkout";
+        br = "branch";
+        last = "log -1 HEAD";
+        yoink = "reset --hard";
+        # All unmerged commits after fetch
+        lc = "log ORIG_HEAD.. --stat --no-merges";
 
-      # log in local time
-      llog = "log --date=local";
+        # log in local time
+        llog = "log --date=local";
 
-      # Fetch PR from upstream
-      pr = "!f() { git fetch origin pull/\${1}/head:pr\${1}; }; f";
+        # Fetch PR from upstream
+        pr = "!f() { git fetch origin pull/\${1}/head:pr\${1}; }; f";
 
-      # Pretty log
-      lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
+        # Pretty log
+        lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
 
-      # Show current branch
-      pwd = "symbolic-ref --short HEAD";
-      # Show corresponding upstream branch
-      upstream = "name-rev @{upstream}";
+        # Show current branch
+        pwd = "symbolic-ref --short HEAD";
+        # Show corresponding upstream branch
+        upstream = "name-rev @{upstream}";
 
-      # Set upstream before pushing if necessary
-      pu = "!f() { if [ \"$(git upstream 2> /dev/null)\" ]; then git push; else git push -u origin $(git pwd); fi }; f";
+        # Set upstream before pushing if necessary
+        pu = "!f() { if [ \"$(git upstream 2> /dev/null)\" ]; then git push; else git push -u origin $(git pwd); fi }; f";
 
-      # Pull submodules
-      pulsub = "submodule update --remote";
+        # Pull submodules
+        pulsub = "submodule update --remote";
 
-      # diff with difftastic
-      dft = "-c diff.external=difft diff";
+        # diff with difftastic
+        dft = "-c diff.external=difft diff";
 
-      # log with difftastic
-      dl = "-c diff.external=difft log -p --ext-diff";
-    };
-    extraConfig = {
+        # log with difftastic
+        dl = "-c diff.external=difft log -p --ext-diff";
+      };
       # colorize output
       color = {
         diff = "auto";

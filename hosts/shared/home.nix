@@ -74,6 +74,7 @@ in
     repomix
     aider-chat
     claude-code
+    opencode
     codex
     zed-editor-fhs
     psmisc
