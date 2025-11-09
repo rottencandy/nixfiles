@@ -16,6 +16,9 @@
     ungoogled-chromium
     google-chrome
 
+    # cpu power management
+    ryzenadj
+
     # other
     #paisa.packages.x86_64-linux.default
     #cloudypad.packages.x86_64-linux.default

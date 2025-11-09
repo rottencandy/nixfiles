@@ -110,7 +110,7 @@ in
     bk
 
     # crypto
-    pinentry
+    pinentry-gtk2
     cryptsetup
 
     # containerization
@@ -125,6 +125,8 @@ in
     btop
     mangohud
     blueman
+    bluetui
+    impala
     usbutils
     smartmontools
     nvme-cli
