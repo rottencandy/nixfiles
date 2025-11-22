@@ -90,6 +90,9 @@ in
     #media-session.enable = true;
   };
 
+  # temp workaround for https://nixpkgs-tracker.ocfox.me/?pr=463373
+  systemd.user.services.orca.wantedBy = lib.mkForce [];
+
   # Enable qmk hardware support for a normal non-root user
   hardware.keyboard = {
     qmk.enable = true;
@@ -120,7 +123,7 @@ in
 
   nixpkgs = {
     config = {
-  # Allow unfree packages
+      # Allow unfree packages
       allowUnfree = true;
     };
     overlays = [ ];

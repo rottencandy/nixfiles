@@ -74,6 +74,7 @@ in
     repomix
     aider-chat
     claude-code
+    cursor-cli
     opencode
     codex
     zed-editor-fhs

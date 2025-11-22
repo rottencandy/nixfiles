@@ -6,6 +6,7 @@ if [[ -z $TMUX ]]; then
     test -s ~/.cargo/bin       && export PATH="${HOME}/.cargo/bin:${PATH}"
     test -s /opt/homebrew/bin  && export PATH="/opt/homebrew/bin:${PATH}"
     test -s ~/.node_caches/bin && export PATH="${HOME}/.node_caches/bin:${PATH}"
+    test -s ~/.npm-global/bin  && export PATH="${HOME}/.npm-global/bin:${PATH}"
 fi
 
 # Colors with less

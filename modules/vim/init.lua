@@ -133,63 +133,61 @@ require("lazy").setup({
 			config = function()
 				require("codecompanion").setup({
 					adapters = {
-						deepseek_r1 = function()
-							return require("codecompanion.adapters").extend("openai_compatible", {
-								env = {
-									url = "https://openrouter.ai/api",
-								},
-								headers = {
-									["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
-								},
-								schema = {
-									model = {
-										default = "deepseek/deepseek-r1:free",
+						http = {
+							kat_coder = function()
+								return require("codecompanion.adapters").extend("openai_compatible", {
+									env = {
+										url = "https://openrouter.ai/api",
+										api_key = "cmd:gpg --batch --quiet --decrypt ~/code/misc/api/openrouter_api_key.gpg",
 									},
-								},
-							})
-						end,
-						kimi_dev = function()
-							return require("codecompanion.adapters").extend("openai_compatible", {
-								env = {
-									url = "https://openrouter.ai/api",
-								},
-								headers = {
-									["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
-								},
-								schema = {
-									model = {
-										default = "moonshotai/kimi-dev-72b:free",
+									headers = {
+										["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
 									},
-								},
-							})
-						end,
-						qwen_qwq = function()
-							return require("codecompanion.adapters").extend("openai_compatible", {
-								env = {
-									url = "https://openrouter.ai/api",
-								},
-								headers = {
-									["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
-								},
-								schema = {
-									model = {
-										default = "qwen/qwq-32b:free",
+									schema = {
+										model = {
+											default = "kwaipilot/kat-coder-pro:free",
+										},
 									},
-								},
-							})
-						end,
+								})
+							end,
+							qwen3 = function()
+								return require("codecompanion.adapters").extend("openai_compatible", {
+									env = {
+										url = "https://openrouter.ai/api",
+										api_key = "cmd:gpg --batch --quiet --decrypt ~/code/misc/api/openrouter_api_key.gpg",
+									},
+									headers = {
+										["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
+									},
+									schema = {
+										model = {
+											default = "qwen/qwen3-coder:free",
+										},
+									},
+								})
+							end,
+						},
+						acp = {
+							claude_code = function()
+								return require("codecompanion.adapters").extend("claude_code", {
+									env = {
+										CLAUDE_CODE_OAUTH_TOKEN = "cmd:gpg --batch --quiet --decrypt ~/code/misc/api/claude_api_key.gpg",
+									},
+								})
+							end,
+						},
 					},
 					strategies = {
 						chat = {
-							adapter = "kimi_dev",
+							adapter = "claude_code",
 						},
 						inline = {
-							adapter = "kimi_dev",
+							adapter = "kat_coder",
 						},
 					},
 					display = {
 						chat = {
-							show_settings = true,
+							show_settings = false,
 						},
 					},
 				})
