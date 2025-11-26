@@ -1,5 +1,5 @@
 input {
-    focus-follows-mouse
+    focus-follows-mouse max-scroll-amount="0%"
     keyboard {
         repeat-rate 200
         repeat-delay 400
@@ -56,6 +56,7 @@ binds {
     Super+Shift+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Super+D hotkey-overlay-title="Run an Application" { spawn "tofi-drun" "--width" "800" "--height" "600" "--num-results" "9" "--drun-launch=true" "--font" "@@TOFI_FONT_PATH@@" ; }
     Super+P hotkey-overlay-title="Lock the Screen" { spawn "swaylock" "-f" "-c" "000000"; }
+    Super+Alt+P allow-when-locked=true { spawn "swaylock" "-f" "-c" "000000"; }
     Super+M hotkey-overlay-title="Open keepass menu" { spawn "keepmenu" "-C"; }
     Super+Y hotkey-overlay-title="Close latest notification" { spawn "dunstctl" "close"; }
     Super+N hotkey-overlay-title="useless" { spawn-sh "cd ~/nb && ghostty -e nvim _temp.md"; }
