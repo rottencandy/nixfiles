@@ -106,4 +106,24 @@ g() {
     fi
 }
 
+# Move up $ARGS directories (default 1)
+up() {
+    local d=""
+    local limit="$1"
+
+    # Default to limit of 1
+    if [ -z "$limit" ] || [ "$limit" -le 0 ]; then
+        limit=1
+    fi
+
+    for ((i = 1; i <= limit; i++)); do
+        d="../$d"
+    done
+
+    # perform cd. Show error if cd fails
+    if ! cd "$d"; then
+        echo "Couldn't go up $limit dirs."
+    fi
+}
+
 # vim: ts=4 sw=4 sts=4 et fdm=marker fdl=0:
