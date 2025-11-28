@@ -75,6 +75,7 @@ in
     aider-chat
     claude-code
     cursor-cli
+    goose-cli
     opencode
     codex
     zed-editor-fhs
@@ -92,7 +93,7 @@ in
     ueberzugpp
     #alacritty
     fbterm
-    contour
+    #contour
 
     # filesystem
     fd
@@ -163,6 +164,7 @@ in
     feh
     gimp
     losslesscut-bin
+    obs-studio
 
     # accounting
     ledger
