@@ -25,6 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    beads = {
+      url = "github:steveyegge/beads";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs =
@@ -35,6 +40,7 @@
       nixpkgs,
       paisa,
       cloudypad,
+      beads,
       ...
     }:
     let
@@ -49,6 +55,7 @@
           home-manager
           paisa
           cloudypad
+          beads
           inputs
           ;
       };
@@ -60,6 +67,7 @@
           home-manager
           paisa
           cloudypad
+          beads
           inputs
           ;
       };

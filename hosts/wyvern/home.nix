@@ -1,4 +1,4 @@
-{ paisa, cloudypad }:
+{ paisa, cloudypad, ... }:
 
 {
   pkgs,
