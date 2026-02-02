@@ -171,8 +171,6 @@ in
   security.polkit.enable = true;
   security.pam.services.swaylock = { };
 
-  programs.adb.enable = true;
-
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
   # (org.freedesktop.portal.Desktop) and object path

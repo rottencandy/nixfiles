@@ -48,7 +48,7 @@ in
     cachix
     steam-run
     appimage-run
-    nixfmt-rfc-style
+    nixfmt
     #nix-alien-pkgs.nix-alien
 
     # dev
@@ -62,6 +62,7 @@ in
     helix
     jless
     ugrep
+    lazygit
     gnumake
     pandoc
     neovide
@@ -74,6 +75,7 @@ in
     repomix
     aider-chat
     claude-code
+    happy-coder
     cursor-cli
     goose-cli
     opencode
@@ -81,6 +83,8 @@ in
     zed-editor-fhs
     psmisc
     google-cloud-sdk
+    android-tools
+    mtkclient
 
     # langs
     janet

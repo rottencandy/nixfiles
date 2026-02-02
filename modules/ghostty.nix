@@ -17,6 +17,7 @@
       window-decoration = false
       font-size = 10
       background = "#000000"
+      window-inherit-working-directory = false
     '';
   };
 }

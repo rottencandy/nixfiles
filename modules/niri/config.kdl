@@ -18,14 +18,14 @@ gestures {
 
 output "eDP-1" {
     position x=1920 y=0
-    backdrop-color "#111111"
+    backdrop-color "#777777"
     layout {
         background-color "#000000"
     }
 }
 output "DP-1" {
     position x=0 y=0
-    backdrop-color "#111111"
+    backdrop-color "#777777"
     layout {
         background-color "#000000"
     }
@@ -34,7 +34,7 @@ output "HDMI-A-1" {
     focus-at-startup
     mode "1920x1080@74.973"
     position x=0 y=0
-    backdrop-color "#111111"
+    backdrop-color "#777777"
     layout {
         background-color "#000000"
     }
