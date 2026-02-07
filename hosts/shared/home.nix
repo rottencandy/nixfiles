@@ -232,6 +232,12 @@ in
     ];
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
+
 }
 
 # vim: fdm=marker:fdl=0:et:sw=2

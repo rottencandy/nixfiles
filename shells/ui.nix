@@ -8,7 +8,7 @@
 
 let
 
-  nodejs = pkgs.nodejs_22;
+  nodejs = pkgs.nodejs_24;
   # Adding libuuid to some node binaries are required by the
   # "node-canvas" package
   wrapWithMissingLibraries =
@@ -34,6 +34,8 @@ pkgs.mkShell {
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.svelte-language-server
+
+    grpcurl
   ];
 
   #nativeBuildInputs = with pkgs; [ playwright-driver.browsers ];
