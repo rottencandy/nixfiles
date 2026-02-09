@@ -19,7 +19,8 @@ read -rp "Proceed? (y/n): " ANS
 echo
 if [[ "$ANS" =~ ^[Yy]$ ]]; then
 	# shellcheck disable=SC2086
-	git branch --delete $BRANCHES
+	#git branch --delete $BRANCHES
+	git branch -D $BRANCHES
 	# shellcheck disable=SC2086
 	#git push --delete origin $BRANCHES
 fi
