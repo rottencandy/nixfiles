@@ -28,6 +28,7 @@ pkgs.mkShell {
     #deno
     nodejs
     node
+    bun
 
     nodePackages.yarn
     vscode-langservers-extracted
