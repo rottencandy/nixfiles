@@ -77,9 +77,11 @@ binds {
     Mod+F1 allow-when-locked=true { spawn "bash" "-c" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.scripts/emit-vol-notif"; }
     //Mod+F4 allow-when-locked=true { spawn "bash" "-c" "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ~/.scripts/emit-vol-notif"; }
 
-    // Example brightness key mappings for brightnessctl.
+    // brightness key mappings for brightnessctl.
     XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
+    Mod+F4 allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
+    Mod+F5 allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,

@@ -3,7 +3,6 @@
   home-manager,
   paisa,
   cloudypad,
-  beads,
   inputs,
   ...
 }:
@@ -20,7 +19,6 @@ nixpkgs.lib.nixosSystem {
           (import ./home.nix {
             paisa = paisa;
             cloudypad = cloudypad;
-            beads = beads;
           })
         ];
       };

@@ -25,8 +25,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    beads = {
-      url = "github:steveyegge/beads";
+    ki = {
+      url = "github:ki-editor/ki-editor";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
@@ -40,7 +40,7 @@
       nixpkgs,
       paisa,
       cloudypad,
-      beads,
+      ki,
       ...
     }:
     let
@@ -55,7 +55,7 @@
           home-manager
           paisa
           cloudypad
-          beads
+          ki
           inputs
           ;
       };
@@ -67,7 +67,7 @@
           home-manager
           paisa
           cloudypad
-          beads
+          ki
           inputs
           ;
       };

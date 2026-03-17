@@ -1,4 +1,8 @@
-{ paisa, cloudypad, beads }:
+{
+  paisa,
+  cloudypad,
+  ki,
+}:
 
 {
   pkgs,
@@ -22,7 +26,7 @@
     # other
     #paisa.packages.x86_64-linux.default
     #cloudypad.packages.x86_64-linux.default
-    #beads.packages.x86_64-linux.default
+    #ki.packages.x86_64-linux.default
 
     # Non-free
     anydesk

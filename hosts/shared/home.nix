@@ -85,6 +85,7 @@ in
     google-cloud-sdk
     android-tools
     mtkclient
+    ast-grep
 
     # langs
     janet
@@ -169,6 +170,7 @@ in
     gimp
     losslesscut-bin
     obs-studio
+    blender
 
     # accounting
     ledger
@@ -188,7 +190,8 @@ in
     brightnessctl
 
     # wine
-    dwarfs
+    # disabled due to https://github.com/NixOS/nixpkgs/issues/494561
+    #dwarfs
     bottles
     protonup-qt
     fuse-overlayfs

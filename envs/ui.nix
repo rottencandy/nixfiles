@@ -54,7 +54,6 @@
               pixman
               cairo
               pango
-              node2nix
               nodejs
               node
               yarn
