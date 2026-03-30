@@ -77,7 +77,7 @@ in
     claude-code
     happy-coder
     cursor-cli
-    goose-cli
+    #goose-cli
     opencode
     codex
     zed-editor-fhs

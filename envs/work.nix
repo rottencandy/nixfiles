@@ -52,6 +52,7 @@
               jack2
               alsa-lib
               openssl
+              libz
             ];
 
             # Set any environment variables for your dev shell
