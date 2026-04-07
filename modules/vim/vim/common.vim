@@ -285,8 +285,7 @@ let currentmode = {
 
 " |hitest.vim|
 
-set statusline=
-set statusline+=%#DiffAdd#%{currentmode[mode()]}
+set statusline=%#DiffAdd#%{currentmode[mode()]}
 
 set statusline+=%#Cursor#
 set statusline+=\ %n\             " buffer number
