@@ -30,11 +30,11 @@ pkgs.mkShell {
     node
     bun
 
-    nodePackages.yarn
+    yarn
     vscode-langservers-extracted
-    nodePackages.typescript
-    nodePackages.typescript-language-server
-    nodePackages.svelte-language-server
+    typescript
+    typescript-language-server
+    svelte-language-server
 
     grpcurl
   ];

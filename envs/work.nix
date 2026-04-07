@@ -35,9 +35,9 @@
               bun
 
               vscode-langservers-extracted
-              nodePackages.typescript
-              nodePackages.typescript-language-server
-              nodePackages.svelte-language-server
+              typescript
+              typescript-language-server
+              svelte-language-server
 
               grpcurl
               go_1_26
@@ -48,15 +48,17 @@
 
               just
               buf
-
-              jack2
-              alsa-lib
-              openssl
-              libz
             ];
 
             # Set any environment variables for your dev shell
             env = { };
+
+            LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+              pkgs.jack2
+              pkgs.alsa-lib
+              pkgs.openssl
+              pkgs.libz
+            ];
 
             # Add any shell logic you want executed any time the environment is activated
             shellHook = "";
