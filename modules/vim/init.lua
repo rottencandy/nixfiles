@@ -56,6 +56,20 @@ vim.keymap.set("n", "<leader>=", function()
 	vim.lsp.buf.format({ async = true })
 end, lspOpts)
 
+-- tree sitter highlights
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "lua", "nix", "bash", "html", "typescript", "javascript", "css", "svelte", "markdown" },
+	callback = function()
+		-- enable folds
+		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.wo[0][0].foldmethod = "expr"
+		-- enable indentation
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		-- start ts
+		vim.treesitter.start()
+	end,
+})
+
 require("lazy").setup({
 	lockfile = "~/nix/modules/vim/lazy-lock.json",
 	spec = {
@@ -210,85 +224,10 @@ require("lazy").setup({
 
 		{
 			"nvim-treesitter/nvim-treesitter",
+			dependencies = { "nvim-lua/plenary.nvim" },
+			branch = "main",
+			lazy = false,
 			build = ":TSUpdate",
-			config = function()
-				local configs = require("nvim-treesitter.configs")
-				configs.setup({
-					highlight = {
-						enable = true,
-						-- list of languages that will be disabled
-						disable = {},
-					},
-					incremental_selection = {
-						enable = true,
-						keymaps = {
-							init_selection = "<CR>",
-							node_incremental = "<CR>",
-							scope_incremental = "<TAB>",
-							node_decremental = "<S-TAB>",
-						},
-					},
-					textobjects = {
-						select = {
-							enable = true,
-							-- Automatically jump forward to textobj
-							lookahead = true,
-							-- choose the select mode (default is charwise 'v')
-							-- Can also be a function which gets passed a table with the keys
-							-- * query_string: eg '@function.inner'
-							-- * method: eg 'v' or 'o'
-							-- and should return the mode ('v', 'V', or '<c-v>') or a table
-							-- mapping query_strings to modes.
-							selection_modes = {
-								["@parameter.outer"] = "v", -- charwise
-								["@function.outer"] = "V", -- linewise
-								["@class.outer"] = "<c-v>", -- blockwise
-							},
-							-- If set to `true` (default is `false`) then any textobject is
-							-- extended to include preceding or succeeding whitespace. Succeeding
-							-- whitespace has priority in order to act similarly to eg the built-in
-							-- `ap`.
-							-- Can also be a function which gets passed a table with the keys
-							-- * query_string: eg '@function.inner'
-							-- * selection_mode: eg 'v'
-							-- and should return true or false
-							include_surrounding_whitespace = true,
-							keymaps = {
-								-- You can use the capture groups defined in textobjects.scm
-								["af"] = "@function.outer",
-								["if"] = "@function.inner",
-								["ac"] = "@class.outer",
-								["ic"] = "@class.inner",
-								-- You can also use captures from other query groups like `locals.scm`
-								["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-							},
-						},
-						swap = {
-							enable = true,
-							swap_next = {
-								["<leader>]"] = "@parameter.inner",
-							},
-							swap_previous = {
-								["<leader>["] = "@parameter.inner",
-							},
-						},
-					},
-					lsp_interop = {
-						enable = true,
-						border = "none",
-						floating_preview_opts = {},
-						peek_definition_code = {
-							["<leader>d"] = "@function.outer",
-							["<leader>D"] = "@class.outer",
-						},
-					},
-					indent = {
-						enable = true,
-					},
-				})
-				vim.wo.foldmethod = "expr"
-				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-			end,
 		},
 
 		{

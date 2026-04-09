@@ -14,6 +14,7 @@ in
     gnvim
     neovim
     neovide
+    tree-sitter
     #macvim
   ];
 
