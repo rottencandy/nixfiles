@@ -24,13 +24,6 @@ in
     xdg-desktop-portal-gnome
   ];
 
-  programs.niriswitcher = {
-    enable = true;
-    settings = {
-      modifier = "Super";
-    };
-  };
-
   services.hypridle = {
     enable = true;
     settings = {

@@ -2,7 +2,7 @@
 
 MAX=$(brightnessctl max)
 VAL=$(brightnessctl get)
-PERC=$(($VAL * 100 / $MAX + 1))
+PERC=$(($VAL * 100 / $MAX))
 DURATION=2000
 ICON="$HOME/code/dotfiles/config/icons/sun.svg"
 

@@ -1,5 +1,5 @@
 {
-  description = "frentend development environment";
+  description = "A flake.";
 
   inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1"; # unstable Nixpkgs
 

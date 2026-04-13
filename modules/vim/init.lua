@@ -127,8 +127,6 @@ require("lazy").setup({
 
 		-- pug support
 		--{'digitaltoad/vim-pug'},
-		-- Editorconfig
-		{ "editorconfig/editorconfig-vim" },
 
 		-- Formatting
 		{ "sbdchd/neoformat" },
