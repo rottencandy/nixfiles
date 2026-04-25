@@ -59,6 +59,7 @@
 
               just
               buf
+              pkg-config
 
               (fenixPkgs.fromToolchainFile {
                 file = ./ferrite/rust-toolchain.toml;
