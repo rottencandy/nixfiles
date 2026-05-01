@@ -189,10 +189,10 @@ in
     #kanshi
     brightnessctl
 
-    # wine
-    # disabled due to https://github.com/NixOS/nixpkgs/issues/494561
-    #dwarfs
-    bottles
+    wine
+    dwarfs
+    # disabled due to https://github.com/NixOS/nixpkgs/issues/513245
+    #bottles
     protonup-qt
     fuse-overlayfs
     gst_all_1.gst-libav
@@ -207,7 +207,7 @@ in
     gamescope
 
     # games
-    lutris
+    #lutris
     umu-launcher
     #heroic
     #dolphin-emu

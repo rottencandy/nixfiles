@@ -55,7 +55,7 @@ in
       };
       alias = {
         st = "status";
-        co = "checkout";
+        co = "switch";
         br = "branch";
         last = "log -1 HEAD";
         yoink = "reset --hard";
