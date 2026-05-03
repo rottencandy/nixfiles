@@ -38,6 +38,7 @@
             packages = with pkgs; [
               nodejs
               bun
+              deno
 
               vscode-langservers-extracted
               typescript
