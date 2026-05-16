@@ -88,6 +88,58 @@ require("lazy").setup({
 		-- fzf
 		{ name = "fzf", dir = "@@FZF_PLUGIN_PATH@@", lazy = false },
 
+		-- telescope {{{
+
+		{
+			"nvim-telescope/telescope.nvim",
+			version = "*",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"Marskey/telescope-sg",
+				{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			},
+			config = function()
+				local telescope = require("telescope")
+				local builtin = require("telescope.builtin")
+				local actions = require("telescope.actions")
+				local action_layout = require("telescope.actions.layout")
+				local ast_grep = telescope.load_extension("ast_grep")
+				telescope.setup({
+					defaults = {
+						mappings = {
+							i = {
+								["<C-u>"] = false,
+								["<C-k>"] = action_layout.toggle_preview,
+								["<c-b>"] = actions.delete_buffer,
+							},
+							n = {
+								["<C-u>"] = false,
+								["<C-k>"] = action_layout.toggle_preview,
+								["<c-b>"] = actions.delete_buffer,
+							},
+						},
+					},
+					pickers = {},
+					extensions = {
+						ast_grep = {
+							command = {
+								"ast-grep",
+								"--json=stream",
+							},
+							grep_open_files = false,
+							lang = nil,
+						},
+					},
+				})
+				vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Telescope find files" })
+				vim.keymap.set({ "n", "v" }, "<leader>s", builtin.live_grep, { desc = "Telescope live grep" })
+				vim.keymap.set({ "n", "v" }, "<leader>S", ast_grep.ast_grep, { desc = "Telescope ast-grep search" })
+				vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Telescope buffers" })
+			end,
+		},
+
+		-- }}}
+
 		-- Colorschemes
 		{
 			"bluz71/vim-moonfly-colors",

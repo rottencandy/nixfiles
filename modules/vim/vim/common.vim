@@ -609,28 +609,28 @@ fun! s:FuzzyRgBackend(initialQuery)
 endfun
 
 " Open files
-nnoremap <silent> <Leader>f :call fzf#run(fzf#wrap({
-      \   'source':  'fd --type f',
-      \   'options': join([EXPECT_BIND, BASIC_PREVIEW], ' '),
-      \ }))<CR>
+"nnoremap <silent> <Leader>f :call fzf#run(fzf#wrap({
+"      \   'source':  'fd --type f',
+"      \   'options': join([EXPECT_BIND, BASIC_PREVIEW], ' '),
+"      \ }))<CR>
 
 " Manage buffers
-nnoremap <silent> <Leader>b :call fzf#run(fzf#wrap({
-      \   'source':  reverse(<sid>buflist()),
-      \   'sink*':   function('<sid>bufmanage'),
-      \   'options': join([EXPECT_BIND, BUFLINE_PREVIEW], ' '),
-      \ }))<CR>
+"nnoremap <silent> <Leader>b :call fzf#run(fzf#wrap({
+"      \   'source':  reverse(<sid>buflist()),
+"      \   'sink*':   function('<sid>bufmanage'),
+"      \   'options': join([EXPECT_BIND, BUFLINE_PREVIEW], ' '),
+"      \ }))<CR>
 
 " Directory selection
-nnoremap <silent> <Leader>F :call fzf#run(fzf#wrap({
-      \   'source': 'fd --type d',
-      \   'sink':   function('<sid>navigate'),
-      \   'options': '+m',
-      \ }))<CR>
+"nnoremap <silent> <Leader>F :call fzf#run(fzf#wrap({
+"      \   'source': 'fd --type d',
+"      \   'sink':   function('<sid>navigate'),
+"      \   'options': '+m',
+"      \ }))<CR>
 
 " Use fzf as frontend for ripgrep
-nnoremap <silent> <Leader>s :call <SID>FuzzyRgBackend('')<CR>
-vnoremap <silent> <Leader>s :call <SID>withSelection(function('<SID>FuzzyRgBackend'))<CR>
+"nnoremap <silent> <Leader>s :call <SID>FuzzyRgBackend('')<CR>
+"vnoremap <silent> <Leader>s :call <SID>withSelection(function('<SID>FuzzyRgBackend'))<CR>
 
 " Fern config
 " ----------
