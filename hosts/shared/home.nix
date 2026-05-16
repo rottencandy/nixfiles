@@ -86,6 +86,7 @@ in
     android-tools
     mtkclient
     ast-grep
+    ldtk
 
     # langs
     janet
@@ -171,10 +172,12 @@ in
     losslesscut-bin
     obs-studio
     blender
+    easyeffects
 
     # accounting
     ledger
     visidata
+    libreoffice-fresh
 
     # window manager
     notify-desktop
@@ -189,7 +192,7 @@ in
     #kanshi
     brightnessctl
 
-    wine
+    # wine utils
     dwarfs
     # disabled due to https://github.com/NixOS/nixpkgs/issues/513245
     #bottles
@@ -223,6 +226,9 @@ in
     #unnethack
     moonlight-qt
     #parsec-bin
+
+    # llm
+    llama-cpp
   ];
 
   programs.ripgrep = {

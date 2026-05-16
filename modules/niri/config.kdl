@@ -259,6 +259,7 @@ window-rule {
     match app-id="org.kde.dolphin"
     match app-id="org.qbittorrent.qBittorrent"
     match app-id="org.keepassxc.KeePassXC"
+    match title="^Audiotool VST Bridge$"
     open-floating true
 }
 

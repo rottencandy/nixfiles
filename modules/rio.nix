@@ -12,7 +12,7 @@
       permformance = "Low";
       fonts = {
         family = "FiraCode Nerd Font Mono";
-        size = 20;
+        size = 14;
       };
     };
   };
