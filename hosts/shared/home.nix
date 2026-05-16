@@ -31,6 +31,7 @@ in
     ../../modules/git.nix
     ../../modules/fzf.nix
     ../../modules/rio.nix
+    ../../modules/mpv.nix
     ../../modules/pass.nix
     ../../modules/broot.nix
     ../../modules/ghostty.nix
@@ -166,7 +167,6 @@ in
     ffmpeg
     flac
     vlc
-    mpv
     feh
     gimp
     losslesscut-bin
