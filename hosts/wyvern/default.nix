@@ -1,8 +1,6 @@
 {
   nixpkgs,
   home-manager,
-  paisa,
-  cloudypad,
   inputs,
   ...
 }:
@@ -14,12 +12,10 @@ nixpkgs.lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.backupFileExtension = "backup";
+      home-manager.extraSpecialArgs = { inherit inputs; };
       home-manager.users.saud = {
         imports = [
-          (import ./home.nix {
-            paisa = paisa;
-            cloudypad = cloudypad;
-          })
+          ./home.nix
         ];
       };
     }

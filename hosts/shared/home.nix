@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 
@@ -12,6 +13,8 @@ let
     fi;
     nix develop ~/nix#$SEL
   '';
+
+  llm-packages = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
 
   # nix-alien to run non-NixOS binaries in a compatible FHS environment with
   # all needed shared dependencies
@@ -73,14 +76,11 @@ in
     devshell
     lua-language-server
     stylua
-    repomix
-    aider-chat
-    claude-code
-    happy-coder
-    cursor-cli
+    llm-packages.claude-code
+    llm-packages.happy-coder
+    llm-packages.cursor-agent
+    llm-packages.opencode
     code-cursor
-    opencode
-    codex
     zed-editor-fhs
     psmisc
     google-cloud-sdk

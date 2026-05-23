@@ -41,9 +41,6 @@
       nix-darwin,
       home-manager,
       nixpkgs,
-      paisa,
-      cloudypad,
-      ki,
       ...
     }:
     let
@@ -56,9 +53,6 @@
           self
           nixpkgs
           home-manager
-          paisa
-          cloudypad
-          ki
           inputs
           ;
       };
@@ -68,9 +62,6 @@
           self
           nixpkgs
           home-manager
-          paisa
-          cloudypad
-          ki
           inputs
           ;
       };

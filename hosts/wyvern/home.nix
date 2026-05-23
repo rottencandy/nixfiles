@@ -1,5 +1,3 @@
-{ paisa, cloudypad, ... }:
-
 {
   pkgs,
   ...
@@ -44,10 +42,6 @@ in
     # web
     ungoogled-chromium
     google-chrome
-
-    # other
-    #cloudypad.packages.x86_64-linux.default
-    #paisa.packages.x86_64-linux.default
 
     # Non-free
     anydesk
