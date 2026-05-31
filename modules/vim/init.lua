@@ -198,7 +198,7 @@ require("lazy").setup({
 				require("codecompanion").setup({
 					adapters = {
 						http = {
-							kat_coder = function()
+							pareto = function()
 								return require("codecompanion.adapters").extend("openai_compatible", {
 									env = {
 										url = "https://openrouter.ai/api",
@@ -209,23 +209,7 @@ require("lazy").setup({
 									},
 									schema = {
 										model = {
-											default = "kwaipilot/kat-coder-pro:free",
-										},
-									},
-								})
-							end,
-							qwen3 = function()
-								return require("codecompanion.adapters").extend("openai_compatible", {
-									env = {
-										url = "https://openrouter.ai/api",
-										api_key = "cmd:gpg --batch --quiet --decrypt ~/code/misc/api/openrouter_api_key.gpg",
-									},
-									headers = {
-										["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
-									},
-									schema = {
-										model = {
-											default = "qwen/qwen3-coder:free",
+											default = "openrouter/pareto-code",
 										},
 									},
 								})
@@ -243,10 +227,10 @@ require("lazy").setup({
 					},
 					strategies = {
 						chat = {
-							adapter = "claude_code",
+							adapter = "pareto",
 						},
 						inline = {
-							adapter = "kat_coder",
+							adapter = "pareto",
 						},
 					},
 					display = {

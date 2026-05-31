@@ -173,6 +173,7 @@ in
     obs-studio
     blender
     easyeffects
+    openutau
 
     # accounting
     ledger
