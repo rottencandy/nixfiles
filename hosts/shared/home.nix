@@ -211,7 +211,7 @@ in
     gamescope
 
     # games
-    #lutris
+    lutris
     umu-launcher
     #heroic
     #dolphin-emu
