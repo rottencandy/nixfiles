@@ -127,4 +127,10 @@ up() {
     fi
 }
 
+# emit OSC 7 & OSC 133 sequences to notify nvim
+function print_osc7() {
+    printf '\033]7;file://%s\033\\' "$PWD"
+}
+PROMPT_COMMAND='print_osc7; printf "\033]133;A\007"'
+
 # vim: ts=4 sw=4 sts=4 et fdm=marker fdl=0:

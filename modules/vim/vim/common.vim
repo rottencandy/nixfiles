@@ -51,7 +51,7 @@ set scrolloff=0         " Scroll offset
 set conceallevel=2      " Enable text conceal (for vim-markdown)
 set concealcursor=nc    " Text is not concealed when in insert mode
 set colorcolumn=80      " Show column at 80 chars
-set guifont=Hack:h12
+"set guifont=FiraCode Nerd Font Mono:h12
 
 " Disable all error bells
 set noerrorbells
@@ -392,6 +392,20 @@ nnoremap <silent> <leader>j :wincmd j<CR>
 nnoremap <silent> <leader>k :wincmd k<CR>
 nnoremap <silent> <leader>l :wincmd l<CR>
 
+" ALT+{h,j,k,l}
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
 " Navigate quickfix list
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
@@ -423,6 +437,9 @@ nnoremap <LocalLeader>b :ls<CR>:b
 
 " Grep for word under cursor in cwd and open matched files in quickfix window
 "nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
+
+" esc twice to exit terminal mode
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " }}}
 

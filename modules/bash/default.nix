@@ -56,6 +56,7 @@ in
         k = "kubectl";
         ls = "lsd";
         l = "lsd -F";
+        p = "ps aux | rg $1";
         la = "lsd -A";
         ll = "lsd -l";
         nv = "nvim";

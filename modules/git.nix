@@ -87,6 +87,12 @@ in
 
         # log with difftastic
         dl = "-c diff.external=difft log -p --ext-diff";
+
+        # worktree
+        wls = "worktree list";
+        wadd = "worktree add";
+        wrm = "worktree remove";
+        wprn = "worktree prune";
       };
       # colorize output
       color = {
