@@ -35,6 +35,44 @@
         );
     in
     {
+      packages = forEachSupportedSystem (
+        { pkgs, ... }:
+        let
+          version = "1.3.14";
+          bunUrl = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64.zip";
+          bunReleaseHash = "sha256-lR7iruhV8IWVruxiJSJqKY0/6oOj3NZGXAnLzN9+hI8=";
+        in
+        {
+          bun = pkgs.stdenv.mkDerivation {
+            pname = "bun";
+            inherit version;
+            src = pkgs.fetchurl {
+              url = bunUrl;
+              sha256 = bunReleaseHash;
+            };
+            nativeBuildInputs = [
+              pkgs.unzip
+              pkgs.autoPatchelfHook
+            ];
+            buildInputs = with pkgs; [
+              stdenv.cc.cc.lib
+              openssl
+              libuuid
+            ];
+            buildPhase = "true";
+            installPhase = ''
+              mkdir -p $out/bin
+              unzip -j $src -d $out/bin
+              chmod +x $out/bin/bun
+            '';
+            meta = with pkgs.lib; {
+              description = "Bun runtime (wrapped upstream binary) v${version}";
+              homepage = "https://bun.sh";
+              license = licenses.mit;
+            };
+          };
+        }
+      );
       devShells = forEachSupportedSystem (
         { pkgs, system }:
         let
@@ -46,7 +84,7 @@
             # Add any you need here
             packages = with pkgs; [
               nodejs
-              bun
+              self.packages.${system}.bun
 
               vscode-langservers-extracted
               typescript
@@ -74,12 +112,17 @@
             # Set any environment variables for your dev shell
             env = { };
 
-            LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-              pkgs.jack2
-              pkgs.alsa-lib
-              pkgs.openssl
-              pkgs.libz
-            ];
+            LD_LIBRARY_PATH =
+              with pkgs;
+              lib.makeLibraryPath [
+                pipewire
+                pipewire.jack
+                alsa-lib
+                alsa-lib.dev
+                alsa-plugins
+                openssl
+                libuuid
+              ];
 
             # Add any shell logic you want executed any time the environment is activated
             shellHook = "";
