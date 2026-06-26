@@ -406,6 +406,10 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+" ALT+{t,T}
+nnoremap <A-t> gt
+nnoremap <A-T> gT
+
 " Navigate quickfix list
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
@@ -435,6 +439,14 @@ nnoremap <LocalLeader>d :argdelete<CR>
 " Open "fast" buffer switcher
 nnoremap <LocalLeader>b :ls<CR>:b 
 
+" open splits
+nnoremap <LocalLeader>v :vsplit<CR>
+nnoremap <LocalLeader>s :split<CR>
+
+" open term splits
+nnoremap <LocalLeader>V :vert term<CR>
+nnoremap <LocalLeader>S :hor term<CR>
+
 " Grep for word under cursor in cwd and open matched files in quickfix window
 "nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
 
@@ -453,6 +465,9 @@ command! Fcd silent! lcd %:p:h
 
 " Open 4-pane conflict resolution diff
 command! Mergetool Ghdiffsplit | Gvdiffsplit!
+
+" Open term in new tab
+command! TT tab term
 
 " :Move rename/move current buffer
 fun! s:move_file(new_file_path)

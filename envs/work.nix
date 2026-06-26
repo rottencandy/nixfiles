@@ -94,6 +94,7 @@
               grpcurl
               go_1_26
               gopls
+              gcc
 
               just
               buf
