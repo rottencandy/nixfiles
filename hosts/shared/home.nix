@@ -172,6 +172,7 @@ in
     losslesscut-bin
     obs-studio
     blender
+    inkscape
     easyeffects
     openutau
 

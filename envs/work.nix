@@ -123,6 +123,7 @@
                 alsa-plugins
                 openssl
                 libuuid
+                libz
               ];
 
             # Add any shell logic you want executed any time the environment is activated
