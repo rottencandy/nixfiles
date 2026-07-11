@@ -175,6 +175,9 @@ in
     inkscape
     easyeffects
     openutau
+    ardour
+    yabridge
+    yabridgectl
 
     # accounting
     ledger
@@ -205,7 +208,6 @@ in
     gst_all_1.gst-plugins-base
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-ugly
-    gst_all_1.gst-vaapi
     wine-staging
     winetricks
     #protontricks
