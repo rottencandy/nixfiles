@@ -407,22 +407,11 @@ nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
 " ALT+{t,T}
-nnoremap <A-t> gt
-nnoremap <A-T> gT
+nnoremap <A-t> :tabnext<CR>
+nnoremap <A-T> :tabprev<CR>
 
 " Navigate quickfix list
-nnoremap [q :cprevious<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
-nnoremap [<C-Q> :cpfile<CR>
-nnoremap ]<C-Q> :cnfile<CR>
-
-" Navigate buffer list
-nnoremap [b :bprev<CR>
-nnoremap ]b :bnext<CR>
-nnoremap [B :bfirst<CR>
-nnoremap ]B :brewind<CR>
+nnoremap <LocalLeader>q :copen<CR>
 
 " Navigate arglist
 nnoremap <LocalLeader>1 :1argument<CR>

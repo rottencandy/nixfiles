@@ -28,7 +28,7 @@ in
     ".vim/vimrc".text = builtins.replaceStrings [ "@@FZF_PLUGIN_PATH@@" ] [ fzfPluginPath ] (
       builtins.readFile ./vim/vimrc
     );
-    ".config/snippets" = {
+    ".config/nvim/snippets" = {
       source = ./snippets;
       recursive = true;
     };

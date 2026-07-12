@@ -108,53 +108,23 @@ require("lazy").setup({
 		-- fzf
 		{ name = "fzf", dir = "@@FZF_PLUGIN_PATH@@", lazy = false },
 
-		-- telescope {{{
-
+		-- picker
 		{
-			"nvim-telescope/telescope.nvim",
-			version = "*",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-				"Marskey/telescope-sg",
-				{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-			},
+			"nvim-mini/mini.pick",
+			version = false,
 			config = function()
-				local telescope = require("telescope")
-				local builtin = require("telescope.builtin")
-				local actions = require("telescope.actions")
-				local action_layout = require("telescope.actions.layout")
-				local ast_grep = telescope.load_extension("ast_grep")
-				telescope.setup({
-					defaults = {
-						mappings = {
-							i = {
-								["<C-u>"] = false,
-								["<C-k>"] = action_layout.toggle_preview,
-								["<c-b>"] = actions.delete_buffer,
-							},
-							n = {
-								["<C-u>"] = false,
-								["<C-k>"] = action_layout.toggle_preview,
-								["<c-b>"] = actions.delete_buffer,
-							},
-						},
-					},
-					pickers = {},
-					extensions = {
-						ast_grep = {
-							command = {
-								"ast-grep",
-								"--json=stream",
-							},
-							grep_open_files = false,
-							lang = nil,
-						},
-					},
-				})
-				vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Telescope find files" })
-				vim.keymap.set({ "n", "v" }, "<leader>s", builtin.live_grep, { desc = "Telescope live grep" })
-				vim.keymap.set({ "n", "v" }, "<leader>S", ast_grep.ast_grep, { desc = "Telescope ast-grep search" })
-				vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Telescope buffers" })
+				local minipick = require("mini.pick")
+
+				local wipeout_cur = function()
+					vim.api.nvim_buf_delete(minipick.get_picker_matches().current.bufnr, {})
+				end
+				local buffer_mappings = { wipeout = { char = "<C-d>", func = wipeout_cur } }
+				vim.keymap.set("n", "<leader>f", minipick.builtin.files, { desc = "pick files" })
+				vim.keymap.set("n", "<leader>b", function()
+					minipick.builtin.buffers({}, { mappings = buffer_mappings })
+				end, { desc = "pick buffers" })
+				vim.keymap.set({ "n", "v" }, "<leader>s", minipick.builtin.grep_live, { desc = "pick from live grep" })
+				--vim.keymap.set({ "n", "v" }, "<leader>S", ast_grep.ast_grep, { desc = "ast-grep search" })
 			end,
 		},
 
@@ -448,7 +418,13 @@ require("lazy").setup({
 		{
 			"hrsh7th/nvim-cmp",
 			event = "InsertEnter",
-			dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline" },
+			dependencies = {
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-path",
+				"hrsh7th/cmp-cmdline",
+				"abeldekat/cmp-mini-snippets",
+			},
 			config = function()
 				local cmp = require("cmp")
 
@@ -466,7 +442,7 @@ require("lazy").setup({
 					}),
 					sources = cmp.config.sources({
 						{ name = "nvim_lsp" },
-						{ name = "snippets" }, -- snippets
+						{ name = "mini_snippets" },
 					}, {
 						{ name = "buffer" },
 					}),
@@ -479,45 +455,21 @@ require("lazy").setup({
 		-- Snippets {{{
 
 		{
-			"garymjr/nvim-snippets",
-			opts = {
-				extended_filetypes = {
-					typescript = { "javascript", "tsdoc" },
-					javascript = { "jsdoc" },
-					html = { "css", "javascript" },
-					lua = { "luadoc" },
-					sh = { "shelldoc" },
-				},
-				search_paths = { vim.env.HOME .. "/.config/snippets" },
-			},
-			keys = {
-				{
-					"<Tab>",
-					function()
-						if vim.snippet.active({ direction = 1 }) then
-							return "<cmd>lua vim.snippet.jump(1)<cr>"
-						else
-							return "<Tab>"
-						end
-					end,
-					mode = { "i", "s" },
-					expr = true,
-					silent = true,
-				},
-				{
-					"<S-Tab>",
-					function()
-						if vim.snippet.active({ direction = -1 }) then
-							return "<cmd>lua vim.snippet.jump(-1)<cr>"
-						else
-							return "<S-Tab>"
-						end
-					end,
-					mode = { "i", "s" },
-					expr = true,
-					silent = true,
-				},
-			},
+			"nvim-mini/mini.snippets",
+			event = "InsertEnter",
+			config = function()
+				local gen_loader = require("mini.snippets").gen_loader
+				require("mini.snippets").setup({
+					snippets = {
+						-- Load custom file with global snippets first
+						gen_loader.from_file("~/.config/nvim/snippets/allFiletypes.json"),
+
+						-- Load snippets based on current language by reading files from
+						-- "snippets/" subdirectories from 'runtimepath' directories.
+						gen_loader.from_lang(),
+					},
+				})
+			end,
 		},
 
 		-- }}}
