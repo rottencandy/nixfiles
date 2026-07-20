@@ -8,6 +8,9 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
+    musnix = {
+      url = "github:musnix/musnix";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,8 +63,6 @@
       nixosConfigurations.kitsune = import ./hosts/kitsune {
         inherit
           self
-          nixpkgs
-          home-manager
           inputs
           ;
       };

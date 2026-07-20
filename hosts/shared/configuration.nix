@@ -105,6 +105,7 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "audio"
       "video"
       "libvirtd"
       "adbusers"

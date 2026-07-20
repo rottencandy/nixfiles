@@ -1,12 +1,11 @@
 {
-  nixpkgs,
-  home-manager,
   inputs,
   ...
 }:
 
-nixpkgs.lib.nixosSystem {
-  modules = [
+inputs.nixpkgs.lib.nixosSystem {
+  modules = with inputs; [
+    musnix.nixosModules.musnix
     ./configuration.nix
     home-manager.nixosModules.home-manager
     {
