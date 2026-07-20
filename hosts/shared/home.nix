@@ -175,7 +175,8 @@ in
     inkscape
     easyeffects
     openutau
-    ardour
+    carla
+    lmms
     yabridge
     yabridgectl
 
