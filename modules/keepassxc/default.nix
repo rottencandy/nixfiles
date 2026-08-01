@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     keepassxc
     keepmenu
+    keyutils
     wtype
   ];
 

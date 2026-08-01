@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+PASSWORD_FILE=~/media/pass/pass.kdbx
+KEY_DESC=getp-keepass
+
+get_cached_password() {
+	local id
+	id=$(keyctl request user "$KEY_DESC" 2>/dev/null) || return 1
+	keyctl pipe "$id" 2>/dev/null
+}
+
+cache_password() {
+	local id
+	if id=$(keyctl request user "$KEY_DESC" 2>/dev/null); then
+		printf '%s' "$1" | keyctl pupdate "$id" >/dev/null
+	else
+		printf '%s' "$1" | keyctl padd user "$KEY_DESC" @u >/dev/null
+	fi
+}
+
+clear_cached_password() {
+	local id
+	id=$(keyctl request user "$KEY_DESC" 2>/dev/null) || return 0
+	keyctl unlink "$id" @u >/dev/null
+}
+
+prompt_password() {
+	local pass
+	read -rs -p "Password: " pass
+	echo
+	printf '%s' "$pass"
+}
+
+DB_PASSWORD=$(get_cached_password) || DB_PASSWORD=$(prompt_password)
+
+if [ -z "$DB_PASSWORD" ]; then
+	echo "No password provided." >&2
+	exit 1
+fi
+
+if ! ENTRIES=$(printf '%s\n' "$DB_PASSWORD" | keepassxc-cli ls -q -R -f "$PASSWORD_FILE" 2>/dev/null); then
+	clear_cached_password
+	echo "Failed to unlock database." >&2
+	unset DB_PASSWORD
+	exit 1
+fi
+
+cache_password "$DB_PASSWORD"
+
+# Drop group-only paths (trailing /)
+ENTRIES=$(printf '%s\n' "$ENTRIES" | grep -v '/$')
+
+if [ -z "$ENTRIES" ]; then
+	echo "No entries found." >&2
+	unset DB_PASSWORD
+	exit 1
+fi
+
+SELECTION=$(printf '%s\n' "$ENTRIES" | tofi)
+
+if [ -z "$SELECTION" ]; then
+	unset DB_PASSWORD
+	exit
+fi
+
+printf '%s\n' "$DB_PASSWORD" | keepassxc-cli clip -q "$PASSWORD_FILE" "$SELECTION"
+unset DB_PASSWORD
