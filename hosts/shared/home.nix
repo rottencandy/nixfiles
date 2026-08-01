@@ -54,6 +54,7 @@ in
     appimage-run
     nixfmt
     #nix-alien-pkgs.nix-alien
+    nix-index
 
     # dev
     xh
@@ -152,7 +153,6 @@ in
     #openvpn
     mosh
     localsend
-    hexchat
     tigervnc
 
     # multimedia

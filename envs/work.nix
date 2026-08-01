@@ -108,7 +108,15 @@
               wasm-bindgen-cli
             ];
 
-            buildInputs = [ ];
+            buildInputs = with pkgs; [
+              pipewire.jack
+              jack1
+              alsa-lib
+              alsa-lib.dev
+              alsa-plugins
+              dbus
+              zlib
+            ];
 
             # Set any environment variables for your dev shell
             env = { };
@@ -118,12 +126,14 @@
               lib.makeLibraryPath [
                 pipewire
                 pipewire.jack
+                jack1
                 alsa-lib
                 alsa-lib.dev
                 alsa-plugins
                 openssl
                 libuuid
-                libz
+                zlib
+                dbus
               ];
 
             # Add any shell logic you want executed any time the environment is activated
