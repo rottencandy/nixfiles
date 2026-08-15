@@ -27,7 +27,7 @@ clear_cached_password() {
 prompt_password() {
 	local pass
 	read -rs -p "Password: " pass
-	echo
+	echo >&2
 	printf '%s' "$pass"
 }
 
@@ -63,5 +63,5 @@ if [ -z "$SELECTION" ]; then
 	exit
 fi
 
-printf '%s\n' "$DB_PASSWORD" | keepassxc-cli clip -q "$PASSWORD_FILE" "$SELECTION"
+printf '%s\n' "$DB_PASSWORD" | keepassxc-cli clip -q "$PASSWORD_FILE" "$SELECTION" 3
 unset DB_PASSWORD

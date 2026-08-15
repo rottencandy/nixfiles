@@ -84,8 +84,9 @@ in
     code-cursor
     zed-editor-fhs
     psmisc
-    google-cloud-sdk
+    #google-cloud-sdk
     android-tools
+    android-cli
     mtkclient
     ast-grep
     ldtk

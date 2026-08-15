@@ -102,7 +102,7 @@
 
               (fenixPkgs.fromToolchainFile {
                 file = ./ferrite/rust-toolchain.toml;
-                sha256 = "sha256-tqagmXrHoZA9Zmu2Br6n3MzvXaLkuPzKPS3NIVdNQVQ=";
+                sha256 = "sha256-0SsYbtpnHZd48wvujhCnGdLzZ3C7JAaecq+LsSERvj4=";
               })
               fenixPkgs.rust-analyzer
               wasm-bindgen-cli
