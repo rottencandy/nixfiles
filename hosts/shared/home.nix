@@ -15,6 +15,7 @@ let
   '';
 
   llm-packages = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+  paseo = inputs.paseo.packages.${pkgs.stdenv.hostPlatform.system};
 
   # nix-alien to run non-NixOS binaries in a compatible FHS environment with
   # all needed shared dependencies
@@ -82,6 +83,7 @@ in
     #llm-packages.kilocode-cli
     llm-packages.cursor-agent
     llm-packages.opencode
+    paseo.paseo
     code-cursor
     zed-editor-fhs
     psmisc

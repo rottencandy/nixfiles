@@ -36,6 +36,9 @@
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
     };
+    paseo = {
+      url = "github:getpaseo/paseo";
+    };
   };
 
   outputs =
