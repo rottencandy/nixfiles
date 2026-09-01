@@ -68,6 +68,7 @@ in
     jless
     ugrep
     lazygit
+    github-cli
     gnumake
     pandoc
     neovide
@@ -78,7 +79,7 @@ in
     lua-language-server
     stylua
     llm-packages.claude-code
-    llm-packages.happy-coder
+    #llm-packages.kilocode-cli
     llm-packages.cursor-agent
     llm-packages.opencode
     code-cursor
@@ -121,7 +122,7 @@ in
     bk
 
     # crypto
-    pinentry-gtk2
+    pinentry-gnome3
     cryptsetup
 
     # containerization
@@ -141,6 +142,7 @@ in
     usbutils
     smartmontools
     nvme-cli
+    solaar
 
     # web
     yt-dlp
@@ -184,7 +186,7 @@ in
     # accounting
     ledger
     visidata
-    libreoffice-fresh
+    libreoffice-stable
 
     # window manager
     notify-desktop

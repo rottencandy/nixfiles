@@ -34,9 +34,9 @@
       packages = forEachSupportedSystem (
         { pkgs, ... }:
         let
-          version = "1.3.14";
+          version = "1.4.0";
           bunUrl = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64.zip";
-          bunReleaseHash = "sha256-lR7iruhV8IWVruxiJSJqKY0/6oOj3NZGXAnLzN9+hI8=";
+          bunReleaseHash = "sha256-LQP7X7g6yLVnrKCigbLOGhoZ1Ij1bClo2Iw/Jekv5FI=";
         in
         {
           bun = pkgs.stdenv.mkDerivation {
