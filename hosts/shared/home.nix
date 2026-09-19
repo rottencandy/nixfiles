@@ -152,6 +152,7 @@ in
     streamlink
     qbittorrent
     freetube
+    tor-browser
 
     # networkinag
     wireguard-tools
