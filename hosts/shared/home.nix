@@ -87,7 +87,6 @@ in
     code-cursor
     zed-editor-fhs
     psmisc
-    #google-cloud-sdk
     android-tools
     android-cli
     mtkclient
@@ -228,6 +227,7 @@ in
     #pcsx2
     #rpcs3
     mame
+    mame-tools
     #cemu
     #ppsspp
     godot_4
@@ -240,6 +240,7 @@ in
 
     # llm
     llama-cpp
+    stable-diffusion-cpp
   ];
 
   programs.ripgrep = {
