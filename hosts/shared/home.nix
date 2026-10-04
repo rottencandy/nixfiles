@@ -80,7 +80,7 @@ in
     lua-language-server
     stylua
     llm-packages.claude-code
-    #llm-packages.kilocode-cli
+    llm-packages.kilocode-cli
     llm-packages.cursor-agent
     llm-packages.opencode
     paseo.paseo

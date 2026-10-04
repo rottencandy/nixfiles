@@ -14,7 +14,8 @@ in
     gnvim
     neovim
     neovide
-    tree-sitter
+    # hiPrio: resolves the bin/tree-sitter collision with llm-packages.kilocode-cli
+    (lib.hiPrio tree-sitter)
     #macvim
   ];
 
