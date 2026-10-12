@@ -182,6 +182,7 @@ in
     openutau
     carla
     lmms
+    yoshimi
     yabridge
     yabridgectl
 
