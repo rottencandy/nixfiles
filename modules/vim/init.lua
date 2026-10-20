@@ -58,7 +58,7 @@ end, lspOpts)
 
 -- tree sitter highlights
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "lua", "nix", "bash", "html", "typescript", "javascript", "css", "svelte", "markdown" },
+	pattern = { "lua", "nix", "bash", "html", "typescript", "javascript", "css", "svelte", "markdown", "qmljs" },
 	callback = function()
 		-- enable folds
 		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -403,6 +403,7 @@ require("lazy").setup({
 					"cucumber_language_server",
 					"svelte",
 					"basedpyright",
+					"qmlls",
 				})
 				vim.lsp.config("*", {
 					capabilities = capabilities,

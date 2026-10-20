@@ -89,7 +89,7 @@ in
     psmisc
     android-tools
     android-cli
-    mtkclient
+    #mtkclient
     ast-grep
     ldtk
 
@@ -97,14 +97,13 @@ in
     janet
     clang
     mold
-    #gcc
     luajit
 
     # terminal
     ueberzugpp
     #alacritty
     fbterm
-    #contour
+    contour
 
     # filesystem
     fd
@@ -155,7 +154,7 @@ in
 
     # networkinag
     wireguard-tools
-    #openvpn
+    openvpn
     mosh
     localsend
     tigervnc
@@ -203,6 +202,7 @@ in
     slurp
     #kanshi
     brightnessctl
+    quickshell
 
     # wine utils
     dwarfs
@@ -217,27 +217,27 @@ in
     gst_all_1.gst-plugins-ugly
     wine-staging
     winetricks
-    #protontricks
+    protontricks
     gamescope
 
     # games
     lutris
     umu-launcher
     #heroic
-    #dolphin-emu
-    #pcsx2
-    #rpcs3
+    dolphin-emu
+    pcsx2
+    rpcs3
     mame
     mame-tools
-    #cemu
-    #ppsspp
-    godot_4
+    cemu
+    ppsspp
+    #godot_4
     unciv
     nethack
     ruffle
-    #unnethack
+    unnethack
     moonlight-qt
-    #parsec-bin
+    parsec-bin
 
     # llm
     llama-cpp
