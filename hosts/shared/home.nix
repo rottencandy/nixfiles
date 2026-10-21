@@ -43,6 +43,7 @@ in
     ../../modules/starship.nix
     #../../modules/vscodium.nix
     ../../modules/tridactyl.nix
+    ../../modules/halloy
   ];
   home.username = "saud";
   home.homeDirectory = "/home/saud";
@@ -145,6 +146,8 @@ in
     solaar
 
     # web
+    ungoogled-chromium
+    google-chrome
     yt-dlp
     gallery-dl
     streamlink
@@ -242,6 +245,10 @@ in
     # llm
     llama-cpp
     stable-diffusion-cpp
+
+    # Non-free
+    anydesk
+    #telegram-desktop
   ];
 
   programs.ripgrep = {

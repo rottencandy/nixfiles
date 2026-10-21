@@ -18,7 +18,6 @@ in
 {
   imports = [
     ../shared/home.nix
-    ../../modules/halloy
   ];
 
   # Overwrite steam.desktop shortcut so that is uses PRIME
@@ -38,14 +37,6 @@ in
     asusctl
     nvidia-offload
     nvtopPackages.full
-
-    # web
-    ungoogled-chromium
-    google-chrome
-
-    # Non-free
-    anydesk
-    #telegram-desktop
   ];
 
   # This value determines the Home Manager release that your configuration is

@@ -6,20 +6,11 @@
 {
   imports = [
     ../shared/home.nix
-    ../../modules/halloy
   ];
 
   home.packages = with pkgs; [
-    # web
-    ungoogled-chromium
-    google-chrome
-
     # cpu power management
     ryzenadj
-
-    # Non-free
-    anydesk
-    #telegram-desktop
   ];
 
   # This value determines the Home Manager release that your configuration is
