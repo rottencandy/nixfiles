@@ -14,6 +14,27 @@ let
     nix develop ~/nix#$SEL
   '';
 
+  # https://github.com/nazdridoy/kokoro-tts
+  # deps (kokoro-onnx etc.) aren't in nixpkgs, so run the PyPI release via uvx
+  kokoro-tts = pkgs.writeShellScriptBin "kokoro-tts" ''
+    export UV_PYTHON_DOWNLOADS=never
+    export LD_LIBRARY_PATH=${
+      pkgs.lib.makeLibraryPath [
+        pkgs.stdenv.cc.cc.lib
+        pkgs.portaudio
+        pkgs.zlib
+      ]
+    }''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+
+    # input file must stay the first arg, and the last --model/--voices wins
+    models="$HOME/code/llm/tts"
+    args=("$@")
+    [[ " $* " == *" --model "* ]] || args+=(--model "$models/kokoro-v1.0.onnx")
+    [[ " $* " == *" --voices "* ]] || args+=(--voices "$models/voices-v1.0.bin")
+
+    exec ${pkgs.uv}/bin/uvx --python ${pkgs.python312}/bin/python3 kokoro-tts "''${args[@]}"
+  '';
+
   llm-packages = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
   paseo = inputs.paseo.packages.${pkgs.stdenv.hostPlatform.system};
 
@@ -93,6 +114,7 @@ in
     #mtkclient
     ast-grep
     ldtk
+    kokoro-tts
 
     # langs
     janet
