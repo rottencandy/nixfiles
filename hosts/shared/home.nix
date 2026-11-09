@@ -176,6 +176,7 @@ in
     qbittorrent
     freetube
     tor-browser
+    signal-desktop
 
     # networkinag
     wireguard-tools
