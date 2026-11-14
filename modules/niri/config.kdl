@@ -60,7 +60,8 @@ binds {
 
     Super+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Super+Shift+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
-    Super+D hotkey-overlay-title="Run an Application" { spawn "tofi-drun" "--width" "800" "--height" "600" "--num-results" "9" "--drun-launch=true" "--font" "@@TOFI_FONT_PATH@@" ; }
+    //Super+D hotkey-overlay-title="Run an Application" { spawn "tofi-drun" "--width" "800" "--height" "600" "--num-results" "9" "--drun-launch=true" "--font" "@@TOFI_FONT_PATH@@" ; }
+    Super+D hotkey-overlay-title="Run an Application" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Super+P hotkey-overlay-title="Lock the Screen" { spawn "swaylock" "-f" "-c" "000000"; }
     Super+Alt+P allow-when-locked=true { spawn "swaylock" "-f" "-c" "000000"; }
     Super+M hotkey-overlay-title="Open keepass menu" { spawn "keepmenu" "-C"; }
@@ -68,18 +69,23 @@ binds {
     Super+N hotkey-overlay-title="useless" { spawn-sh "cd ~/nb && ghostty -e nvim _temp.md"; }
     Super+Shift+Y hotkey-overlay-title="Show last closed notification" { spawn "dunstctl" "history-pop"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true repeat=false { spawn "bash" "-c" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.scripts/emit-vol-notif"; }
-    XF86AudioLowerVolume allow-when-locked=true repeat=false { spawn "bash" "-c" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%- && ~/.scripts/emit-vol-notif"; }
-    XF86AudioMute        allow-when-locked=true repeat=false { spawn "bash" "-c" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.scripts/emit-vol-notif"; }
+    //XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "-c" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.scripts/emit-vol-notif"; }
+    //XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "-c" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%- && ~/.scripts/emit-vol-notif"; }
+    //XF86AudioMute        allow-when-locked=true { spawn "bash" "-c" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.scripts/emit-vol-notif"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "5"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "5"; }
+    XF86AudioMute        allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
     //XF86AudioMicMute     allow-when-locked=true { spawn "bash" "-c wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ~/.scripts/emit-vol-notif"; }
-    Mod+F3 allow-when-locked=true repeat=false { spawn "bash" "-c" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.scripts/emit-vol-notif"; }
-    Mod+F2 allow-when-locked=true repeat=false { spawn "bash" "-c" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%- && ~/.scripts/emit-vol-notif"; }
-    Mod+F1 allow-when-locked=true repeat=false { spawn "bash" "-c" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.scripts/emit-vol-notif"; }
+    Mod+F3 allow-when-locked=true { spawn "bash" "-c" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.scripts/emit-vol-notif"; }
+    Mod+F2 allow-when-locked=true { spawn "bash" "-c" "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%- && ~/.scripts/emit-vol-notif"; }
+    Mod+F1 allow-when-locked=true { spawn "bash" "-c" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.scripts/emit-vol-notif"; }
     //Mod+F4 allow-when-locked=true { spawn "bash" "-c" "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ~/.scripts/emit-vol-notif"; }
 
     // brightness key mappings for brightnessctl.
-    XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
+    //XF86MonBrightnessUp allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif"; }
+    //XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
     Mod+F4 allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
     Mod+F5 allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif"; }
 
@@ -253,11 +259,8 @@ window-rule {
     // protonup
     match app-id="net.davidotek.pupgui2"
     match app-id="gamescope"
-    match app-id="info.cemu.Cemu"
-    match app-id="org.citron_emu.citron"
     match app-id=".blueman-manager-wrapped"
     match app-id="org.kde.dolphin"
-    match app-id="org.qbittorrent.qBittorrent"
     match app-id="org.keepassxc.KeePassXC"
     match title="^Audiotool VST Bridge$"
     open-floating true
@@ -269,3 +272,9 @@ window-rule {
     match app-id="^gimp"
     default-column-width { proportion 1.0; }
 }
+
+// include dux styles
+include optional=true "dms/colors.kdl"
+include optional=true "dms/layout.kdl"
+include optional=true "dms/alttab.kdl"
+include optional=true "dms/binds.kdl"

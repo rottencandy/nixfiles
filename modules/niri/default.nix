@@ -9,7 +9,7 @@ let
   tofiFontPath = "${pkgs.nerd-fonts.fira-code.outPath}/share/fonts/truetype/NerdFonts/FiraCode/FiraCodeNerdFont-Medium.ttf";
 in
 {
-  imports = [ ../waybar.nix ];
+  #imports = [ ../waybar.nix ];
 
   xdg.configFile."niri/config.kdl".text =
     builtins.replaceStrings [ "@@TOFI_FONT_PATH@@" ] [ tofiFontPath ]

@@ -122,6 +122,15 @@ in
     nativeMessagingHosts.packages = [ pkgs.tridactyl-native ];
   };
 
+  # Install dux shell
+  programs.dux-shell = {
+    enable = true;
+    systemd = {
+      enable = true;
+      restartIfChanged = true;
+    };
+  };
+
   nixpkgs = {
     config = {
       # Allow unfree packages
