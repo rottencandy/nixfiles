@@ -187,45 +187,22 @@ require("lazy").setup({
 			config = function()
 				require("codecompanion").setup({
 					adapters = {
-						http = {
-							pareto = function()
-								return require("codecompanion.adapters").extend("openai_compatible", {
-									env = {
-										url = "https://openrouter.ai/api",
-										api_key = "cmd:gpg --batch --quiet --decrypt ~/code/misc/api/openrouter_api_key.gpg",
-									},
-									headers = {
-										["HTTP-Referer"] = "https://github.com/olimorris/codecompanion.nvim",
-									},
-									schema = {
-										model = {
-											default = "openrouter/pareto-code",
-										},
-									},
-								})
-							end,
-						},
 						acp = {
-							claude_code = function()
-								return require("codecompanion.adapters").extend("claude_code", {
-									env = {
-										CLAUDE_CODE_OAUTH_TOKEN = "cmd:gpg --batch --quiet --decrypt ~/code/misc/api/claude_api_key.gpg",
+							cursor_cli = function()
+								return require("codecompanion.adapters").extend("cursor_cli", {
+									commands = {
+										default = { "cursor-agent", "acp" },
 									},
 								})
 							end,
 						},
 					},
-					strategies = {
+					interactions = {
 						chat = {
-							adapter = "pareto",
+							adapter = "cursor_cli",
 						},
-						inline = {
-							adapter = "pareto",
-						},
-					},
-					display = {
-						chat = {
-							show_settings = false,
+						cli = {
+							agent = "cursor_cli",
 						},
 					},
 				})
