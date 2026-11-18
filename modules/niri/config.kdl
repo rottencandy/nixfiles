@@ -86,8 +86,10 @@ binds {
     //XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
     XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
-    Mod+F4 allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
-    Mod+F5 allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif"; }
+    Mod+F4 allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
+    Mod+F5 allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
+    //Mod+F4 allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%- && ~/.scripts/emit-brightness-notif"; }
+    //Mod+F5 allow-when-locked=true { spawn "bash" "-c" "brightnessctl set 5%+ && ~/.scripts/emit-brightness-notif"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
