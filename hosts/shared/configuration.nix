@@ -45,6 +45,35 @@ let
         gsettings set $gnome_schema gtk-theme 'Dracula'
       '';
   };
+
+  # cp & mv with progress bars (-g), see https://github.com/jarun/advcpmv
+  # built separately and installed as advcp/advmv to avoid patching the
+  # system coreutils (which would trigger a mass rebuild)
+  # note: the patch version must match the coreutils version in nixpkgs
+  advcpmv =
+    let
+      patched-coreutils =
+        (pkgs.coreutils.override {
+          # multicall binary dispatches on argv[0], which breaks renaming
+          singleBinary = false;
+        }).overrideAttrs
+          (old: {
+            pname = "coreutils-advcpmv";
+            patches = (old.patches or [ ]) ++ [
+              (pkgs.fetchurl {
+                url = "https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-1.0-${old.version}.patch";
+                sha256 = "0l0p0dk5vkqxnpd73vhpl9nil86lcnrgm0468mnphca31j1qxa8h";
+              })
+            ];
+            # patch modifies doc/coreutils.texi
+            nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.texinfo ];
+            doCheck = false;
+          });
+    in
+    pkgs.runCommand "advcpmv-${patched-coreutils.version}" { } ''
+      install -Dm755 ${patched-coreutils}/bin/cp $out/bin/advcp
+      install -Dm755 ${patched-coreutils}/bin/mv $out/bin/advmv
+    '';
 in
 {
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -168,6 +197,7 @@ in
     dbus-sway-environment
     configure-gtk
     xdg-utils
+    advcpmv
 
     # libs
     glib

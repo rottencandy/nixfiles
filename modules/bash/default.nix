@@ -50,7 +50,8 @@ in
 
     shellAliases =
       {
-        # TODO get advcpmv to nixpkgs
+        cpg = "advcp -g";
+        mvg = "advmv -g";
         gd = "DELTA_NAVIGATE=1 git diff";
         gr = "cd ./$(git rev-parse --show-cdup)";
         k = "kubectl";
