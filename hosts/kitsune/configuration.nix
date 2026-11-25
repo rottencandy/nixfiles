@@ -79,6 +79,15 @@
   # this conflicts with tlp
   services.power-profiles-daemon.enable = false;
 
+  # Qualcomm EDL (bkerler/edl): let the logged-in user access EDL-mode devices
+  services.udev.extraRules = ''
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9008", MODE="0666", TAG+="uaccess"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9006", MODE="0666", TAG+="uaccess"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="900E", MODE="0666", TAG+="uaccess"
+  '';
+  # qcserial grabs EDL devices and interferes with edl
+  boot.blacklistedKernelModules = [ "qcserial" ];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

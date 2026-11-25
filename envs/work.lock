@@ -8,47 +8,27 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1793973596,
-        "narHash": "sha256-GqPS8gncHM8UKtLIFBRELQEA3jn+plxd8/XLfS4zdBE=",
+        "lastModified": 1795102243,
+        "narHash": "sha256-HnABs2+i8cjYStZ31xTkxEu3MLSZIkU88mo7Kk3d3bU=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "73d5d48c1a5a12d37fc5d2eaf2667b050ce6c29a",
+        "rev": "56cb1cb22a0718efbf464dd045e53c729fa78f35",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "fenix",
         "type": "github"
-      }
-    },
-    "meat": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792040852,
-        "narHash": "sha256-5qDX0PAZbtzsTCF5mwarbblLl0wRo0P0UetLAbe38IQ=",
-        "ref": "refs/heads/main",
-        "rev": "d6eedfa01ceaa1711c4b48f4675782582b4146d4",
-        "revCount": 3,
-        "type": "git",
-        "url": "file:///home/saud/code/work/meat"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:///home/saud/code/work/meat"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1793726008,
-        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
-        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
-        "revCount": 1107793,
+        "lastModified": 1795085501,
+        "narHash": "sha256-S5keGWzaKpuXo9MNoIC2FfTIuTyTnx8P4NhYJMEsTLI=",
+        "rev": "0bb8272318b4ca41bf0edc6224df3e3e3046b70d",
+        "revCount": 1124497,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.1107793%2Brev-1d060086d60cb76a40cf37109f979d88a5bd6396/01a1a7a2-6937-7252-bb94-d02ebbc1f792/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.1124497%2Brev-0bb8272318b4ca41bf0edc6224df3e3e3046b70d/01a1f77f-2057-7973-8ff7-a4c6141aa761/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -58,18 +38,17 @@
     "root": {
       "inputs": {
         "fenix": "fenix",
-        "meat": "meat",
         "nixpkgs": "nixpkgs"
       }
     },
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1793893194,
-        "narHash": "sha256-cEkhuxpuZhVVYxW6geQI3cuB9wN11pcA8xu/VhUvDJc=",
+        "lastModified": 1795029100,
+        "narHash": "sha256-y+hK29DFce9pID3opWyQteXeBO2kt7vd7ML0NnA9U/k=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "fde5133f7d116dd81f33f71bd0d389c768c7bd58",
+        "rev": "8ef9c27d332d6b01f09f80dc24cf4720650dde0f",
         "type": "github"
       },
       "original": {

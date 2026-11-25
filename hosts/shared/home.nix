@@ -115,6 +115,7 @@ in
     ast-grep
     ldtk
     kokoro-tts
+    ghidra
 
     # langs
     janet
