@@ -7,17 +7,17 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    meat = {
-      url = "git+file:///home/saud/code/work/meat";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #meat = {
+    #  url = "git+file:///home/saud/code/work/meat";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
   outputs =
     {
       self,
       fenix,
-      meat,
+      #meat,
       ...
     }@inputs:
 
@@ -90,7 +90,7 @@
             packages = with pkgs; [
               nodejs
               self.packages.${system}.bun
-              meat.packages.${system}.default
+              #meat.packages.${system}.default
 
               vscode-langservers-extracted
               typescript
